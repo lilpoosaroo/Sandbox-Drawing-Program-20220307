@@ -13,13 +13,16 @@ void setup (){
  rect(drawingSurfaceX, drawingSurfacY, drawingSurfacWidth, drawingSurfacHeight);
 }//End setup
 // 
- void draw (){}//End draw
+ void draw (){
+ if (draw==true) line(mouseX, mouseY, pmouseX, pmouseY) ;//End Line Draw
+ }//End draw
 //
 void keyPressed (){
 if (keyCode=='/') exit();
 }//End keyPressed
 //
 void mousePressed (){
+  if (mouseX>= drawingSurfaceX && mouseX<= drawingSurfaceX+drawingSurfacWidth && mouseY>=drawingSurfacY && mouseY<=drawingSurfacY+drawingSurfacHeight){}//Button that allows the drawing of ink: paper
  if (draw==false) {
  draw=true;
  }else{
