@@ -3,11 +3,12 @@ boolean draw=false;
 float drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight;
 float  drawingDiameter;
 float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
-String quitButtonText="Exit Program";
-PFont quitButtonFont= createFont("Microsoft Himalaya", 15);
 color blue=#94CFF5, whiteReset=#FFFFFF, black=#000000;
 color quitButtonColor;
 int reset=1;
+//
+String quitButtonText="Exit Program";
+PFont quitButtonFont; //CAN'T POPULATE A FONT IN THE GLOBAL VARIABLES
 //
 void setup () {
   size(900, 600);
@@ -24,7 +25,7 @@ void setup () {
   //Paper code
   rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
   //Quit button
-
+   quitButtonFont= createFont("Microsoft Himalaya", 15);
   //Types of Font
   String [] fontList=PFont.list();
   printArray(fontList);
@@ -43,12 +44,11 @@ void draw () {
   }
   fill(quitButtonColor);
   rect(quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight);
-  /*
   fill(black);
   textAlign(CENTER, CENTER);
-  textFont(quitButtonFont, 13);
+  textFont(quitButtonFont, 25);
   text(quitButtonText, quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight);
-  */
+  
 
   fill(whiteReset);
 }//End draw
@@ -65,6 +65,7 @@ void mousePressed () {
       draw=false;
     }
   }//Button that allows the drawing of ink: paper
+  //
   if (mouseX>=quitButtonX && mouseX<= quitButtonX+quitButtonWidth && mouseY>=quitButtonY && mouseY<=quitButtonY+quitButtonHeight) exit();
 }//End mousePressed
 //
