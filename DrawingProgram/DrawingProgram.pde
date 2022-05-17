@@ -3,8 +3,8 @@ boolean draw=false;
 float drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight;
 float  drawingDiameter;
 float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
-color blue=#94CFF5, whiteReset=#FFFFFF, black=#000000;
-color quitButtonColor;
+color blue=#94CFF5, whiteReset=#FFFFFF, black=#000000, purple=#A0457F, lightPink=#F2B0DA;
+color quitButtonColor, quitTextColor;
 int reset=1;
 //
 String quitButtonText="Exit Program";
@@ -38,13 +38,15 @@ void draw () {
   if (draw==true && mouseX>= drawingSurfaceX && mouseX<= drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight) ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
   //
   if (mouseX>=quitButtonX && mouseX<= quitButtonX+quitButtonWidth && mouseY>=quitButtonY && mouseY<=quitButtonY+quitButtonHeight) {
-    quitButtonColor=#A0457F;
+    quitButtonColor=purple;
+    quitTextColor=whiteReset;
   } else {
-    quitButtonColor=#F2B0DA;
+    quitButtonColor=lightPink;
+    quitTextColor=black;
   }
   fill(quitButtonColor);
   rect(quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight);
-  fill(black);
+  fill(quitTextColor);
   textAlign(CENTER, CENTER);
   textFont(quitButtonFont, 25);
   text(quitButtonText, quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight);
