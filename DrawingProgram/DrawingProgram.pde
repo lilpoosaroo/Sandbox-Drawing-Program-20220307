@@ -1,30 +1,72 @@
 //Global Variables
 boolean draw=false;
-float drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight;
-float  drawingDiameter;
-float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
 color blue=#94CFF5, whiteReset=#FFFFFF, black=#000000, purple=#A0457F, lightPink=#F2B0DA;
 color quitButtonColor, quitTextColor;
 int reset=1;
+
+//Paper
+float drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight;
+float  drawingDiameter;
 //
+//Tool Bar: want it to be a rounded/dark square below the painting surface 
+float toolBarX, toolBarY, toolBarWidth, toolBarHeight;
+int roundedEdges;
+//
+//Quit Button
 String quitButtonText="Exit Program";
 PFont quitButtonFont; //CAN'T POPULATE A FONT IN THE GLOBAL VARIABLES
+float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
 //
+//Second Button
 float secondTextX, secontTextY, secondTextWidth, secondTextHeight;
 color secondTextButtonColor=#B2F5A6;
 String secondTextButtonText="ChaChaCha";
 PFont secondTextButtonFont;
 //
+//Color buttons
+float red1X, red1Y, colorButtonWidth, colorButtonHeight;
+float orange1X, orange1Y;
+float yellow1X, yellow1Y;
+float green1X, green1Y;
+float blueX, blue1Y;
+float purple1X, purple1Y;
+float black1X, black1Y;
+float grey1X, grey1Y;
+float brownX, brown1Y;
+//
+//Image Buttons
+float image1ButtonX, image1ButtonY, imageButtonWidth, imageButtonHeight;
+float image2ButtonX, image2ButtonY;
+float image3ButtonX, image3ButtonY;
+//
+//Drawing Buttons
+float eraserButtonX, eraserButtonY, drawingButtonWidth, drawingButtonHeight;
+float pencilButtonX, pencilButtonY;
+//Background Buttons
+float backgroundImage1ButtonX, backgroundImage1ButtonY, backgroundImageButtonWidth, backgroundImageButtonHeight;
+float backgroundImage2ButtonX, backgroundImage2ButtonY;
+float backgroundImage3ButtonX, backgroundImage3ButtonY;
+//Images
+
+//
 void setup () {
-  size(900, 600);
-  //Populating Variables
+  size(900, 600); //NEED TO CHANGE TO fullScreen();, which means everything else will need to be changed to displayWidth
+   //Paper 
   drawingSurfaceWidth = width*1/2; 
   drawingSurfaceHeight = height*3/4;
   drawingSurfaceX = (width*1/2)-(drawingSurfaceWidth*1/2);
   drawingSurfaceY =height*0;
   drawingDiameter=width*1/100;
-  //Paper code
   rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
+  //Tool Bar: want it to be a rounded/dark square below the painting surface 
+ toolBarWidth=drawingSurfaceWidth*6/4;
+ toolBarHeight= drawingSurfaceHeight*1/4;
+ toolBarX=drawingSurfaceX-(drawingSurfaceX*1/2);
+ toolBarY=height-toolBarHeight-float(roundedEdges); 
+ roundedEdges= height*1/50;
+ strokeWeight(roundedEdges);
+ rect(toolBarX, toolBarY, toolBarWidth, toolBarHeight);
+ strokeWeight(reset);
   //Quit button
   quitButtonFont= createFont("Microsoft Himalaya", 15);
   quitButtonWidth=width*1/8;
