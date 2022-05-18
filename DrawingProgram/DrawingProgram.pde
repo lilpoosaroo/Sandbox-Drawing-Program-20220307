@@ -10,6 +10,9 @@ int reset=1;
 String quitButtonText="Exit Program";
 PFont quitButtonFont; //CAN'T POPULATE A FONT IN THE GLOBAL VARIABLES
 //
+float secondTextX, secontTextY, secondTextWidth, secondTextHeight;
+color secondTextButtonColor=#B2F5A6;
+//
 void setup () {
   size(900, 600);
   //Populating Variables
@@ -18,14 +21,19 @@ void setup () {
   drawingSurfaceX = (width*1/2)-(drawingSurfaceWidth*1/2);
   drawingSurfaceY =height*0;
   drawingDiameter=width*1/100;
+  //Paper code
+  rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
+  //Quit button
+  quitButtonFont= createFont("Microsoft Himalaya", 15);
   quitButtonWidth=width*1/8;
   quitButtonHeight=height*1/10;
   quitButtonX=width*0;
   quitButtonY=drawingSurfaceHeight-(quitButtonHeight);
-  //Paper code
-  rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
-  //Quit button
-   quitButtonFont= createFont("Microsoft Himalaya", 15);
+  //Second Text Button
+  secondTextX=width*0;
+  secontTextY=drawingSurfaceHeight-(quitButtonHeight*2);
+  secondTextWidth=quitButtonWidth;
+  secondTextHeight=quitButtonHeight;
   //Types of Font
   String [] fontList=PFont.list();
   printArray(fontList);
@@ -50,8 +58,12 @@ void draw () {
   textAlign(CENTER, CENTER);
   textFont(quitButtonFont, 25);
   text(quitButtonText, quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight);
-  
-
+  fill(whiteReset);
+  //
+  //Second rectangle with more text
+  fill(secondTextButtonColor);
+  rect(secondTextX, secontTextY, secondTextWidth, secondTextHeight);
+  //fill();
   fill(whiteReset);
 }//End draw
 //
