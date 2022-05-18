@@ -12,6 +12,8 @@ PFont quitButtonFont; //CAN'T POPULATE A FONT IN THE GLOBAL VARIABLES
 //
 float secondTextX, secontTextY, secondTextWidth, secondTextHeight;
 color secondTextButtonColor=#B2F5A6;
+String secondTextButtonText="ChaChaCha";
+PFont secondTextButtonFont;
 //
 void setup () {
   size(900, 600);
@@ -34,6 +36,7 @@ void setup () {
   secontTextY=drawingSurfaceHeight-(quitButtonHeight*2);
   secondTextWidth=quitButtonWidth;
   secondTextHeight=quitButtonHeight;
+  secondTextButtonFont=createFont("Segoe UI Semibold Italic", 25);
   //Types of Font
   String [] fontList=PFont.list();
   printArray(fontList);
@@ -63,7 +66,10 @@ void draw () {
   //Second rectangle with more text
   fill(secondTextButtonColor);
   rect(secondTextX, secontTextY, secondTextWidth, secondTextHeight);
-  //fill();
+  fill(black); 
+  textAlign(CENTER, CENTER);
+  textFont(secondTextButtonFont, 14);
+  text(secondTextButtonText, secondTextX, secontTextY, secondTextWidth, secondTextHeight);
   fill(whiteReset);
 }//End draw
 //
