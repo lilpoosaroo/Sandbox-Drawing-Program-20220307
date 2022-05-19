@@ -7,6 +7,7 @@ int reset=1;
 //Paper
 float drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight;
 float  drawingDiameter;
+Boolean paper=false;
 //
 //Tool Bar: want it to be a rounded/dark square below the painting surface 
 float toolBarX, toolBarY, toolBarWidth, toolBarHeight;
@@ -20,7 +21,7 @@ float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
 //Second Button
 float secondTextX, secontTextY, secondTextWidth, secondTextHeight;
 color secondTextButtonColor=#B2F5A6;
-String secondTextButtonText="ChaChaCha";
+String secondTextButtonText="Start Drawing";
 PFont secondTextButtonFont;
 //
 //Color buttons
@@ -51,22 +52,21 @@ float backgroundImage3ButtonX, backgroundImage3ButtonY;
 //
 void setup () {
   size(900, 600); //NEED TO CHANGE TO fullScreen();, which means everything else will need to be changed to displayWidth
-   //Paper 
+  //Paper 
   drawingSurfaceWidth = width*1/2; 
   drawingSurfaceHeight = height*3/4;
   drawingSurfaceX = (width*1/2)-(drawingSurfaceWidth*1/2);
   drawingSurfaceY =height*0;
   drawingDiameter=width*1/100;
-  rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
   //Tool Bar: want it to be a rounded/dark square below the painting surface 
- toolBarWidth=drawingSurfaceWidth*6/4;
- toolBarHeight= drawingSurfaceHeight*1/4;
- toolBarX=drawingSurfaceX-(drawingSurfaceX*1/2);
- toolBarY=height-toolBarHeight-float(roundedEdges); 
- roundedEdges= height*1/50;
- strokeWeight(roundedEdges);
- rect(toolBarX, toolBarY, toolBarWidth, toolBarHeight);
- strokeWeight(reset);
+  toolBarWidth=drawingSurfaceWidth*6/4;
+  toolBarHeight= drawingSurfaceHeight*1/4;
+  toolBarX=drawingSurfaceX-(drawingSurfaceX*1/2);
+  toolBarY=height-toolBarHeight-float(roundedEdges); 
+  roundedEdges= height*1/50;
+  strokeWeight(roundedEdges);
+  rect(toolBarX, toolBarY, toolBarWidth, toolBarHeight);
+  strokeWeight(reset);
   //Quit button
   quitButtonFont= createFont("Microsoft Himalaya", 15);
   quitButtonWidth=width*1/8;
@@ -85,7 +85,13 @@ void setup () {
 }//End setup
 // 
 void draw () {
+  //Paper Button
+  if (paper==true) {
+    rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
+    paper=false;
+}
 
+  //
   //Drawing tool, combined boolean
   if (draw==true && mouseX>= drawingSurfaceX && mouseX<= drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight)  line(mouseX, mouseY, pmouseX, pmouseY) ;//End Line Draw
   if (draw==true && mouseX>= drawingSurfaceX && mouseX<= drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight) ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
@@ -120,6 +126,10 @@ void keyPressed () {
 }//End keyPressed
 //
 void mousePressed () {
+  //Paper
+  if (mouseX>=secondTextX &&mouseX<=secondTextX+secondTextWidth && mouseY>=secontTextY && mouseY<=secontTextY+secondTextHeight) paper=true;
+ 
+  //
   if (mouseX>= drawingSurfaceX && mouseX<= drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight) {
     if (draw==false) {
       draw=true;
@@ -129,6 +139,7 @@ void mousePressed () {
   }//Button that allows the drawing of ink: paper
   //
   if (mouseX>=quitButtonX && mouseX<= quitButtonX+quitButtonWidth && mouseY>=quitButtonY && mouseY<=quitButtonY+quitButtonHeight) exit();
+  //
 }//End mousePressed
 //
 //End MAIN program
