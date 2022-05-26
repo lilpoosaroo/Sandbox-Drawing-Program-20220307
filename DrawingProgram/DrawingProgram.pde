@@ -73,9 +73,9 @@ void setup () {
   //Tool Bar: want it to be a rounded/dark square below the painting surface 
   roundedEdges= height*1/50;
   toolBarWidth=drawingSurfaceWidth*1/4;
-  toolBarHeight= drawingSurfaceHeight*6/4;
+  toolBarHeight= drawingSurfaceHeight;
   toolBarX=(appWidth*0)+ float(roundedEdges);
-  toolBarY=appHeight*1/4; 
+  toolBarY=appHeight*1/8; 
   strokeWeight(roundedEdges);
   rect(toolBarX, toolBarY, toolBarWidth, toolBarHeight);
   strokeWeight(reset);
@@ -91,18 +91,22 @@ void setup () {
   rect(image1ButtonX, image1ButtonY, imageButtonWidth, imageButtonHeight);
   rect(image2ButtonX, image2ButtonY, imageButtonWidth, imageButtonHeight);
   rect(image3ButtonX, image3ButtonY, imageButtonWidth, imageButtonHeight);
+  //Images going inside background buttons
+  image1=loadImage("CatsNFlowers-236x236.jpg");
+  image2=loadImage("Doodles-1920x1200.jpg");
+  image3=loadImage("PurpleSky-785x442.jpg");
+  /*
   image1Width=236;
   image1Height=236;
   image2Width=1920;
   image2Height=1200;
   image3Width=785;
   image3Height=442;
-  image1=loadImage("CatsNFlowers-236x236.jpg");
-  image2=loadImage("Doodles-1920x1200.jpg");
-  image3=loadImage("PurpleSky-785x442.jpg");
+  */
   image(image1, image1ButtonX, image1ButtonY, imageButtonWidth, imageButtonHeight );
   image(image2, image2ButtonX, image2ButtonY, imageButtonWidth, imageButtonHeight);
   image(image3, image3ButtonX, image3ButtonY, imageButtonWidth, imageButtonHeight);
+
 
 
   //Quit button
@@ -128,7 +132,6 @@ void draw () {
     rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
     paper=false;
   }
-
   //
   //Drawing tool, combined boolean
   if (draw==true && mouseX>= drawingSurfaceX && mouseX<= drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight)  line(mouseX, mouseY, pmouseX, pmouseY) ;//End Line Draw
