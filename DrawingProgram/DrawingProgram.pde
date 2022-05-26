@@ -1,4 +1,5 @@
 //Global Variables
+float appWidth, appHeight;
 boolean draw=false;
 color blue=#94CFF5, whiteReset=#FFFFFF, black=#000000, purple=#A0457F, lightPink=#F2B0DA;
 color quitButtonColor, quitTextColor;
@@ -35,10 +36,17 @@ float black1X, black1Y;
 float grey1X, grey1Y;
 float brownX, brown1Y;
 //
-//Image Buttons
+//Background Image Buttons
 float image1ButtonX, image1ButtonY, imageButtonWidth, imageButtonHeight;
 float image2ButtonX, image2ButtonY;
 float image3ButtonX, image3ButtonY;
+PImage image1, image2, image3;
+float image1Width, image1Height, image2Width, image2Height, image3Width, image3Height;
+float image1WidthEnlargedAdjusted, image1HeightEnlargedAdjusted, image1WidthMinimizedAdjusted, image1HeightMinimizedAdjusted;
+float image2WidthEnlargedAdjusted, image2HeightEnlargedAdjusted, image2WidthMinimizedAdjusted, image2HeightMinimizedAdjusted;
+float image3WidthEnlargedAdjusted, image3HeightEnlargedAdjusted, image3WidthMinimizedAdjusted, image3HeightMinimizedAdjusted;
+float image1WidthRatio=0.0, image1HeightRatio=0.0, imag2WidthRatio=0.0, image2HeightRatio=0.0, image3WidthRatio=0.0, image3HeightRatio=0.0;
+int largerImage1Dimension, smallerImage1Dimension, largerImage2Dimension, smallerImage2Dimension, largerImage3Dimension, smallerImage3Dimension;
 //
 //Drawing Buttons
 float eraserButtonX, eraserButtonY, drawingButtonWidth, drawingButtonHeight;
@@ -51,22 +59,52 @@ float backgroundImage3ButtonX, backgroundImage3ButtonY;
 
 //
 void setup () {
-  size(900, 600); //NEED TO CHANGE TO fullScreen();, which means everything else will need to be changed to displayWidth
+  size(900, 600);//NEED TO CHANGE TO fullScreen();, which means everything else will need to be changed to displayWidth
+  appWidth=width;
+  appHeight=height;
+
   //Paper 
+
   drawingSurfaceWidth = width*1/2; 
   drawingSurfaceHeight = height*3/4;
   drawingSurfaceX = (width*1/2)-(drawingSurfaceWidth*1/2);
   drawingSurfaceY =height*0;
   drawingDiameter=width*1/100;
   //Tool Bar: want it to be a rounded/dark square below the painting surface 
-  toolBarWidth=drawingSurfaceWidth*6/4;
-  toolBarHeight= drawingSurfaceHeight*1/4;
-  toolBarX=drawingSurfaceX-(drawingSurfaceX*1/2);
-  toolBarY=height-toolBarHeight-float(roundedEdges); 
   roundedEdges= height*1/50;
+  toolBarWidth=drawingSurfaceWidth*1/4;
+  toolBarHeight= drawingSurfaceHeight*6/4;
+  toolBarX=(appWidth*0)+ float(roundedEdges);
+  toolBarY=appHeight*1/4; 
   strokeWeight(roundedEdges);
   rect(toolBarX, toolBarY, toolBarWidth, toolBarHeight);
   strokeWeight(reset);
+  //Background Buttons
+  backgroundImageButtonWidth= toolBarWidth*1/2;
+  backgroundImageButtonHeight= toolBarWidth*1/2;
+  image1ButtonX=appWidth*0;
+  image1ButtonY=appHeight*0;
+  image2ButtonX=(appWidth*0)+backgroundImageButtonWidth;
+  image2ButtonY=(appHeight*0);
+  image3ButtonX=(appWidth*0)+(backgroundImageButtonWidth*2);
+  image3ButtonY=(appHeight*0);
+  rect(image1ButtonX, image1ButtonY, imageButtonWidth, imageButtonHeight);
+  rect(image2ButtonX, image2ButtonY, imageButtonWidth, imageButtonHeight);
+  rect(image3ButtonX, image3ButtonY, imageButtonWidth, imageButtonHeight);
+  image1Width=236;
+  image1Height=236;
+  image2Width=1920;
+  image2Height=1200;
+  image3Width=785;
+  image3Height=442;
+  image1=loadImage("CatsNFlowers-236x236.jpg");
+  image2=loadImage("Doodles-1920x1200.jpg");
+  image3=loadImage("PurpleSky-785x442.jpg");
+  image(image1, image1ButtonX, image1ButtonY, imageButtonWidth, imageButtonHeight );
+  image(image2, image2ButtonX, image2ButtonY, imageButtonWidth, imageButtonHeight);
+  image(image3, image3ButtonX, image3ButtonY, imageButtonWidth, imageButtonHeight);
+
+
   //Quit button
   quitButtonFont= createFont("Microsoft Himalaya", 15);
   quitButtonWidth=width*1/8;
@@ -89,7 +127,7 @@ void draw () {
   if (paper==true) {
     rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
     paper=false;
-}
+  }
 
   //
   //Drawing tool, combined boolean
@@ -128,7 +166,7 @@ void keyPressed () {
 void mousePressed () {
   //Paper
   if (mouseX>=secondTextX &&mouseX<=secondTextX+secondTextWidth && mouseY>=secontTextY && mouseY<=secontTextY+secondTextHeight) paper=true;
- 
+
   //
   if (mouseX>= drawingSurfaceX && mouseX<= drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight) {
     if (draw==false) {
