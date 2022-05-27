@@ -37,25 +37,21 @@ float grey1X, grey1Y;
 float brownX, brown1Y;
 //
 //Background Image Buttons
-float image1ButtonX, image1ButtonY, imageButtonWidth, imageButtonHeight;
-float image2ButtonX, image2ButtonY;
-float image3ButtonX, image3ButtonY;
-PImage image1, image2, image3;
-float image1Width, image1Height, image2Width, image2Height, image3Width, image3Height;
-float image1WidthEnlargedAdjusted, image1HeightEnlargedAdjusted, image1WidthMinimizedAdjusted, image1HeightMinimizedAdjusted;
-float image2WidthEnlargedAdjusted, image2HeightEnlargedAdjusted, image2WidthMinimizedAdjusted, image2HeightMinimizedAdjusted;
-float image3WidthEnlargedAdjusted, image3HeightEnlargedAdjusted, image3WidthMinimizedAdjusted, image3HeightMinimizedAdjusted;
-float image1WidthRatio=0.0, image1HeightRatio=0.0, imag2WidthRatio=0.0, image2HeightRatio=0.0, image3WidthRatio=0.0, image3HeightRatio=0.0;
-int largerImage1Dimension, smallerImage1Dimension, largerImage2Dimension, smallerImage2Dimension, largerImage3Dimension, smallerImage3Dimension;
+float backgroundImage1ButtonX, backgroundImage1ButtonY, backgroundImageButtonWidth, backgroundImageButtonHeight;
+float backgroundImage2ButtonX, backgroundImage2ButtonY;
+float backgroundImage3ButtonX, backgroundImage3ButtonY;
+PImage backgroundImage1, backgroundImage2, backgroundImage3;
+float backgroundImage1Width, backgroundImage1Height, backgroundImage2Width, backgroundImage2Height, backgroundImage3Width, backgroundImage3Height;
+float backgroundImage1WidthEnlargedAdjusted, backgroundImage1HeightEnlargedAdjusted, backgroundImage1WidthMinimizedAdjusted, backgroundImage1HeightMinimizedAdjusted;
+float backgroundImage2WidthEnlargedAdjusted, backgroundImage2HeightEnlargedAdjusted, backgroundImage2WidthMinimizedAdjusted, backgroundImage2HeightMinimizedAdjusted;
+float backgroundImage3WidthEnlargedAdjusted, backgroundImage3HeightEnlargedAdjusted, backgroundImage3WidthMinimizedAdjusted, backgroundImage3HeightMinimizedAdjusted;
+float backgroundImage1WidthRatio=0.0, backgroundImage1HeightRatio=0.0, backgroundImage2WidthRatio=0.0, backgroundImage2HeightRatio=0.0, backgroundImage3WidthRatio=0.0, backgroundImage3HeightRatio=0.0;
+int largerbackgroundImage1Dimension, smallerbackgroundImage1Dimension, largerbackgroundImage2Dimension, smallerbackgroundImage2Dimension, largerbackgroundImage3Dimension, smallerbackgroundImage3Dimension;
 //
 //Drawing Buttons
 float eraserButtonX, eraserButtonY, drawingButtonWidth, drawingButtonHeight;
 float pencilButtonX, pencilButtonY;
-//Background Buttons
-float backgroundImage1ButtonX, backgroundImage1ButtonY, backgroundImageButtonWidth, backgroundImageButtonHeight;
-float backgroundImage2ButtonX, backgroundImage2ButtonY;
-float backgroundImage3ButtonX, backgroundImage3ButtonY;
-//Images
+
 
 //
 void setup () {
@@ -70,6 +66,7 @@ void setup () {
   drawingSurfaceX = (width*1/2)-(drawingSurfaceWidth*1/2);
   drawingSurfaceY =height*0;
   drawingDiameter=width*1/100;
+  rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
   //Tool Bar: want it to be a rounded/dark square below the painting surface 
   roundedEdges= height*1/50;
   toolBarWidth=drawingSurfaceWidth*1/4;
@@ -82,30 +79,32 @@ void setup () {
   //Background Buttons
   backgroundImageButtonWidth= toolBarWidth*1/2;
   backgroundImageButtonHeight= toolBarWidth*1/2;
-  image1ButtonX=appWidth*0;
-  image1ButtonY=appHeight*0;
-  image2ButtonX=(appWidth*0)+backgroundImageButtonWidth;
-  image2ButtonY=(appHeight*0);
-  image3ButtonX=(appWidth*0)+(backgroundImageButtonWidth*2);
-  image3ButtonY=(appHeight*0);
-  rect(image1ButtonX, image1ButtonY, imageButtonWidth, imageButtonHeight);
-  rect(image2ButtonX, image2ButtonY, imageButtonWidth, imageButtonHeight);
-  rect(image3ButtonX, image3ButtonY, imageButtonWidth, imageButtonHeight);
+  backgroundImage1ButtonX=appWidth*0;
+  backgroundImage1ButtonY=appHeight*0;
+  backgroundImage2ButtonX=(appWidth*0)+backgroundImageButtonWidth;
+  backgroundImage2ButtonY=(appHeight*0);
+  backgroundImage3ButtonX=(appWidth*0)+(backgroundImageButtonWidth*2);
+  backgroundImage3ButtonY=(appHeight*0);
+  rect(backgroundImage1ButtonX, backgroundImage1ButtonY, backgroundImageButtonWidth, backgroundImageButtonHeight);
+  rect(backgroundImage2ButtonX, backgroundImage2ButtonY, backgroundImageButtonWidth, backgroundImageButtonHeight);
+  rect(backgroundImage3ButtonX, backgroundImage3ButtonY, backgroundImageButtonWidth, backgroundImageButtonHeight);
   //Images going inside background buttons
-  image1=loadImage("CatsNFlowers-236x236.jpg");
-  image2=loadImage("Doodles-1920x1200.jpg");
-  image3=loadImage("PurpleSky-785x442.jpg");
-  /*
-  image1Width=236;
-  image1Height=236;
-  image2Width=1920;
-  image2Height=1200;
-  image3Width=785;
-  image3Height=442;
-  */
-  image(image1, image1ButtonX, image1ButtonY, imageButtonWidth, imageButtonHeight );
-  image(image2, image2ButtonX, image2ButtonY, imageButtonWidth, imageButtonHeight);
-  image(image3, image3ButtonX, image3ButtonY, imageButtonWidth, imageButtonHeight);
+
+  backgroundImage1=loadImage("CatsNFlowers-236x236.jpg");
+  backgroundImage2=loadImage("Doodles-1920x1200.jpg");
+  backgroundImage3=loadImage("PurpleSky-785x442.jpg");
+
+  backgroundImage1Width=236;
+  backgroundImage1Height=236;
+  backgroundImage2Width=1920;
+  backgroundImage2Height=1200;
+  backgroundImage3Width=785;
+  backgroundImage3Height=442;
+
+  image(backgroundImage1, backgroundImage1ButtonX, backgroundImage1ButtonY, backgroundImageButtonWidth, backgroundImageButtonHeight);
+  image(backgroundImage2, backgroundImage2ButtonX, backgroundImage2ButtonY, backgroundImageButtonWidth, backgroundImageButtonHeight);
+  image(backgroundImage3, backgroundImage3ButtonX, backgroundImage3ButtonY, backgroundImageButtonWidth, backgroundImageButtonHeight);
+
 
 
 
