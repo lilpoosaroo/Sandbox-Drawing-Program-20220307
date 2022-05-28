@@ -1,5 +1,6 @@
 //Global Variables
 float appWidth, appHeight;
+float originX, originY;
 boolean draw=false;
 color blue=#94CFF5, whiteReset=#FFFFFF, black=#000000, purple=#A0457F, lightPink=#F2B0DA;
 color quitButtonColor, quitTextColor;
@@ -56,12 +57,15 @@ int largerbackgroundImage1Dimension, smallerbackgroundImage1Dimension, largerbac
 PImage backgroundImage1, backgroundImage2, backgroundImage3;
 float backgroundImage1X, backgroundImage1Y, backgroundImage2X, backgroundImage2Y;
 float backgroundImage1Width, backgroundImage1Height, backgroundImage2Width, backgroundImage2Height, backgroundImage3Width, backgroundImage3Height;
+color peachy=#F5D9C3;
 
 //
 void setup () {
   size(900, 600);//NEED TO CHANGE TO fullScreen();, which means everything else will need to be changed to displayWidth
   appWidth=width;
   appHeight=height;
+  originX=width*0;
+  originY=height*0;
 
   //Paper 
 
@@ -131,7 +135,8 @@ void draw () {
     paper=false;
   }
 
-
+  if (backgroundImage1ON==true) backgroundImage2ON=false;
+  if (backgroundImage2ON==true) backgroundImage1ON=false;
 
   if (backgroundImage1ON==false) {
     strokeWeight(roundedEdges);
@@ -140,7 +145,37 @@ void draw () {
     fill(greyReset);
     rect(appWidth*0, appHeight*0, appWidth, appHeight);
     fill(whiteReset);
-    image(backgroundImage1, BUTTONbackgroundImage1X, backgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    image(backgroundImage1, BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    if (backgroundImage2ON==false) image(backgroundImage2, BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    image(backgroundImage3, BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    strokeWeight(reset);
+    strokeWeight(roundedEdges);
+    rect(toolBarX, toolBarY, toolBarWidth, toolBarHeight);
+    strokeWeight(reset);
+  } else {
+    rect(originX, originY, appWidth, appHeight);
+    image(backgroundImage1, (appWidth*1/2)-(backgroundImage1Width*1/2), (appHeight*1/2)-(backgroundImage1Height*1/2), backgroundImage1Width, backgroundImage1Height);
+    fill(greyReset);
+    rect(BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    fill(whiteReset);
+    image(backgroundImage2, BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    image(backgroundImage3, BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    strokeWeight(roundedEdges);
+    rect(toolBarX, toolBarY, toolBarWidth, toolBarHeight);
+    strokeWeight(reset);
+  }
+
+
+  if (backgroundImage2ON==false) {
+    strokeWeight(roundedEdges);
+    rect(toolBarX, toolBarY, toolBarWidth, toolBarHeight);
+    strokeWeight(reset*2);
+    if (backgroundImage1ON==false) {
+      fill(greyReset);
+      rect(appWidth*0, appHeight*0, appWidth, appHeight);
+      fill(whiteReset);
+    }
+    if (backgroundImage1ON==false) image(backgroundImage1, BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     image(backgroundImage2, BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     image(backgroundImage3, BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     strokeWeight(reset);
@@ -148,20 +183,21 @@ void draw () {
     rect(toolBarX, toolBarY, toolBarWidth, toolBarHeight);
     strokeWeight(reset);
   } else {
-    image(backgroundImage1, (appWidth*1/2)-(backgroundImage1Width*1/2), (appHeight*1/2)-(backgroundImage1Height*1/2), backgroundImage1Width, backgroundImage1Height);
+    image(backgroundImage2, backgroundImage2X, backgroundImage2Y, appWidth, appHeight);
     fill(greyReset);
-    rect(backgroundImage1ButtonXsmall, backgroundImage1ButtonYsmall, backgroundImageBUTTONWidth, backgroundImageBUTTONHeight);
-    image(backgroundImage2, backgroundImage2ButtonX, backgroundImage2ButtonY, backgroundImageBUTTONWidth, backgroundImageBUTTONHeight);
-    image(backgroundImage3, backgroundImage3ButtonX, backgroundImage3ButtonY, backgroundImageBUTTONWidth, backgroundImageBUTTONHeight);
+    rect(BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    image(backgroundImage1, BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    image(backgroundImage3, BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     fill(whiteReset);
     strokeWeight(roundedEdges);
     rect(toolBarX, toolBarY, toolBarWidth, toolBarHeight);
     strokeWeight(reset);
   }
+
   noFill();
-  rect(backgroundImage1ButtonXsmall, backgroundImage1ButtonYsmall, backgroundImageBUTTONWidth, backgroundImageBUTTONHeight);
-  rect(backgroundImage2ButtonX, backgroundImage2ButtonY, backgroundImageBUTTONWidth, backgroundImageBUTTONHeight);
-  rect(backgroundImage3ButtonX, backgroundImage3ButtonY, backgroundImageBUTTONWidth, backgroundImageBUTTONHeight);
+  rect(BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+  rect(BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+  rect(BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
 
   //
   //Drawing tool, combined boolean
@@ -216,12 +252,21 @@ void mousePressed () {
   //if (mouseX>=quitButtonX && mouseX<= quitButtonX+quitButtonWidth && mouseY>=quitButtonY && mouseY<=quitButtonY+quitButtonHeight) exit();
   //
   //Background Button if statements 
-  if (mouseX>=backgroundImage1ButtonXsmall && mouseX<=backgroundImage1ButtonXsmall + backgroundImageBUTTONWidth && mouseY>=backgroundImage1ButtonYsmall && mouseY<=backgroundImage1ButtonYsmall + backgroundImageBUTTONHeight) {
+  if (mouseX>=BUTTONbackgroundImage1X && mouseX<=BUTTONbackgroundImage1X + BUTTONbackgroundImageWidth && mouseY>=BUTTONbackgroundImage1Y && mouseY<=BUTTONbackgroundImage1Y + BUTTONbackgroundImageHeight) {
     //if (mouseX>=(appWidth*0) && mouseX<=(appWidth*0) + (toolBarWidth*1/2) && mouseY>=(appHeight*0) && mouseY<=(appHeight*0) + (toolBarWidth*1/2)) {
     if (backgroundImage1ON==false) {
       backgroundImage1ON=true;
     } else {
       backgroundImage1ON=false;
+    }
+  }
+
+
+  if (mouseX>=BUTTONbackgroundImage2X && mouseX<=BUTTONbackgroundImage2X + BUTTONbackgroundImageWidth && mouseY>=BUTTONbackgroundImage2Y && mouseY<=BUTTONbackgroundImage2Y + BUTTONbackgroundImageHeight) {
+    if (backgroundImage2ON==false) {
+      backgroundImage2ON=true;
+    } else {
+      backgroundImage2ON=false;
     }
   }
 }//End mousePressed
