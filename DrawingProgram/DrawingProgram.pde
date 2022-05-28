@@ -153,7 +153,9 @@ void draw () {
     rect(toolBarX, toolBarY, toolBarWidth, toolBarHeight);
     strokeWeight(reset);
   } else {
+    fill(peachy);
     rect(originX, originY, appWidth, appHeight);
+    fill(whiteReset);
     image(backgroundImage1, (appWidth*1/2)-(backgroundImage1Width*1/2), (appHeight*1/2)-(backgroundImage1Height*1/2), backgroundImage1Width, backgroundImage1Height);
     fill(greyReset);
     rect(BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
@@ -259,6 +261,7 @@ void mousePressed () {
     } else {
       backgroundImage1ON=false;
     }
+    backgroundImage2ON=false;
   }
 
 
@@ -268,6 +271,7 @@ void mousePressed () {
     } else {
       backgroundImage2ON=false;
     }
+    backgroundImage1ON=false;
   }
 }//End mousePressed
 //
