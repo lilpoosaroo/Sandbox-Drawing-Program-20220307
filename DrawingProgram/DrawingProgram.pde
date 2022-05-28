@@ -37,24 +37,25 @@ float grey1X, grey1Y;
 float brownX, brown1Y;
 //
 //Background Image Buttons
-float backgroundImageBUTTONWidth, backgroundImageBUTTONHeight;
-float backgroundImage1ButtonXsmall, backgroundImage1ButtonYsmall, backgroundImage1ButtonXLARGE, backgroundImage1ButtonYLARGE;
-float backgroundImage2ButtonX, backgroundImage2ButtonY;
-float backgroundImage3ButtonX, backgroundImage3ButtonY;
-PImage backgroundImage1, backgroundImage2, backgroundImage3;
-float backgroundImage1Width, backgroundImage1Height, backgroundImage2Width, backgroundImage2Height, backgroundImage3Width, backgroundImage3Height;
-float backgroundImage1WidthEnlargedAdjusted, backgroundImage1HeightEnlargedAdjusted, backgroundImage1WidthMinimizedAdjusted, backgroundImage1HeightMinimizedAdjusted;
-float backgroundImage2WidthEnlargedAdjusted, backgroundImage2HeightEnlargedAdjusted, backgroundImage2WidthMinimizedAdjusted, backgroundImage2HeightMinimizedAdjusted;
-float backgroundImage3WidthEnlargedAdjusted, backgroundImage3HeightEnlargedAdjusted, backgroundImage3WidthMinimizedAdjusted, backgroundImage3HeightMinimizedAdjusted;
-float backgroundImage1WidthRatio=0.0, backgroundImage1HeightRatio=0.0, backgroundImage2WidthRatio=0.0, backgroundImage2HeightRatio=0.0, backgroundImage3WidthRatio=0.0, backgroundImage3HeightRatio=0.0;
-int largerbackgroundImage1Dimension, smallerbackgroundImage1Dimension, largerbackgroundImage2Dimension, smallerbackgroundImage2Dimension, largerbackgroundImage3Dimension, smallerbackgroundImage3Dimension;
-Boolean backgroundImage1ON=false;
+float BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight;
+float BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y;
+float BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y;
+float BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y;
+Boolean backgroundImage1ON=false, backgroundImage2ON=false;
 color greyReset=#CCCCCC;
 //
 //Drawing Buttons
 float eraserButtonX, eraserButtonY, drawingButtonWidth, drawingButtonHeight;
 float pencilButtonX, pencilButtonY;
-
+//Background image
+float backgroundImage1WidthEnlargedAdjusted, backgroundImage1HeightEnlargedAdjusted, backgroundImage1WidthMinimizedAdjusted, backgroundImage1HeightMinimizedAdjusted;
+float backgroundImage2WidthEnlargedAdjusted, backgroundImage2HeightEnlargedAdjusted, backgroundImage2WidthMinimizedAdjusted, backgroundImage2HeightMinimizedAdjusted;
+float backgroundImage3WidthEnlargedAdjusted, backgroundImage3HeightEnlargedAdjusted, backgroundImage3WidthMinimizedAdjusted, backgroundImage3HeightMinimizedAdjusted;
+float backgroundImage1WidthRatio=0.0, backgroundImage1HeightRatio=0.0, backgroundImage2WidthRatio=0.0, backgroundImage2HeightRatio=0.0, backgroundImage3WidthRatio=0.0, backgroundImage3HeightRatio=0.0;
+int largerbackgroundImage1Dimension, smallerbackgroundImage1Dimension, largerbackgroundImage2Dimension, smallerbackgroundImage2Dimension, largerbackgroundImage3Dimension, smallerbackgroundImage3Dimension;
+PImage backgroundImage1, backgroundImage2, backgroundImage3;
+float backgroundImage1X, backgroundImage1Y, backgroundImage2X, backgroundImage2Y;
+float backgroundImage1Width, backgroundImage1Height, backgroundImage2Width, backgroundImage2Height, backgroundImage3Width, backgroundImage3Height;
 
 //
 void setup () {
@@ -77,19 +78,14 @@ void setup () {
   toolBarX=(appWidth*0)+ float(roundedEdges);
   toolBarY=appHeight*1/8; 
   //Background Buttons
-  backgroundImageBUTTONWidth= toolBarWidth*1/2;
-  backgroundImageBUTTONHeight= toolBarWidth*1/2;
-  backgroundImage1ButtonXsmall=appWidth*0;
-  backgroundImage1ButtonYsmall=appHeight*0;
-  backgroundImage1ButtonXLARGE=appWidth*0;
-  backgroundImage1ButtonYLARGE=appHeight*0;
-  backgroundImage2ButtonX=(appWidth*0)+backgroundImageBUTTONWidth;
-  backgroundImage2ButtonY=(appHeight*0);
-  backgroundImage3ButtonX=(appWidth*0)+(backgroundImageBUTTONWidth*2);
-  backgroundImage3ButtonY=(appHeight*0);
-  rect(backgroundImage1ButtonXsmall, backgroundImage1ButtonYsmall, backgroundImageBUTTONWidth, backgroundImageBUTTONHeight);
-  rect(backgroundImage2ButtonX, backgroundImage2ButtonY, backgroundImageBUTTONWidth, backgroundImageBUTTONHeight);
-  rect(backgroundImage3ButtonX, backgroundImage3ButtonY, backgroundImageBUTTONWidth, backgroundImageBUTTONHeight);
+  BUTTONbackgroundImageWidth= toolBarWidth*1/2;
+  BUTTONbackgroundImageHeight= toolBarWidth*1/2;
+  BUTTONbackgroundImage1X=appWidth*0;
+  BUTTONbackgroundImage1Y=appHeight*0;
+  BUTTONbackgroundImage2X=(appWidth*0)+BUTTONbackgroundImageWidth;
+  BUTTONbackgroundImage2Y=(appHeight*0);
+  BUTTONbackgroundImage3X=(appWidth*0)+(BUTTONbackgroundImageWidth*2);
+  BUTTONbackgroundImage3Y=(appHeight*0);
   //Images going inside background buttons
 
   backgroundImage1=loadImage("CatsNFlowers-236x236.jpg");
@@ -103,6 +99,10 @@ void setup () {
   backgroundImage3Width=785;
   backgroundImage3Height=442;
 
+  backgroundImage1X=appWidth*0;
+  backgroundImage1Y=appHeight*0;
+  backgroundImage2X=appWidth*0;
+  backgroundImage2Y=appHeight*0;
 
 
   /*
@@ -140,9 +140,9 @@ void draw () {
     fill(greyReset);
     rect(appWidth*0, appHeight*0, appWidth, appHeight);
     fill(whiteReset);
-    image(backgroundImage1, backgroundImage1ButtonXsmall, backgroundImage1ButtonYsmall, backgroundImageBUTTONWidth, backgroundImageBUTTONHeight);
-    image(backgroundImage2, backgroundImage2ButtonX, backgroundImage2ButtonY, backgroundImageBUTTONWidth, backgroundImageBUTTONHeight);
-    image(backgroundImage3, backgroundImage3ButtonX, backgroundImage3ButtonY, backgroundImageBUTTONWidth, backgroundImageBUTTONHeight);
+    image(backgroundImage1, BUTTONbackgroundImage1X, backgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    image(backgroundImage2, BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    image(backgroundImage3, BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     strokeWeight(reset);
     strokeWeight(roundedEdges);
     rect(toolBarX, toolBarY, toolBarWidth, toolBarHeight);
@@ -158,6 +158,11 @@ void draw () {
     rect(toolBarX, toolBarY, toolBarWidth, toolBarHeight);
     strokeWeight(reset);
   }
+  noFill();
+  rect(backgroundImage1ButtonXsmall, backgroundImage1ButtonYsmall, backgroundImageBUTTONWidth, backgroundImageBUTTONHeight);
+  rect(backgroundImage2ButtonX, backgroundImage2ButtonY, backgroundImageBUTTONWidth, backgroundImageBUTTONHeight);
+  rect(backgroundImage3ButtonX, backgroundImage3ButtonY, backgroundImageBUTTONWidth, backgroundImageBUTTONHeight);
+
   //
   //Drawing tool, combined boolean
   if (draw==true && mouseX>= drawingSurfaceX && mouseX<= drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight)  line(mouseX, mouseY, pmouseX, pmouseY) ;//End Line Draw
