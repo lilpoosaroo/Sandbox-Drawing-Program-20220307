@@ -42,7 +42,7 @@ float BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight;
 float BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y;
 float BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y;
 float BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y;
-Boolean backgroundImage1ON=false, backgroundImage2ON=false;
+Boolean backgroundImage1ON=false, backgroundImage2ON=false, backgroundImage3ON=false ;
 color greyReset=#CCCCCC;
 //
 //Drawing Buttons
@@ -55,7 +55,7 @@ float backgroundImage3WidthEnlargedAdjusted, backgroundImage3HeightEnlargedAdjus
 float backgroundImage1WidthRatio=0.0, backgroundImage1HeightRatio=0.0, backgroundImage2WidthRatio=0.0, backgroundImage2HeightRatio=0.0, backgroundImage3WidthRatio=0.0, backgroundImage3HeightRatio=0.0;
 int largerbackgroundImage1Dimension, smallerbackgroundImage1Dimension, largerbackgroundImage2Dimension, smallerbackgroundImage2Dimension, largerbackgroundImage3Dimension, smallerbackgroundImage3Dimension;
 PImage backgroundImage1, backgroundImage2, backgroundImage3;
-float backgroundImage1X, backgroundImage1Y, backgroundImage2X, backgroundImage2Y;
+float backgroundImage1X, backgroundImage1Y, backgroundImage2X, backgroundImage2Y, backgroundImage3X, backgroundImage3Y;
 float backgroundImage1Width, backgroundImage1Height, backgroundImage2Width, backgroundImage2Height, backgroundImage3Width, backgroundImage3Height;
 color peachy=#F5D9C3;
 
@@ -107,6 +107,8 @@ void setup () {
   backgroundImage1Y=appHeight*0;
   backgroundImage2X=appWidth*0;
   backgroundImage2Y=appHeight*0;
+  backgroundImage3X=appWidth*0;
+  backgroundImage3Y=appHeight*0;
 
 
   /*
@@ -135,8 +137,18 @@ void draw () {
     paper=false;
   }
 
-  if (backgroundImage1ON==true) backgroundImage2ON=false;
-  if (backgroundImage2ON==true) backgroundImage1ON=false;
+  if (backgroundImage1ON==true) {
+    backgroundImage2ON=false;
+    backgroundImage3ON=false;
+  }
+  if (backgroundImage2ON==true) {
+    backgroundImage1ON=false;
+    backgroundImage3ON=false;
+  }
+  if (backgroundImage3ON==true) {
+    backgroundImage1ON=false;
+    backgroundImage2ON=false;
+  }
 
   if (backgroundImage1ON==false) {
     strokeWeight(roundedEdges);
@@ -179,7 +191,7 @@ void draw () {
     }
     if (backgroundImage1ON==false) image(backgroundImage1, BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     image(backgroundImage2, BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
-    image(backgroundImage3, BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    if (backgroundImage3ON==false) image(backgroundImage3, BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     strokeWeight(reset);
     strokeWeight(roundedEdges);
     rect(toolBarX, toolBarY, toolBarWidth, toolBarHeight);
@@ -194,6 +206,12 @@ void draw () {
     strokeWeight(roundedEdges);
     rect(toolBarX, toolBarY, toolBarWidth, toolBarHeight);
     strokeWeight(reset);
+  }
+  
+  if (backgroundImage3ON==false){
+  
+  }else{
+  
   }
 
   noFill();
