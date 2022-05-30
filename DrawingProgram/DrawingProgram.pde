@@ -6,6 +6,13 @@ color blue=#94CFF5, whiteReset=#FFFFFF, black=#000000, purple=#A0457F, lightPink
 color quitButtonColor, quitTextColor;
 int reset=1;
 
+//PaperButton
+float BUTTONpaperX, BUTTONpaperY, BUTTONpaperWidth, BUTTONpaperHeight;
+PImage BUTTONpaperImage;
+float BUTTONpaperIMAGEWidth, BUTTONpaperIMAGEHeight; 
+float BUTTONpaperIMAGEaDJUSTEDWidth, BUTTONpaperIMAGEaDJUSTEDHeight;
+
+
 //Paper
 float drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight;
 float  drawingDiameter;
@@ -110,6 +117,14 @@ void setup () {
   backgroundImage3X=appWidth*0;
   backgroundImage3Y=appHeight*0;
 
+  //Paper Button Variables
+  BUTTONpaperImage=loadImage("PaperButtonImage-172x180.jpg");
+  BUTTONpaperWidth=BUTTONbackgroundImageWidth;
+  BUTTONpaperHeight=BUTTONbackgroundImageHeight;
+  BUTTONpaperX=toolBarX+float(roundedEdges);
+  BUTTONpaperY=toolBarY+float(roundedEdges);
+
+
 
   /*
   //Quit button
@@ -131,13 +146,17 @@ void setup () {
 }//End setup
 // 
 void draw () {
-  //Paper Button
+
+  backgroundImagesDraw ();
+  image(BUTTONpaperImage, BUTTONpaperX, BUTTONpaperY, BUTTONpaperWidth, BUTTONpaperHeight);
+  noFill();
+  rect(BUTTONpaperX, BUTTONpaperY, BUTTONpaperWidth, BUTTONpaperHeight);
+  fill(whiteReset);
+   //Paper Button
   if (paper==true) {
     rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
     paper=false;
   }
-
- backgroundImagesDraw ();
   //
   //Drawing tool, combined boolean
   if (draw==true && mouseX>= drawingSurfaceX && mouseX<= drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight)  line(mouseX, mouseY, pmouseX, pmouseY) ;//End Line Draw
@@ -191,6 +210,11 @@ void mousePressed () {
   //if (mouseX>=quitButtonX && mouseX<= quitButtonX+quitButtonWidth && mouseY>=quitButtonY && mouseY<=quitButtonY+quitButtonHeight) exit();
   //
   BackgroundButtonsMousepressed ();
+  //Paper Button
+  if (mouseX>=BUTTONpaperX && mouseX<=BUTTONpaperX+BUTTONpaperWidth && mouseY>= BUTTONpaperY && mouseY<=BUTTONpaperY+BUTTONpaperHeight){
+      if (paper==false) paper=true;
+      
+  }
 }//End mousePressed
 //
 //End MAIN program
