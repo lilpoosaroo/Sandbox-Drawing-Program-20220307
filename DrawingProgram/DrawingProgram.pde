@@ -159,7 +159,7 @@ void draw () {
     fill(whiteReset);
     image(backgroundImage1, BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     if (backgroundImage2ON==false) image(backgroundImage2, BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
-    image(backgroundImage3, BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    if (backgroundImage3ON==false) image(backgroundImage3, BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     strokeWeight(reset);
     strokeWeight(roundedEdges);
     rect(toolBarX, toolBarY, toolBarWidth, toolBarHeight);
@@ -184,7 +184,7 @@ void draw () {
     strokeWeight(roundedEdges);
     rect(toolBarX, toolBarY, toolBarWidth, toolBarHeight);
     strokeWeight(reset*2);
-    if (backgroundImage1ON==false) {
+    if (backgroundImage1ON==false && backgroundImage3ON==false) {
       fill(greyReset);
       rect(appWidth*0, appHeight*0, appWidth, appHeight);
       fill(whiteReset);
@@ -207,11 +207,33 @@ void draw () {
     rect(toolBarX, toolBarY, toolBarWidth, toolBarHeight);
     strokeWeight(reset);
   }
-  
-  if (backgroundImage3ON==false){
-  
-  }else{
-  
+
+  if (backgroundImage3ON==false) {
+    strokeWeight(roundedEdges);
+    rect(toolBarX, toolBarY, toolBarWidth, toolBarHeight);
+    strokeWeight(reset*2);
+    if (backgroundImage1ON==false && backgroundImage2ON==false) {
+      fill(greyReset);
+      rect(appWidth*0, appHeight*0, appWidth, appHeight);
+      fill(whiteReset);
+    }
+    if (backgroundImage1ON==false) image(backgroundImage1, BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    if (backgroundImage2ON==false) image(backgroundImage2, BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    image(backgroundImage3, BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    strokeWeight(reset);
+    strokeWeight(roundedEdges);
+    rect(toolBarX, toolBarY, toolBarWidth, toolBarHeight);
+    strokeWeight(reset);
+  } else {
+    image(backgroundImage3, backgroundImage3X, backgroundImage3Y, appWidth, appHeight);
+    fill(greyReset);
+    rect(BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    image(backgroundImage1, BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    image(backgroundImage2, BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    fill(whiteReset);
+    strokeWeight(roundedEdges);
+    rect(toolBarX, toolBarY, toolBarWidth, toolBarHeight);
+    strokeWeight(reset);
   }
 
   noFill();
@@ -274,22 +296,43 @@ void mousePressed () {
   //Background Button if statements 
   if (mouseX>=BUTTONbackgroundImage1X && mouseX<=BUTTONbackgroundImage1X + BUTTONbackgroundImageWidth && mouseY>=BUTTONbackgroundImage1Y && mouseY<=BUTTONbackgroundImage1Y + BUTTONbackgroundImageHeight) {
     //if (mouseX>=(appWidth*0) && mouseX<=(appWidth*0) + (toolBarWidth*1/2) && mouseY>=(appHeight*0) && mouseY<=(appHeight*0) + (toolBarWidth*1/2)) {
+
     if (backgroundImage1ON==false) {
       backgroundImage1ON=true;
     } else {
       backgroundImage1ON=false;
     }
+
+
     backgroundImage2ON=false;
+    backgroundImage3ON=false;
   }
 
 
   if (mouseX>=BUTTONbackgroundImage2X && mouseX<=BUTTONbackgroundImage2X + BUTTONbackgroundImageWidth && mouseY>=BUTTONbackgroundImage2Y && mouseY<=BUTTONbackgroundImage2Y + BUTTONbackgroundImageHeight) {
+
     if (backgroundImage2ON==false) {
       backgroundImage2ON=true;
     } else {
       backgroundImage2ON=false;
     }
+
+
     backgroundImage1ON=false;
+    backgroundImage3ON=false;
+  }
+
+  if (mouseX>=BUTTONbackgroundImage3X && mouseX<=BUTTONbackgroundImage3X + BUTTONbackgroundImageWidth && mouseY>=BUTTONbackgroundImage3Y && mouseY<=BUTTONbackgroundImage3Y + BUTTONbackgroundImageHeight) {
+    
+    if (backgroundImage3ON==false) {
+      backgroundImage3ON=true;
+    } else {
+      backgroundImage3ON=false;
+    }
+
+
+    backgroundImage1ON=false;
+    backgroundImage2ON=false;
   }
 }//End mousePressed
 //
