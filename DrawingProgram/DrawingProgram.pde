@@ -20,6 +20,9 @@ Boolean paper=false, paperStaysOn=false;
 //
 //Tool Bar: want it to be a rounded/dark square below the painting surface 
 float toolBarX, toolBarY, toolBarWidth, toolBarHeight;
+color COLORIMAGE1toolbarLining=#DD979F;
+color COLORIMAGE2toolbarLining=#C2E8D1;
+color COLORIMAGE3toolbarLining=#1D4B3E;
 int roundedEdges;
 //
 //Quit Button
@@ -104,7 +107,7 @@ void setup () {
 
   backgroundImage1=loadImage("CatsNFlowers-236x236.jpg");
   backgroundImage2=loadImage("Doodles-1920x1200.jpg");
-  backgroundImage3=loadImage("PurpleSky-785x442.jpg");
+  backgroundImage3=loadImage("PossibleBackground3.jpg");
 
   backgroundImage1Width=236;
   backgroundImage1Height=236;
@@ -124,7 +127,7 @@ void setup () {
   BUTTONpaperImage=loadImage("PaperButtonImage-172x180.jpg");
   BUTTONpaperWidth=BUTTONbackgroundImageWidth;
   BUTTONpaperHeight=BUTTONbackgroundImageHeight;
-  BUTTONpaperX=toolBarX+float(roundedEdges*1/2);
+  BUTTONpaperX=toolBarX+float(roundedEdges*60/100);
   BUTTONpaperY=toolBarY+float(roundedEdges);
 
   //Color Grid/Activator population
@@ -162,6 +165,7 @@ void setup () {
 void draw () {
 
   backgroundImagesDraw ();
+  noStroke();
   image(BUTTONpaperImage, BUTTONpaperX, BUTTONpaperY, BUTTONpaperWidth, BUTTONpaperHeight);
   image( BUTTONdisplayColorsImage, BUTTONdisplayColorsX, BUTTONdisplayColorsY, BUTTONdisplayColorsWidth, BUTTONdisplayColorsHeight);
   noFill();
