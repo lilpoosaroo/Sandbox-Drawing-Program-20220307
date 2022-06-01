@@ -16,7 +16,7 @@ float BUTTONpaperIMAGEaDJUSTEDWidth, BUTTONpaperIMAGEaDJUSTEDHeight;
 //Paper
 float drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight;
 float  drawingDiameter;
-Boolean paper=false;
+Boolean paper=false, paperStaysOn=false;
 //
 //Tool Bar: want it to be a rounded/dark square below the painting surface 
 float toolBarX, toolBarY, toolBarWidth, toolBarHeight;
@@ -34,6 +34,9 @@ String secondTextButtonText="Start Drawing";
 PFont secondTextButtonFont;
 //
 //Color buttons
+float BUTTONdisplayColorsX, BUTTONdisplayColorsY, BUTTONdisplayColorsWidth, BUTTONdisplayColorsHeight;
+PImage BUTTONdisplayColorsImage;
+float   BUTTONdisplayColorsImageWidth, BUTTONdisplayColorsImageHeight;
 float red1X, red1Y, colorButtonWidth, colorButtonHeight;
 float orange1X, orange1Y;
 float yellow1X, yellow1Y;
@@ -84,13 +87,13 @@ void setup () {
   rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
   //Tool Bar: want it to be a rounded/dark square below the painting surface 
   roundedEdges= height*1/50;
-  toolBarWidth=drawingSurfaceWidth*1/4;
+  toolBarWidth= (drawingSurfaceWidth*1/4)*5/4;
   toolBarHeight= drawingSurfaceHeight;
   toolBarX=(appWidth*0)+ float(roundedEdges);
   toolBarY=appHeight*1/8; 
   //Background Buttons
-  BUTTONbackgroundImageWidth= toolBarWidth*1/2;
-  BUTTONbackgroundImageHeight= toolBarWidth*1/2;
+  BUTTONbackgroundImageWidth= (drawingSurfaceWidth*1/4)*1/2;
+  BUTTONbackgroundImageHeight= (drawingSurfaceWidth*1/4)*1/2;
   BUTTONbackgroundImage1X=appWidth*0;
   BUTTONbackgroundImage1Y=appHeight*0;
   BUTTONbackgroundImage2X=(appWidth*0)+BUTTONbackgroundImageWidth;
@@ -121,8 +124,19 @@ void setup () {
   BUTTONpaperImage=loadImage("PaperButtonImage-172x180.jpg");
   BUTTONpaperWidth=BUTTONbackgroundImageWidth;
   BUTTONpaperHeight=BUTTONbackgroundImageHeight;
-  BUTTONpaperX=toolBarX+float(roundedEdges);
+  BUTTONpaperX=toolBarX+float(roundedEdges*1/2);
   BUTTONpaperY=toolBarY+float(roundedEdges);
+
+  //Color Grid/Activator population
+  
+   BUTTONdisplayColorsX= BUTTONpaperX+BUTTONpaperWidth+(float(roundedEdges)*1/2);
+   BUTTONdisplayColorsY=BUTTONpaperY;
+   BUTTONdisplayColorsWidth=BUTTONpaperWidth;
+   BUTTONdisplayColorsHeight=BUTTONpaperHeight;
+   BUTTONdisplayColorsImage=loadImage("ColorPalette.png");
+   BUTTONdisplayColorsImageWidth=800;
+   BUTTONdisplayColorsImageHeight=800;
+   
 
 
 
@@ -149,10 +163,14 @@ void draw () {
 
   backgroundImagesDraw ();
   image(BUTTONpaperImage, BUTTONpaperX, BUTTONpaperY, BUTTONpaperWidth, BUTTONpaperHeight);
+  image( BUTTONdisplayColorsImage, BUTTONdisplayColorsX, BUTTONdisplayColorsY, BUTTONdisplayColorsWidth, BUTTONdisplayColorsHeight);
   noFill();
+  stroke(whiteReset);
   rect(BUTTONpaperX, BUTTONpaperY, BUTTONpaperWidth, BUTTONpaperHeight);
+  rect(BUTTONdisplayColorsX, BUTTONdisplayColorsY, BUTTONdisplayColorsWidth, BUTTONdisplayColorsHeight);
   fill(whiteReset);
-   //Paper Button
+  stroke(black);
+  //Paper Button
   if (paper==true) {
     rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
     paper=false;
@@ -211,9 +229,13 @@ void mousePressed () {
   //
   BackgroundButtonsMousepressed ();
   //Paper Button
-  if (mouseX>=BUTTONpaperX && mouseX<=BUTTONpaperX+BUTTONpaperWidth && mouseY>= BUTTONpaperY && mouseY<=BUTTONpaperY+BUTTONpaperHeight){
-      if (paper==false) paper=true;
-      
+  if (mouseX>=BUTTONpaperX && mouseX<=BUTTONpaperX+BUTTONpaperWidth && mouseY>= BUTTONpaperY && mouseY<=BUTTONpaperY+BUTTONpaperHeight) {
+    if (paper==false) paper=true;
+    if (paperStaysOn==false) {
+      paperStaysOn=true;
+    } else {
+      paperStaysOn=false;
+    }
   }
 }//End mousePressed
 //
