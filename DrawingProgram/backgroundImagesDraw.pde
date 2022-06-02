@@ -43,6 +43,7 @@ void backgroundImagesDraw (){
     image(backgroundImage2, BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     image(backgroundImage3, BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     stroke(COLORIMAGE1toolbarLining);
+    fill(peachy);
     strokeWeight(roundedEdges);
     rect(toolBarX, toolBarY, toolBarWidth, toolBarHeight);
     strokeWeight(reset);
@@ -72,6 +73,7 @@ void backgroundImagesDraw (){
     image(backgroundImage3, BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     fill(whiteReset);
     stroke(COLORIMAGE2toolbarLining);
+    fill(COLORIMAGE2toolbarFILLING);
     strokeWeight(roundedEdges);
     rect(toolBarX, toolBarY, toolBarWidth, toolBarHeight);
     strokeWeight(reset);

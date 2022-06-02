@@ -9,8 +9,11 @@ int reset=1;
 //PaperButton
 float BUTTONpaperX, BUTTONpaperY, BUTTONpaperWidth, BUTTONpaperHeight;
 PImage BUTTONpaperImage;
-float BUTTONpaperIMAGEWidth, BUTTONpaperIMAGEHeight; 
+int BUTTONpaperImageWidth, BUTTONpaperImageHeight;
+int largerPaperImageDimension, smallerPaperImageDimension;
 float BUTTONpaperIMAGEaDJUSTEDWidth, BUTTONpaperIMAGEaDJUSTEDHeight;
+Boolean BUTTONpaperImageWidthLARGER=false, BUTTONpaperImageHeightLARGER=false;
+float paperImageWidthRatio=0.0, paperImageHeightRatio=0.0;
 
 
 //Paper
@@ -20,9 +23,6 @@ Boolean paper=false, paperStaysOn=false;
 //
 //Tool Bar: want it to be a rounded/dark square below the painting surface 
 float toolBarX, toolBarY, toolBarWidth, toolBarHeight;
-color COLORIMAGE1toolbarLining=#DD979F;
-color COLORIMAGE2toolbarLining=#C2E8D1;
-color COLORIMAGE3toolbarLining=#1D4B3E;
 int roundedEdges;
 //
 //Quit Button
@@ -70,7 +70,14 @@ int largerbackgroundImage1Dimension, smallerbackgroundImage1Dimension, largerbac
 PImage backgroundImage1, backgroundImage2, backgroundImage3;
 float backgroundImage1X, backgroundImage1Y, backgroundImage2X, backgroundImage2Y, backgroundImage3X, backgroundImage3Y;
 float backgroundImage1Width, backgroundImage1Height, backgroundImage2Width, backgroundImage2Height, backgroundImage3Width, backgroundImage3Height;
-color peachy=#F5D9C3;
+
+color peachy=#F5D9C3, yellow1=#FAE68D, yellow2=#FFE44D, yell0w3=#FED480, blue1=#C2E8D1, blue2=#79D5AC;
+color COLORIMAGE1toolbarLining=#DD979F;
+color COLORIMAGE2toolbarLining=blue2;
+color COLORIMAGE3toolbarLining=#1D4B3E;
+color COLORIMAGE1toolbarFILLING=peachy;
+color COLORIMAGE2toolbarFILLING=yell0w3;
+//color COLORIMAGE3toolbarFILLING=;
 
 //
 void setup () {
@@ -79,7 +86,8 @@ void setup () {
   appHeight=height;
   originX=width*0;
   originY=height*0;
-
+//Calucating larer Dimension and aspect ratio
+ChoosingLargerDimensionCalculatingAspectRatios();
   //Paper 
 
   drawingSurfaceWidth = width*1/2; 
@@ -124,15 +132,19 @@ void setup () {
   backgroundImage3Y=appHeight*0;
 
   //Paper Button Variables
-  BUTTONpaperImage=loadImage("PaperButtonImage-172x180.jpg");
+  BUTTONpaperImage=loadImage("CROPPEDPaperButtonImage-129x172.jpg");
+  BUTTONpaperImageWidth=129; 
+  BUTTONpaperImageHeight=172;
+  BUTTONpaperIMAGEaDJUSTEDWidth=BUTTONpaperImageWidth*paperImageWidthRatio;
+  BUTTONpaperIMAGEaDJUSTEDHeight= BUTTONpaperImageHeight*paperImageHeightRatio;
   BUTTONpaperWidth=BUTTONbackgroundImageWidth;
   BUTTONpaperHeight=BUTTONbackgroundImageHeight;
-  BUTTONpaperX=toolBarX+float(roundedEdges*60/100);
+  BUTTONpaperX=toolBarX+float(roundedEdges*25/20);
   BUTTONpaperY=toolBarY+float(roundedEdges);
 
   //Color Grid/Activator population
   
-   BUTTONdisplayColorsX= BUTTONpaperX+BUTTONpaperWidth+(float(roundedEdges)*1/2);
+   BUTTONdisplayColorsX= BUTTONpaperX+BUTTONpaperWidth+(float(roundedEdges)*10/50);
    BUTTONdisplayColorsY=BUTTONpaperY;
    BUTTONdisplayColorsWidth=BUTTONpaperWidth;
    BUTTONdisplayColorsHeight=BUTTONpaperHeight;
@@ -166,10 +178,9 @@ void draw () {
 
   backgroundImagesDraw ();
   noStroke();
-  image(BUTTONpaperImage, BUTTONpaperX, BUTTONpaperY, BUTTONpaperWidth, BUTTONpaperHeight);
+  image(BUTTONpaperImage, BUTTONpaperX, BUTTONpaperY,   BUTTONpaperWidth*75/100,   BUTTONpaperHeight);
   image( BUTTONdisplayColorsImage, BUTTONdisplayColorsX, BUTTONdisplayColorsY, BUTTONdisplayColorsWidth, BUTTONdisplayColorsHeight);
   noFill();
-  stroke(whiteReset);
   rect(BUTTONpaperX, BUTTONpaperY, BUTTONpaperWidth, BUTTONpaperHeight);
   rect(BUTTONdisplayColorsX, BUTTONdisplayColorsY, BUTTONdisplayColorsWidth, BUTTONdisplayColorsHeight);
   fill(whiteReset);
