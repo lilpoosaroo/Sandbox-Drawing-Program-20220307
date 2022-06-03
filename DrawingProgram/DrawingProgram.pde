@@ -40,7 +40,12 @@ PFont secondTextButtonFont;
 float BUTTONdisplayColorsX, BUTTONdisplayColorsY, BUTTONdisplayColorsWidth, BUTTONdisplayColorsHeight;
 PImage BUTTONdisplayColorsImage;
 float   BUTTONdisplayColorsImageWidth, BUTTONdisplayColorsImageHeight;
-float red1X, red1Y, colorButtonWidth, colorButtonHeight;
+
+float ColorChoicesBoxX, ColorChoicesBoxY, ColorChoicesBoxWidth, ColorChoicesBoxHeight;
+float BUTTONredColorsDisplayX, BUTTONredColorsDisplayY, colorButtonWidth, colorButtonHeight;
+float BUTTONorangeColorsDisplayX, BUTTONorangeColorsDisplayY;
+
+float red1X, red1Y;
 float orange1X, orange1Y;
 float yellow1X, yellow1Y;
 float green1X, green1Y;
@@ -49,6 +54,8 @@ float purple1X, purple1Y;
 float black1X, black1Y;
 float grey1X, grey1Y;
 float brownX, brown1Y;
+
+color red1=#ED1C24;
 //
 //Background Image Buttons
 float BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight;
@@ -58,7 +65,7 @@ float BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y;
 Boolean backgroundImage1ON=false, backgroundImage2ON=false, backgroundImage3ON=false ;
 color greyReset=#CCCCCC;
 //
-//Drawing Buttons
+//Coloring Tool Box & Drawing Buttons
 float eraserButtonX, eraserButtonY, drawingButtonWidth, drawingButtonHeight;
 float pencilButtonX, pencilButtonY;
 //Background image
@@ -78,7 +85,7 @@ color COLORIMAGE2toolbarLining=blue2;
 color COLORIMAGE3toolbarLining=#1D4B3E;
 color COLORIMAGE1toolbarFILLING=peachy;
 color COLORIMAGE2toolbarFILLING=yell0w3;
-color COLORIMAGE3toolbarFILLING=orange4;
+color COLORIMAGE3toolbarFILLING=orange3;
 //color COLORIMAGE3toolbarFILLING=;
 
 //
@@ -88,8 +95,8 @@ void setup () {
   appHeight=height;
   originX=width*0;
   originY=height*0;
-//Calucating larer Dimension and aspect ratio
-ChoosingLargerDimensionCalculatingAspectRatios();
+  //Calucating larer Dimension and aspect ratio
+  ChoosingLargerDimensionCalculatingAspectRatios();
   //Paper 
 
   drawingSurfaceWidth = width*1/2; 
@@ -144,16 +151,27 @@ ChoosingLargerDimensionCalculatingAspectRatios();
   BUTTONpaperX=toolBarX+float(roundedEdges*25/20);
   BUTTONpaperY=toolBarY+float(roundedEdges);
 
-  //Color Grid/Activator population
-  
-   BUTTONdisplayColorsX= BUTTONpaperX+BUTTONpaperWidth+(float(roundedEdges)*10/50);
-   BUTTONdisplayColorsY=BUTTONpaperY;
-   BUTTONdisplayColorsWidth=BUTTONpaperWidth;
-   BUTTONdisplayColorsHeight=BUTTONpaperHeight;
-   BUTTONdisplayColorsImage=loadImage("ColorPalette.png");
-   BUTTONdisplayColorsImageWidth=800;
-   BUTTONdisplayColorsImageHeight=800;
-   
+  //Color Tool Box Activator population
+
+  BUTTONdisplayColorsX= BUTTONpaperX+BUTTONpaperWidth+(float(roundedEdges)*10/50);
+  BUTTONdisplayColorsY=BUTTONpaperY;
+  BUTTONdisplayColorsWidth=BUTTONpaperWidth;
+  BUTTONdisplayColorsHeight=BUTTONpaperHeight;
+  BUTTONdisplayColorsImage=loadImage("ColorPalette.png");
+  BUTTONdisplayColorsImageWidth=800;
+  BUTTONdisplayColorsImageHeight=800;
+
+  // Color Tool Box Population
+  ColorChoicesBoxWidth=toolBarWidth;
+  ColorChoicesBoxHeight=toolBarWidth*1/2;
+  ColorChoicesBoxX=(toolBarX)+toolBarWidth+float(roundedEdges*2);
+  ColorChoicesBoxY=toolBarY;
+  colorButtonWidth=ColorChoicesBoxWidth*1/4;
+  colorButtonHeight=ColorChoicesBoxHeight*1/2;
+  BUTTONredColorsDisplayX= ColorChoicesBoxX;
+  BUTTONredColorsDisplayY= ColorChoicesBoxY;
+  BUTTONorangeColorsDisplayX= ColorChoicesBoxX+colorButtonWidth;
+  BUTTONorangeColorsDisplayY= ColorChoicesBoxY+colorButtonHeight;
 
 
 
@@ -179,14 +197,21 @@ ChoosingLargerDimensionCalculatingAspectRatios();
 void draw () {
 
   backgroundImagesDraw ();
+  //Paper and display colors images
   noStroke();
-  image(BUTTONpaperImage, BUTTONpaperX, BUTTONpaperY,   BUTTONpaperWidth*75/100,   BUTTONpaperHeight);
+  image(BUTTONpaperImage, BUTTONpaperX, BUTTONpaperY, BUTTONpaperWidth*75/100, BUTTONpaperHeight);
   image( BUTTONdisplayColorsImage, BUTTONdisplayColorsX, BUTTONdisplayColorsY, BUTTONdisplayColorsWidth, BUTTONdisplayColorsHeight);
   noFill();
   rect(BUTTONpaperX, BUTTONpaperY, BUTTONpaperWidth, BUTTONpaperHeight);
   rect(BUTTONdisplayColorsX, BUTTONdisplayColorsY, BUTTONdisplayColorsWidth, BUTTONdisplayColorsHeight);
   fill(whiteReset);
   stroke(black);
+  //Color Choices Display
+  rect(ColorChoicesBoxX, ColorChoicesBoxY, ColorChoicesBoxWidth, ColorChoicesBoxHeight);
+  fill(red1);
+  rect(BUTTONredDrawingColorX, BUTTONredDrawingColorY, colorButtonWidth, colorButtonHeight);
+  rect(BUTTONorangeDrawingColorX, BUTTONorangeDrawingColorY, colorButtonWidth, colorButtonHeight);
+
   //Paper Button
   if (paper==true) {
     rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
