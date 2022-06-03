@@ -71,12 +71,14 @@ PImage backgroundImage1, backgroundImage2, backgroundImage3;
 float backgroundImage1X, backgroundImage1Y, backgroundImage2X, backgroundImage2Y, backgroundImage3X, backgroundImage3Y;
 float backgroundImage1Width, backgroundImage1Height, backgroundImage2Width, backgroundImage2Height, backgroundImage3Width, backgroundImage3Height;
 
-color peachy=#F5D9C3, yellow1=#FAE68D, yellow2=#FFE44D, yell0w3=#FED480, blue1=#C2E8D1, blue2=#79D5AC;
+color peachy=#F5D9C3, yellow1=#FAE68D, yellow2=#FFE44D, yell0w3=#FED480, blue1=#C2E8D1, blue2=#79D5AC, purple1=#695583, purple2=#AC90A7;
+color orangeRed1=#BD3328, orange1=#FE845D, orange2=#FA735D, orange3=#F49730, orange4=#C75E25;
 color COLORIMAGE1toolbarLining=#DD979F;
 color COLORIMAGE2toolbarLining=blue2;
 color COLORIMAGE3toolbarLining=#1D4B3E;
 color COLORIMAGE1toolbarFILLING=peachy;
 color COLORIMAGE2toolbarFILLING=yell0w3;
+color COLORIMAGE3toolbarFILLING=orange4;
 //color COLORIMAGE3toolbarFILLING=;
 
 //

@@ -103,6 +103,7 @@ void backgroundImagesDraw (){
     image(backgroundImage2, BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     fill(whiteReset);
     stroke(COLORIMAGE3toolbarLining);
+    fill(COLORIMAGE3toolbarFILLING);
     strokeWeight(roundedEdges);
     rect(toolBarX, toolBarY, toolBarWidth, toolBarHeight);
     strokeWeight(reset);
