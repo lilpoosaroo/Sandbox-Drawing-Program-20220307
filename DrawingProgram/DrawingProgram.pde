@@ -79,18 +79,18 @@ float backgroundImage1X, backgroundImage1Y, backgroundImage2X, backgroundImage2Y
 float backgroundImage1Width, backgroundImage1Height, backgroundImage2Width, backgroundImage2Height, backgroundImage3Width, backgroundImage3Height;
 
 color peachy=#F5D9C3, yellow1=#FAE68D, yellow2=#FFE44D, yell0w3=#FED480, blue1=#C2E8D1, blue2=#79D5AC, purple1=#695583, purple2=#AC90A7;
-color orangeRed1=#BD3328, orange1=#FE845D, orange2=#FA735D, orange3=#F49730, orange4=#C75E25;
+color orangeRed1=#BD3328, orange1=#FE845D, orange2=#FA735D, orange3=#F49730, orange4=#C75E25, orange5=#FFA859;
 color COLORIMAGE1toolbarLining=#DD979F;
 color COLORIMAGE2toolbarLining=blue2;
 color COLORIMAGE3toolbarLining=#1D4B3E;
 color COLORIMAGE1toolbarFILLING=peachy;
 color COLORIMAGE2toolbarFILLING=yell0w3;
-color COLORIMAGE3toolbarFILLING=orange3;
+color COLORIMAGE3toolbarFILLING=orange5;
 //color COLORIMAGE3toolbarFILLING=;
 
 //
 void setup () {
-  size(900, 600);//NEED TO CHANGE TO fullScreen();, which means everything else will need to be changed to displayWidth
+  fullScreen();//NEED TO CHANGE TO fullScreen();, which means everything else will need to be changed to displayWidth
   appWidth=width;
   appHeight=height;
   originX=width*0;
@@ -122,9 +122,9 @@ void setup () {
   BUTTONbackgroundImage3Y=(appHeight*0);
   //Images going inside background buttons
 
-  backgroundImage1=loadImage("CatsNFlowers-236x236.jpg");
-  backgroundImage2=loadImage("Doodles-1920x1200.jpg");
-  backgroundImage3=loadImage("PossibleBackground3.jpg");
+  backgroundImage1=loadImage("GOODCOPYbackgroundImage1.png");
+  backgroundImage2=loadImage("GOODCOPYbackgroundImage2.png");
+  backgroundImage3=loadImage("GOODCOPYbackgroundImage3.png");
 
   backgroundImage1Width=236;
   backgroundImage1Height=236;
@@ -189,14 +189,24 @@ void setup () {
    secondTextHeight=quitButtonHeight;
    secondTextButtonFont=createFont("Segoe UI Semibold Italic", 25);
    */
+   
   //Types of Font
   String [] fontList=PFont.list();
   printArray(fontList);
+  backgroundImagesSetup ();
+ 
 }//End setup
 // 
 void draw () {
-
-  backgroundImagesDraw ();
+  //backgroundImagesDraw();
+   //BackgroundButtonCode
+  
+ 
+//OutLine for background buttons
+  noFill();
+  rect(BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+  rect(BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+  rect(BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
   //Paper and display colors images
   noStroke();
   image(BUTTONpaperImage, BUTTONpaperX, BUTTONpaperY, BUTTONpaperWidth*75/100, BUTTONpaperHeight);
@@ -206,11 +216,13 @@ void draw () {
   rect(BUTTONdisplayColorsX, BUTTONdisplayColorsY, BUTTONdisplayColorsWidth, BUTTONdisplayColorsHeight);
   fill(whiteReset);
   stroke(black);
+  /*
   //Color Choices Display
   rect(ColorChoicesBoxX, ColorChoicesBoxY, ColorChoicesBoxWidth, ColorChoicesBoxHeight);
   fill(red1);
-  rect(BUTTONredDrawingColorX, BUTTONredDrawingColorY, colorButtonWidth, colorButtonHeight);
-  rect(BUTTONorangeDrawingColorX, BUTTONorangeDrawingColorY, colorButtonWidth, colorButtonHeight);
+ // rect(BUTTONredDrawingColorX, BUTTONredDrawingColorY, colorButtonWidth, colorButtonHeight);
+//  rect(BUTTONorangeDrawingColorX, BUTTONorangeDrawingColorY, colorButtonWidth, colorButtonHeight);
+*/
 
   //Paper Button
   if (paper==true) {
