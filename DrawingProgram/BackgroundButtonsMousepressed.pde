@@ -3,10 +3,11 @@ void BackgroundButtonsMousepressed (){
   if (mouseX>=BUTTONbackgroundImage1X && mouseX<=BUTTONbackgroundImage1X + BUTTONbackgroundImageWidth && mouseY>=BUTTONbackgroundImage1Y && mouseY<=BUTTONbackgroundImage1Y + BUTTONbackgroundImageHeight) {
     //if (mouseX>=(appWidth*0) && mouseX<=(appWidth*0) + (toolBarWidth*1/2) && mouseY>=(appHeight*0) && mouseY<=(appHeight*0) + (toolBarWidth*1/2)) {
 
-    if (backgroundImage1ON==false) {
+    if (originalGreyBackgroundON==true) {
+      originalGreyBackgroundON=false;
       backgroundImage1ON=true;
     } else {
-      backgroundImage1ON=false;
+      originalGreyBackgroundON=true;
     }
 
 

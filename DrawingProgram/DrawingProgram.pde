@@ -38,7 +38,7 @@ float secondTextX, secontTextY, secondTextWidth, secondTextHeight;
 //String secondTextButtonText="Start Drawing";
 //PFont secondTextButtonFont;
 //
-/*
+
 //Color buttons
 float BUTTONdisplayColorsX, BUTTONdisplayColorsY, BUTTONdisplayColorsWidth, BUTTONdisplayColorsHeight;
 PImage BUTTONdisplayColorsImage;
@@ -47,7 +47,7 @@ float   BUTTONdisplayColorsImageWidth, BUTTONdisplayColorsImageHeight;
 float ColorChoicesBoxX, ColorChoicesBoxY, ColorChoicesBoxWidth, ColorChoicesBoxHeight;
 float BUTTONredColorsDisplayX, BUTTONredColorsDisplayY, colorButtonWidth, colorButtonHeight;
 float BUTTONorangeColorsDisplayX, BUTTONorangeColorsDisplayY;
-/*
+
 float red1X, red1Y;
 float orange1X, orange1Y;
 float yellow1X, yellow1Y;
@@ -59,21 +59,21 @@ float grey1X, grey1Y;
 float brownX, brown1Y;
 
 color red1=#ED1C24;
-*/
+
 //
 //Background Image Buttons
 float BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight;
 float BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y;
 float BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y;
 float BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y;
-Boolean backgroundImage1ON=false, backgroundImage2ON=false, backgroundImage3ON=false ;
+Boolean backgroundImage1ON=false, backgroundImage2ON=false, backgroundImage3ON=false, originalGreyBackgroundON=true;
 color greyReset=#CCCCCC;
 //
-/*
+//
 //Coloring Tool Box & Drawing Buttons
 float eraserButtonX, eraserButtonY, drawingButtonWidth, drawingButtonHeight;
 float pencilButtonX, pencilButtonY;
-*/
+//
 //Background image
 float backgroundImage1WidthEnlargedAdjusted, backgroundImage1HeightEnlargedAdjusted, backgroundImage1WidthMinimizedAdjusted, backgroundImage1HeightMinimizedAdjusted;
 float backgroundImage2WidthEnlargedAdjusted, backgroundImage2HeightEnlargedAdjusted, backgroundImage2WidthMinimizedAdjusted, backgroundImage2HeightMinimizedAdjusted;
@@ -158,7 +158,7 @@ void setup () {
   BUTTONpaperY=toolBarY+float(roundedEdges);
 
   //Color Tool Box Activator population
-  /*
+ 
 
   BUTTONdisplayColorsX= BUTTONpaperX+BUTTONpaperWidth+(float(roundedEdges)*10/50);
   BUTTONdisplayColorsY=BUTTONpaperY;
@@ -180,7 +180,6 @@ void setup () {
   BUTTONorangeColorsDisplayX= ColorChoicesBoxX+colorButtonWidth;
   BUTTONorangeColorsDisplayY= ColorChoicesBoxY+colorButtonHeight;
 
-*/
 
 
   /*
@@ -201,12 +200,13 @@ void setup () {
   //Types of Font
   String [] fontList=PFont.list();
   printArray(fontList);
-  backgroundImagesSetup ();
+  
  
 }//End setup
 // 
 void draw () {
-  //backgroundImagesDraw();
+  
+  backgroundImagesDraw();
    //BackgroundButtonCode
   
  
@@ -216,23 +216,22 @@ void draw () {
   rect(BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
   rect(BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
   //Paper and display colors images
-  /*
+ 
   noStroke();
   image(BUTTONpaperImage, BUTTONpaperX, BUTTONpaperY, BUTTONpaperWidth*75/100, BUTTONpaperHeight);
   image( BUTTONdisplayColorsImage, BUTTONdisplayColorsX, BUTTONdisplayColorsY, BUTTONdisplayColorsWidth, BUTTONdisplayColorsHeight);
-  */
+ 
   noFill();
   rect(BUTTONpaperX, BUTTONpaperY, BUTTONpaperWidth, BUTTONpaperHeight);
   //rect(BUTTONdisplayColorsX, BUTTONdisplayColorsY, BUTTONdisplayColorsWidth, BUTTONdisplayColorsHeight);
   fill(whiteReset);
   stroke(black);
-  /*
+  
   //Color Choices Display
   rect(ColorChoicesBoxX, ColorChoicesBoxY, ColorChoicesBoxWidth, ColorChoicesBoxHeight);
-  fill(red1);
+  //fill(red1);
  // rect(BUTTONredDrawingColorX, BUTTONredDrawingColorY, colorButtonWidth, colorButtonHeight);
 //  rect(BUTTONorangeDrawingColorX, BUTTONorangeDrawingColorY, colorButtonWidth, colorButtonHeight);
-*/
 
   //Paper Button
   if (paper==true) {
