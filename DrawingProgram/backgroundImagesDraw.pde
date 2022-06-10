@@ -1,32 +1,4 @@
-void backgroundImagesDraw() {
-
-  if (backgroundImage1ON==true) {
-    backgroundImage2ON=false;
-    backgroundImage3ON=false;
-    originalGreyBackgroundON=false;
-  }
-  if (backgroundImage2ON==true) {
-    backgroundImage1ON=false;
-    backgroundImage3ON=false;
-    originalGreyBackgroundON=false;
-  }
-  if (backgroundImage3ON==true) {
-    backgroundImage1ON=false;
-    backgroundImage2ON=false;
-    originalGreyBackgroundON=false;
-  }
-  if (originalGreyBackgroundON==true) {
-  backgroundImage1ON=false;
-    backgroundImage2ON=false;
-    backgroundImage3ON=false;
-  }
-  //
-  //
-  //
-
-
-
-
+void backgroundImagesDraw23 () {
   if (backgroundImage2ON==false) {
     if (backgroundImage1ON==false && backgroundImage3ON==false) {
       background(greyReset);
@@ -75,4 +47,5 @@ void backgroundImagesDraw() {
     rect(toolBarX, toolBarY, toolBarWidth, toolBarHeight);
     strokeWeight(reset);
   }
+
 }//End backgroundImagesDraw

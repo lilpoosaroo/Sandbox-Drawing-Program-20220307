@@ -206,7 +206,8 @@ void setup () {
 // 
 void draw () {
   
-  backgroundImagesDraw();
+  backgroundImage1Draw();
+  backgroundImagesDraw23 ();
    //BackgroundButtonCode
   
  
