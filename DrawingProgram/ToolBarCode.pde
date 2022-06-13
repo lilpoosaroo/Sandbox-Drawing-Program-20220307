@@ -1,9 +1,5 @@
 void ToolBarCode () {
  //Tool bar 
-  if (originalGreyBackgroundON==false && backgroundImage1ON==false && backgroundImage2ON==false && backgroundImage3ON==false ) {
-    toolbarLining=black;
-    toolbarFILLING=whiteReset;
-  }
   if (originalGreyBackgroundON==true) {
     toolbarLining=black;
     toolbarFILLING=whiteReset;

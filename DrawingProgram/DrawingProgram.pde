@@ -19,7 +19,7 @@ float paperImageWidthRatio=0.0, paperImageHeightRatio=0.0;
 //Paper
 float drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight;
 float  drawingDiameter;
-Boolean paper=false, paperStaysOn=false;
+Boolean paper=false;
 //
 //Tool Bar: want it to be a rounded/dark square below the painting surface 
 float toolBarX, toolBarY, toolBarWidth, toolBarHeight;
@@ -219,20 +219,54 @@ void setup () {
 }//End setup
 // 
 void draw () {
+  //Grey Back ground code
+  if (originalGreyBackgroundON==true) {
+    background(greyReset);  
+    image(backgroundImage1, BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    image(backgroundImage2, BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    image(backgroundImage3, BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    toolbarLining=black;
+    toolbarFILLING=whiteReset;
+    ToolBarCode ();
+  }
+  //BackgroundImage 1 code
+   backgroundImage1Draw();
     //Paper Button if statement
   if (paper==true) {
-    originalGreyBackgroundON=false;
-    backgroundImage1ON=false;
-    backgroundImage2ON=false;
-    backgroundImage3ON=false; 
-    
+    if (originalGreyBackgroundON==true) {
+      originalGreyBackgroundON=false;
+    }
+   if (backgroundImage1ON==true) {
+     backgroundImage1ON=false;
+    fill(greyReset);
+    rect(BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    fill(whiteReset);
+    toolbarLining=COLORIMAGE1toolbarLining;
+    toolbarFILLING=COLORIMAGE1toolbarFILLING;
+   }
+   if ( backgroundImage2ON==true) {
+     backgroundImage2ON=false;
+    fill(greyReset);
+    rect(BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    fill(whiteReset);
+    toolbarLining=COLORIMAGE2toolbarLining;
+    toolbarFILLING=COLORIMAGE2toolbarFILLING;
+   }
+   if (backgroundImage3ON==true) {
+     backgroundImage3ON=false;
+    fill(greyReset);
+    rect(BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    fill(whiteReset);
+    toolbarLining=COLORIMAGE3toolbarLining;
+    toolbarFILLING=COLORIMAGE3toolbarFILLING;
+   }
     rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
     paper=false;
     println("Paper on");
   }
   
-  originalGreyBackgroundDraw();
-  backgroundImage1Draw();
+ // originalGreyBackgroundDraw();
+  //backgroundImage1Draw();
 
 
   //OutLine for background buttons
