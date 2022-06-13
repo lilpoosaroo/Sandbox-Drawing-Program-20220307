@@ -43,12 +43,14 @@ float secondTextX, secontTextY, secondTextWidth, secondTextHeight;
 //Color buttons
 float BUTTONdisplayColorsX, BUTTONdisplayColorsY, BUTTONdisplayColorsWidth, BUTTONdisplayColorsHeight;
 PImage BUTTONdisplayColorsImage;
-float   BUTTONdisplayColorsImageWidth, BUTTONdisplayColorsImageHeight;
+float  BUTTONdisplayColorsImageWidth, BUTTONdisplayColorsImageHeight;
 
 float ColorChoicesBoxX, ColorChoicesBoxY, ColorChoicesBoxWidth, ColorChoicesBoxHeight;
-float BUTTONredColorsDisplayX, BUTTONredColorsDisplayY, colorButtonWidth, colorButtonHeight;
-float BUTTONorangeColorsDisplayX, BUTTONorangeColorsDisplayY;
-
+float BUTTONredDrawingColorX, BUTTONredDrawingColorY, colorButtonWidth, colorButtonHeight;
+float BUTTONorangeDrawingColorX, BUTTONorangeDrawingColorY;
+float BUTTONyellowDrawingColorX, BUTTONyellowDrawingColorY;
+float BUTTONgreenDrawingColorX, BUTTONgreenDrawingColorY;
+float BUTTONblueDrawingColorX, BUTTONblueDrawingColorY;
 float red1X, red1Y;
 float orange1X, orange1Y;
 float yellow1X, yellow1Y;
@@ -59,7 +61,8 @@ float black1X, black1Y;
 float grey1X, grey1Y;
 float brownX, brown1Y;
 
-color red1=#ED1C24;
+color redBUTTONcolor=#FF081E, orangeBUTTONcolor=#FF8C1E, yellowBUTTONcolor=#FFF11E, greenBUTTONcolor=#5BBC00;
+color blueBUTTONcolor=#00BDF3;
 
 //
 //Background Image Buttons
@@ -84,12 +87,12 @@ int largerbackgroundImage1Dimension, smallerbackgroundImage1Dimension, largerbac
 PImage backgroundImage1, backgroundImage2, backgroundImage3;
 float backgroundImage1X, backgroundImage1Y, backgroundImage2X, backgroundImage2Y, backgroundImage3X, backgroundImage3Y;
 float backgroundImage1Width, backgroundImage1Height, backgroundImage2Width, backgroundImage2Height, backgroundImage3Width, backgroundImage3Height;
-
-color peachy=#F5D9C3, yellow1=#FAE68D, yellow2=#FFE44D, yell0w3=#FED480, blue1=#C2E8D1, blue2=#79D5AC, purple1=#695583, purple2=#AC90A7;
+color red1=#ED1C24, yellow1=#FAE68D, green1=#1D4B3E;
+color peachy=#F5D9C3, yellow2=#FFE44D, yell0w3=#FED480, blue1=#C2E8D1, blue2=#79D5AC, purple1=#695583, purple2=#AC90A7;
 color orangeRed1=#BD3328, orange1=#FE845D, orange2=#FA735D, orange3=#F49730, orange4=#C75E25, orange5=#FFA859;
 color COLORIMAGE1toolbarLining=#DD979F;
 color COLORIMAGE2toolbarLining=blue2;
-color COLORIMAGE3toolbarLining=#1D4B3E;
+color COLORIMAGE3toolbarLining=green1;
 color COLORIMAGE1toolbarFILLING=peachy;
 color COLORIMAGE2toolbarFILLING=yell0w3;
 color COLORIMAGE3toolbarFILLING=orange5;
@@ -191,10 +194,16 @@ void setup () {
   ColorChoicesBoxY=toolBarY;
   colorButtonWidth=ColorChoicesBoxWidth*1/4;
   colorButtonHeight=ColorChoicesBoxHeight*1/2;
-  BUTTONredColorsDisplayX= ColorChoicesBoxX;
-  BUTTONredColorsDisplayY= ColorChoicesBoxY;
-  BUTTONorangeColorsDisplayX= ColorChoicesBoxX+colorButtonWidth;
-  BUTTONorangeColorsDisplayY= ColorChoicesBoxY+colorButtonHeight;
+  BUTTONredDrawingColorX= ColorChoicesBoxX;
+  BUTTONredDrawingColorY= ColorChoicesBoxY;
+  BUTTONorangeDrawingColorX= ColorChoicesBoxX+colorButtonWidth;
+  BUTTONorangeDrawingColorY= ColorChoicesBoxY;
+  BUTTONyellowDrawingColorX= ColorChoicesBoxX+(colorButtonWidth*2);
+  BUTTONyellowDrawingColorY= ColorChoicesBoxY;
+  BUTTONgreenDrawingColorX= ColorChoicesBoxX+(colorButtonWidth*3);
+  BUTTONgreenDrawingColorY= ColorChoicesBoxY;
+  BUTTONblueDrawingColorX= ColorChoicesBoxX;
+  BUTTONblueDrawingColorY= ColorChoicesBoxY+colorButtonHeight;
 
 
 
@@ -219,68 +228,70 @@ void setup () {
 }//End setup
 // 
 void draw () {
-  //Grey Back ground code
+  //Grey Background code
   if (originalGreyBackgroundON==true) {
     background(greyReset);  
     image(backgroundImage1, BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     image(backgroundImage2, BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     image(backgroundImage3, BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
-  } else {}
+  } else {
+  }
   //Background Image 1 code
-   backgroundImage1Draw();
-   //Background Image 2 Code
-   if (backgroundImage2ON==true) {
+  backgroundImage1Draw();
+  //Background Image 2 Code
+  if (backgroundImage2ON==true) {
     background(backgroundImage2); 
     fill(greyReset);
     rect(BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     fill(whiteReset);
     image(backgroundImage1, BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     image(backgroundImage3, BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
-  } else {}
+  } else {
+  }
   //Background Image 3 Code
-   if (backgroundImage3ON==true) {
+  if (backgroundImage3ON==true) {
     background(backgroundImage3); 
     fill(greyReset);
     rect(BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     fill(whiteReset);
     image(backgroundImage1, BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     image(backgroundImage2, BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
-  } else {}
-    //Paper Button if statement
+  } else {
+  }
+  //Paper Button if statement
   if (paper==true) {
     if (originalGreyBackgroundON==true) {
       originalGreyBackgroundON=false;
     }
-   if (backgroundImage1ON==true) {
-     backgroundImage1ON=false;
-    fill(greyReset);
-    rect(BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
-    fill(whiteReset);
-    toolbarLining=COLORIMAGE1toolbarLining;
-    toolbarFILLING=COLORIMAGE1toolbarFILLING;
-   }
-   if ( backgroundImage2ON==true) {
-     backgroundImage2ON=false;
-    fill(greyReset);
-    rect(BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
-    fill(whiteReset);
-    toolbarLining=COLORIMAGE2toolbarLining;
-    toolbarFILLING=COLORIMAGE2toolbarFILLING;
-   }
-   if (backgroundImage3ON==true) {
-     backgroundImage3ON=false;
-    fill(greyReset);
-    rect(BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
-    fill(whiteReset);
-    toolbarLining=COLORIMAGE3toolbarLining;
-    toolbarFILLING=COLORIMAGE3toolbarFILLING;
-   }
+    if (backgroundImage1ON==true) {
+      backgroundImage1ON=false;
+      fill(greyReset);
+      rect(BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+      fill(whiteReset);
+      toolbarLining=COLORIMAGE1toolbarLining;
+      toolbarFILLING=COLORIMAGE1toolbarFILLING;
+    }
+    if ( backgroundImage2ON==true) {
+      backgroundImage2ON=false;
+      fill(greyReset);
+      rect(BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+      fill(whiteReset);
+      toolbarLining=COLORIMAGE2toolbarLining;
+      toolbarFILLING=COLORIMAGE2toolbarFILLING;
+    }
+    if (backgroundImage3ON==true) {
+      backgroundImage3ON=false;
+      fill(greyReset);
+      rect(BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+      fill(whiteReset);
+      toolbarLining=COLORIMAGE3toolbarLining;
+      toolbarFILLING=COLORIMAGE3toolbarFILLING;
+    }
     rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
     paper=false;
-    println("Paper on");
   }
-  
- // originalGreyBackgroundDraw();
+
+  // originalGreyBackgroundDraw();
   //backgroundImage1Draw();
 
 
@@ -303,11 +314,19 @@ void draw () {
 
   //Color Choices Display
   rect(ColorChoicesBoxX, ColorChoicesBoxY, ColorChoicesBoxWidth, ColorChoicesBoxHeight);
-  //fill(red1);
-  // rect(BUTTONredDrawingColorX, BUTTONredDrawingColorY, colorButtonWidth, colorButtonHeight);
-  //  rect(BUTTONorangeDrawingColorX, BUTTONorangeDrawingColorY, colorButtonWidth, colorButtonHeight);
+  fill( redBUTTONcolor);
+  rect(BUTTONredDrawingColorX, BUTTONredDrawingColorY, colorButtonWidth, colorButtonHeight);
+  fill(orangeBUTTONcolor);
+  rect(BUTTONorangeDrawingColorX, BUTTONorangeDrawingColorY, colorButtonWidth, colorButtonHeight);
+  fill(yellowBUTTONcolor);
+  rect(BUTTONyellowDrawingColorX, BUTTONyellowDrawingColorY, colorButtonWidth, colorButtonHeight);
+  fill(greenBUTTONcolor);
+  rect(BUTTONgreenDrawingColorX, BUTTONgreenDrawingColorY, colorButtonWidth, colorButtonHeight);
+  fill(blueBUTTONcolor);
+   rect(BUTTONblueDrawingColorX, BUTTONblueDrawingColorY, colorButtonWidth, colorButtonHeight);
+  fill(whiteReset);
 
-  
+
 
   //
   //Drawing tool, combined boolean

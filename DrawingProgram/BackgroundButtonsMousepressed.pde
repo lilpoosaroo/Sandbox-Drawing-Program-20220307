@@ -33,14 +33,16 @@ void BackgroundButtonsMousepressed () {
 
   if (mouseX>=BUTTONbackgroundImage3X && mouseX<=BUTTONbackgroundImage3X + BUTTONbackgroundImageWidth && mouseY>=BUTTONbackgroundImage3Y && mouseY<=BUTTONbackgroundImage3Y + BUTTONbackgroundImageHeight) {
 
-    if (backgroundImage3ON==false) {
-      backgroundImage3ON=true;
-    } else {
-      backgroundImage3ON=false;
+    if (toolbarLining==COLORIMAGE3toolbarLining && toolbarFILLING==COLORIMAGE3toolbarFILLING) {
+      originalGreyBackgroundON=true;
+      backgroundImage3ON=false;//This code does not work unless I add that the bckgroundImage3ON needs to become false
     }
+  
 
-    originalGreyBackgroundON=false;
+    if (toolbarLining==black && toolbarFILLING==whiteReset || toolbarLining==COLORIMAGE1toolbarLining && toolbarFILLING==COLORIMAGE1toolbarFILLING || 
+    toolbarLining==COLORIMAGE2toolbarLining && toolbarFILLING==COLORIMAGE2toolbarFILLING) backgroundImage3ON=true;
+
     backgroundImage1ON=false;
     backgroundImage2ON=false;
   }
-}
+}//End background Buttons mousepress

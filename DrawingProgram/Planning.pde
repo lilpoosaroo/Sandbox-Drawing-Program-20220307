@@ -5,11 +5,12 @@ Drawing Program Expectations
  Drawing Program concept:
  1) A paint by numbers
  2) Beautiful appliance
- 3) fullScreen();
- 4)Background for drawing program
+ 3) COMPLETE fullScreen();
+ 4) COMPLETE Background for drawing program
  5) Starting Screen?
  
  Drawing Program Will Need:
+ COMPLETE button that changes the background
  INCOMPLETE button that controls stroke, this would be strokeWeight();
  INCOMPLETE button that controls color
  INCOMPLETE button that draws shapes
@@ -21,7 +22,8 @@ Drawing Program Expectations
  
  
  
- Problem Encountered: unable to draw a paper over the background because it keeps repeating. Possible solutions: 
+PROBLEM SOLVED Problem Encountered: unable to draw a paper over the background because it keeps repeating. 
+ Possible solutions: 
  1) Can make it so that when backgroundImage1ON=false, it stops printing the background1 image instead of reseting to the original grey drawing background. 
  In order to make this work:
  - Need a a greyBackgroundON boolean to be able to get back to the original grey drawing background. 
