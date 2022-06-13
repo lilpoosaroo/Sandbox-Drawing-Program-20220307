@@ -26,6 +26,7 @@ Drawing Program Expectations
  In order to make this work:
  - Need a a greyBackgroundON boolean to be able to get back to the original grey drawing background. 
  - Once backgroundImage1 becomes true, it will need to immediately become false. 
+ - The grey background on backgroundImage1's button will have to remain grey unless on of the others become true, not if backgroundImage1 becomes false
  - When the backgroundImage1 is touched: will need to turn true if originalGreyBackgroundON=true. 
  - When the backgroundImage1 is touched: if greyBackgroundON=false, it will become true. 
  - Will need to have a warning that once you change backgrounds, your progress/drawing will be lost, please screenshot your screen to keep what you have. 

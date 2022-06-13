@@ -1,4 +1,5 @@
-void backgroundImagesDraw23 () {
+
+/*void backgroundImagesDraw23 () {
   if (backgroundImage2ON==false) {
     if (backgroundImage1ON==false && backgroundImage3ON==false) {
       background(greyReset);
@@ -49,3 +50,4 @@ void backgroundImagesDraw23 () {
   }
 
 }//End backgroundImagesDraw
+*/

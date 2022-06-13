@@ -24,13 +24,14 @@ Boolean paper=false, paperStaysOn=false;
 //Tool Bar: want it to be a rounded/dark square below the painting surface 
 float toolBarX, toolBarY, toolBarWidth, toolBarHeight;
 int roundedEdges;
+color toolbarLining, toolbarFILLING;
 //
 /*
 //Quit Button
-String quitButtonText="Exit Program";
-PFont quitButtonFont; //CAN'T POPULATE A FONT IN THE GLOBAL VARIABLES
-float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
-*/
+ String quitButtonText="Exit Program";
+ PFont quitButtonFont; //CAN'T POPULATE A FONT IN THE GLOBAL VARIABLES
+ float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
+ */
 //
 //Second Button
 float secondTextX, secontTextY, secondTextWidth, secondTextHeight;
@@ -92,15 +93,30 @@ color COLORIMAGE3toolbarLining=#1D4B3E;
 color COLORIMAGE1toolbarFILLING=peachy;
 color COLORIMAGE2toolbarFILLING=yell0w3;
 color COLORIMAGE3toolbarFILLING=orange5;
-//color COLORIMAGE3toolbarFILLING=;
+
 
 //
 void setup () {
   fullScreen();//NEED TO CHANGE TO fullScreen();, which means everything else will need to be changed to displayWidth
-  appWidth=width;
-  appHeight=height;
   originX=width*0;
   originY=height*0;
+  appWidth=width;
+  appHeight=height;
+  //Display Orientation: Landscape (displayWidth>displayHeight), not portrait or square
+  //If our width is larger than our height we are in landscape mode
+  //if  ( displayWidth .+ displayHeight) {println("landscape or Square");} else {println("Portrait");}
+  String ls="Landscape or Square", p="portrait", DO="Display Orientation", instruction="turn your phone kiddo";
+  String orientation = (appWidth >= appHeight) ? ls:p; //Ternary operator
+  println(DO, orientation);
+
+  if (orientation==ls) {
+    println("Good to go :)");
+  } else {
+    println(instruction);
+    appWidth *=0; //this is called an assingment operator; this means appWidth=appWidth*0, thi
+    appHeight *=0;
+  }
+  println("App Geometry is:", "\t AppWidth:", appWidth, "\t AppHeight:", appHeight);
   //Calucating larer Dimension and aspect ratio
   ChoosingLargerDimensionCalculatingAspectRatios();
   //Paper 
@@ -158,7 +174,7 @@ void setup () {
   BUTTONpaperY=toolBarY+float(roundedEdges);
 
   //Color Tool Box Activator population
- 
+
 
   BUTTONdisplayColorsX= BUTTONpaperX+BUTTONpaperWidth+(float(roundedEdges)*10/50);
   BUTTONdisplayColorsY=BUTTONpaperY;
@@ -196,49 +212,54 @@ void setup () {
    secondTextHeight=quitButtonHeight;
    secondTextButtonFont=createFont("Segoe UI Semibold Italic", 25);
    */
-   
+
   //Types of Font
-  String [] fontList=PFont.list();
-  printArray(fontList);
-  
- 
+  //String [] fontList=PFont.list();
+  // printArray(fontList);
 }//End setup
 // 
 void draw () {
+    //Paper Button if statement
+  if (paper==true) {
+    originalGreyBackgroundON=false;
+    backgroundImage1ON=false;
+    backgroundImage2ON=false;
+    backgroundImage3ON=false; 
+    
+    rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
+    paper=false;
+    println("Paper on");
+  }
   
+  originalGreyBackgroundDraw();
   backgroundImage1Draw();
-  backgroundImagesDraw23 ();
-   //BackgroundButtonCode
-  
- 
-//OutLine for background buttons
+
+
+  //OutLine for background buttons
   noFill();
   rect(BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
   rect(BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
   rect(BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+  //Tool Bar
+  ToolBarCode ();
   //Paper and display colors images
- 
   noStroke();
   image(BUTTONpaperImage, BUTTONpaperX, BUTTONpaperY, BUTTONpaperWidth*75/100, BUTTONpaperHeight);
   image( BUTTONdisplayColorsImage, BUTTONdisplayColorsX, BUTTONdisplayColorsY, BUTTONdisplayColorsWidth, BUTTONdisplayColorsHeight);
- 
   noFill();
   rect(BUTTONpaperX, BUTTONpaperY, BUTTONpaperWidth, BUTTONpaperHeight);
   //rect(BUTTONdisplayColorsX, BUTTONdisplayColorsY, BUTTONdisplayColorsWidth, BUTTONdisplayColorsHeight);
   fill(whiteReset);
   stroke(black);
-  
+
   //Color Choices Display
   rect(ColorChoicesBoxX, ColorChoicesBoxY, ColorChoicesBoxWidth, ColorChoicesBoxHeight);
   //fill(red1);
- // rect(BUTTONredDrawingColorX, BUTTONredDrawingColorY, colorButtonWidth, colorButtonHeight);
-//  rect(BUTTONorangeDrawingColorX, BUTTONorangeDrawingColorY, colorButtonWidth, colorButtonHeight);
+  // rect(BUTTONredDrawingColorX, BUTTONredDrawingColorY, colorButtonWidth, colorButtonHeight);
+  //  rect(BUTTONorangeDrawingColorX, BUTTONorangeDrawingColorY, colorButtonWidth, colorButtonHeight);
 
-  //Paper Button
-  if (paper==true) {
-    rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
-    paper=false;
-  }
+  
+
   //
   //Drawing tool, combined boolean
   if (draw==true && mouseX>= drawingSurfaceX && mouseX<= drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight)  line(mouseX, mouseY, pmouseX, pmouseY) ;//End Line Draw
@@ -295,11 +316,6 @@ void mousePressed () {
   //Paper Button
   if (mouseX>=BUTTONpaperX && mouseX<=BUTTONpaperX+BUTTONpaperWidth && mouseY>= BUTTONpaperY && mouseY<=BUTTONpaperY+BUTTONpaperHeight) {
     if (paper==false) paper=true;
-    if (paperStaysOn==false) {
-      paperStaysOn=true;
-    } else {
-      paperStaysOn=false;
-    }
   }
 }//End mousePressed
 //
