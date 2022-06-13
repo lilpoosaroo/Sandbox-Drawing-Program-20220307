@@ -225,12 +225,27 @@ void draw () {
     image(backgroundImage1, BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     image(backgroundImage2, BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     image(backgroundImage3, BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
-    toolbarLining=black;
-    toolbarFILLING=whiteReset;
-    ToolBarCode ();
-  }
-  //BackgroundImage 1 code
+  } else {}
+  //Background Image 1 code
    backgroundImage1Draw();
+   //Background Image 2 Code
+   if (backgroundImage2ON==true) {
+    background(backgroundImage2); 
+    fill(greyReset);
+    rect(BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    fill(whiteReset);
+    image(backgroundImage1, BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    image(backgroundImage3, BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+  } else {}
+  //Background Image 3 Code
+   if (backgroundImage3ON==true) {
+    background(backgroundImage3); 
+    fill(greyReset);
+    rect(BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    fill(whiteReset);
+    image(backgroundImage1, BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    image(backgroundImage2, BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+  } else {}
     //Paper Button if statement
   if (paper==true) {
     if (originalGreyBackgroundON==true) {
