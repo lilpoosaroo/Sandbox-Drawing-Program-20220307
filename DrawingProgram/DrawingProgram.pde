@@ -69,6 +69,7 @@ float red1X, red1Y;
 
 color redBUTTONcolor=#FF081E, orangeBUTTONcolor=#FF8C1E, yellowBUTTONcolor=#FFF11E, greenBUTTONcolor=#5BBC00;
 color blueBUTTONcolor=#00BDF3, purpleBUTTONcolor=#7A1A7D, greyBUTTONcolor=greyReset, blackBUTTONcolor=black;
+color colorOfDrawingTool;
 Boolean colorChoicesON=false;
 //
 //Background Image Buttons
@@ -269,6 +270,15 @@ void draw () {
     image(backgroundImage1, BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     image(backgroundImage2, BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
   } else {
+    //OutLine for background buttons
+  noFill();
+  rect(BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+  rect(BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+  rect(BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+     //Tool Bar
+  ToolBarCode ();
+  //Paper Button Image
+  image(BUTTONpaperImage, BUTTONpaperX, BUTTONpaperY, BUTTONpaperWidth*75/100, BUTTONpaperHeight);
   }
   //Paper Button if statement
   if (paper==true) {
@@ -303,22 +313,12 @@ void draw () {
     paper=false;
   }
 
-  // originalGreyBackgroundDraw();
-  //backgroundImage1Draw();
 
 
-  //OutLine for background buttons
-  noFill();
-  rect(BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
-  rect(BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
-  rect(BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
-  //Tool Bar
-  ToolBarCode ();
-  //Paper Button Image
-  image(BUTTONpaperImage, BUTTONpaperX, BUTTONpaperY, BUTTONpaperWidth*75/100, BUTTONpaperHeight);
-  //Color Pallette Image Code
+
+  //Color Pallette Image 
   image(BUTTONdisplayColorsImage, BUTTONdisplayColorsX, BUTTONdisplayColorsY, BUTTONdisplayColorsWidth, BUTTONdisplayColorsHeight);
- //Color Choices if statement
+  //Color Choices if statement
  if (colorChoicesON==true) {
   //Color Choices Display
   rect(ColorChoicesBoxX, ColorChoicesBoxY, ColorChoicesBoxWidth, ColorChoicesBoxHeight);
@@ -346,6 +346,8 @@ void draw () {
 
   //
   //Drawing tool, combined boolean
+  fill (colorOfDrawingTool);
+  stroke(colorOfDrawingTool);
   if (draw==true && mouseX>= drawingSurfaceX && mouseX<= drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight)  line(mouseX, mouseY, pmouseX, pmouseY) ;//End Line Draw
   if (draw==true && mouseX>= drawingSurfaceX && mouseX<= drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight) ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
   //
@@ -409,6 +411,62 @@ void mousePressed () {
       colorChoicesON=false;
     }
   }
+  
+  //Color of drawing tools mousePressed
+  
+  //color red
+  if (mouseX>=BUTTONredDrawingColorX && mouseX<=BUTTONredDrawingColorX+colorButtonWidth && mouseY>=BUTTONredDrawingColorY && mouseY<=BUTTONredDrawingColorY+colorButtonHeight) {
+    
+    if (colorChoicesON==true) colorOfDrawingTool=redBUTTONcolor;
+  }
+  
+  //color orange
+   
+  if (mouseX>=BUTTONorangeDrawingColorX && mouseX<=BUTTONorangeDrawingColorX+colorButtonWidth && mouseY>=BUTTONorangeDrawingColorY && mouseY<=BUTTONorangeDrawingColorY+colorButtonHeight) {
+    
+    if (colorChoicesON==true) colorOfDrawingTool=orangeBUTTONcolor;
+  }
+  
+  
+  //color yellow
+  if (mouseX>=BUTTONyellowDrawingColorX && mouseX<=BUTTONyellowDrawingColorX+colorButtonWidth && mouseY>=BUTTONyellowDrawingColorY && mouseY<=BUTTONyellowDrawingColorY+colorButtonHeight) {
+    
+    if (colorChoicesON==true) colorOfDrawingTool=yellowBUTTONcolor;
+  }
+  
+  //color green
+  if (mouseX>=BUTTONgreenDrawingColorX && mouseX<=BUTTONgreenDrawingColorX+colorButtonWidth && mouseY>=BUTTONgreenDrawingColorY && mouseY<=BUTTONgreenDrawingColorY+colorButtonHeight) {
+    
+    if (colorChoicesON==true) colorOfDrawingTool=greenBUTTONcolor;
+  }
+  
+  
+  //color blue
+  if (mouseX>=BUTTONblueDrawingColorX && mouseX<=BUTTONblueDrawingColorX+colorButtonWidth && mouseY>=BUTTONblueDrawingColorY && mouseY<=BUTTONblueDrawingColorY+colorButtonHeight) {
+    
+    if (colorChoicesON==true) colorOfDrawingTool=blueBUTTONcolor;
+  }
+  
+  
+  //color purple
+  if (mouseX>=BUTTONpurpleDrawingColorX && mouseX<=BUTTONpurpleDrawingColorX+ && mouseY>=BUTTONpurpleDrawingColorY && mouseY<=BUTTONpurpleDrawingColorY+colorButtonHeight) {
+    
+    if (colorChoicesON==true) colorOfDrawingTool=purpleBUTTONcolor;
+  }
+  
+  //color grey
+  if (mouseX>=BUTTONgreyDrawingColorX && mouseX<=BUTTONgreyDrawingColorX+colorButtonWidth && mouseY>=BUTTONgreyDrawingColorY && mouseY<=BUTTONgreyDrawingColorY+colorButtonHeight) {
+    
+    if (colorChoicesON==true) colorOfDrawingTool=greyBUTTONcolor;
+  }
+  
+  //color black
+  if (mouseX>=BUTTONblackDrawingColorX && mouseX<=BUTTONblackDrawingColorX+colorButtonWidth && mouseY>=BUTTONblackDrawingColorY && mouseY<=BUTTONblackDrawingColorY+colorButtonHeight) {
+    
+    if (colorChoicesON==true) colorOfDrawingTool=blackBUTTONcolor;
+  }
+
+ 
 }//End mousePressed
 //
 //End MAIN program

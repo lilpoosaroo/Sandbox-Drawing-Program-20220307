@@ -26,6 +26,7 @@ Drawing Program Expectations
  - Can make it so that when a button is touched, it doesn't affect stroke(); or fill();, it affects colorOfDrawingTool
  2)The color selection can only be visible when a button is touched - POSSIBLE SOLUTIONS: 
  - when you touch the color pallet button,  if (colorChoicesON==false ) {colorChoicesON=true} else {colorChoicesON=false;}
+ 3) the color of  drawing tool can only be changed if the color selection is on. 
  
  
  
