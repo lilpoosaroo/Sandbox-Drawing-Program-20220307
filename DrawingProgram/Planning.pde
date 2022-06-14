@@ -27,6 +27,61 @@ Drawing Program Expectations
  2)The color selection can only be visible when a button is touched - POSSIBLE SOLUTIONS: 
  - when you touch the color pallet button,  if (colorChoicesON==false ) {colorChoicesON=true} else {colorChoicesON=false;}
  3) the color of  drawing tool can only be changed if the color selection is on. 
+ PROBLEM ENCOUNTERED: the color choices box will not turn off after a color has been chosen, this is because the background will become false when paper is turned on, and it will no
+ // longer draw over the color choices
+  //Color of drawing tools mousePressed
+  
+  //color red
+  if (mouseX>=BUTTONredDrawingColorX && mouseX<=BUTTONredDrawingColorX+colorButtonWidth && mouseY>=BUTTONredDrawingColorY && mouseY<=BUTTONredDrawingColorY+colorButtonHeight) {
+    
+    if (colorChoicesON==true) colorOfDrawingTool=redBUTTONcolor;
+  }
+  
+  //color orange
+   
+  if (mouseX>=BUTTONorangeDrawingColorX && mouseX<=BUTTONorangeDrawingColorX+colorButtonWidth && mouseY>=BUTTONorangeDrawingColorY && mouseY<=BUTTONorangeDrawingColorY+colorButtonHeight) {
+    
+    if (colorChoicesON==true) colorOfDrawingTool=orangeBUTTONcolor;
+  }
+  
+  
+  //color yellow
+  if (mouseX>=BUTTONyellowDrawingColorX && mouseX<=BUTTONyellowDrawingColorX+colorButtonWidth && mouseY>=BUTTONyellowDrawingColorY && mouseY<=BUTTONyellowDrawingColorY+colorButtonHeight) {
+    
+    if (colorChoicesON==true) colorOfDrawingTool=yellowBUTTONcolor;
+  }
+  
+  //color green
+  if (mouseX>=BUTTONgreenDrawingColorX && mouseX<=BUTTONgreenDrawingColorX+colorButtonWidth && mouseY>=BUTTONgreenDrawingColorY && mouseY<=BUTTONgreenDrawingColorY+colorButtonHeight) {
+    
+    if (colorChoicesON==true) colorOfDrawingTool=greenBUTTONcolor;
+  }
+  
+  
+  //color blue
+  if (mouseX>=BUTTONblueDrawingColorX && mouseX<=BUTTONblueDrawingColorX+colorButtonWidth && mouseY>=BUTTONblueDrawingColorY && mouseY<=BUTTONblueDrawingColorY+colorButtonHeight) {
+    
+    if (colorChoicesON==true) colorOfDrawingTool=blueBUTTONcolor;
+  }
+  
+  
+  //color purple
+  if (mouseX>=BUTTONpurpleDrawingColorX && mouseX<=BUTTONpurpleDrawingColorX+colorButtonWidth && mouseY>=BUTTONpurpleDrawingColorY && mouseY<=BUTTONpurpleDrawingColorY+colorButtonHeight) {
+    
+    if (colorChoicesON==true) colorOfDrawingTool=purpleBUTTONcolor;
+  }
+  
+  //color grey
+  if (mouseX>=BUTTONgreyDrawingColorX && mouseX<=BUTTONgreyDrawingColorX+colorButtonWidth && mouseY>=BUTTONgreyDrawingColorY && mouseY<=BUTTONgreyDrawingColorY+colorButtonHeight) {
+    
+    if (colorChoicesON==true) colorOfDrawingTool=greyBUTTONcolor;
+  }
+  
+  //color black
+  if (mouseX>=BUTTONblackDrawingColorX && mouseX<=BUTTONblackDrawingColorX+colorButtonWidth && mouseY>=BUTTONblackDrawingColorY && mouseY<=BUTTONblackDrawingColorY+colorButtonHeight) {
+    
+    if (colorChoicesON==true) colorOfDrawingTool=blackBUTTONcolor;
+  }
  
  
  

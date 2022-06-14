@@ -195,12 +195,13 @@ void setup () {
   BUTTONdisplayColorsImageHeight=800;
 
   // Color Choices Box Population
-  ColorChoicesBoxWidth=toolBarWidth;
   ColorChoicesBoxHeight=toolBarWidth*1/2;
-  ColorChoicesBoxX=(toolBarX)+toolBarWidth+float(roundedEdges*2);
-  ColorChoicesBoxY=toolBarY;
-  colorButtonWidth=ColorChoicesBoxWidth*1/4;
+  colorButtonWidth=toolBarWidth*1/4;
   colorButtonHeight=ColorChoicesBoxHeight*1/2;
+  ColorChoicesBoxWidth=toolBarWidth;
+  
+  ColorChoicesBoxX=drawingSurfaceX-(colorButtonWidth*2);
+  ColorChoicesBoxY=toolBarY;
   BUTTONredDrawingColorX= ColorChoicesBoxX;
   BUTTONredDrawingColorY= ColorChoicesBoxY;
   BUTTONorangeDrawingColorX= ColorChoicesBoxX+colorButtonWidth;
@@ -269,7 +270,7 @@ void draw () {
     fill(whiteReset);
     image(backgroundImage1, BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     image(backgroundImage2, BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
-  } else {
+  } else {}
     //OutLine for background buttons
   noFill();
   rect(BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
@@ -279,7 +280,7 @@ void draw () {
   ToolBarCode ();
   //Paper Button Image
   image(BUTTONpaperImage, BUTTONpaperX, BUTTONpaperY, BUTTONpaperWidth*75/100, BUTTONpaperHeight);
-  }
+  
   //Paper Button if statement
   if (paper==true) {
     if (originalGreyBackgroundON==true) {
@@ -321,6 +322,7 @@ void draw () {
   //Color Choices if statement
  if (colorChoicesON==true) {
   //Color Choices Display
+  noStroke();
   rect(ColorChoicesBoxX, ColorChoicesBoxY, ColorChoicesBoxWidth, ColorChoicesBoxHeight);
   fill( redBUTTONcolor);
   rect(BUTTONredDrawingColorX, BUTTONredDrawingColorY, colorButtonWidth, colorButtonHeight);
@@ -338,6 +340,7 @@ void draw () {
   rect(BUTTONgreyDrawingColorX, BUTTONgreyDrawingColorY, colorButtonWidth, colorButtonHeight);
   fill(blackBUTTONcolor);
   rect(BUTTONblackDrawingColorX, BUTTONblackDrawingColorY, colorButtonWidth, colorButtonHeight);
+  stroke(black);
   fill(whiteReset);
  } else {}
 
@@ -405,7 +408,9 @@ void mousePressed () {
   }
   //Color Choices Button 
   if (mouseX>=BUTTONdisplayColorsX && mouseX<=BUTTONdisplayColorsX+BUTTONdisplayColorsWidth && mouseY>=BUTTONdisplayColorsY && mouseY<=BUTTONdisplayColorsY+BUTTONdisplayColorsHeight) {
-    if (colorChoicesON==false ) {
+    
+    
+    if (colorChoicesON==false) {
       colorChoicesON=true;
     } else {
       colorChoicesON=false;
@@ -415,58 +420,57 @@ void mousePressed () {
   //Color of drawing tools mousePressed
   
   //color red
-  if (mouseX>=BUTTONredDrawingColorX && mouseX<=BUTTONredDrawingColorX+colorButtonWidth && mouseY>=BUTTONredDrawingColorY && mouseY<=BUTTONredDrawingColorY+colorButtonHeight) {
+  if (colorChoicesON==true) {
+  if (mouseX>=BUTTONredDrawingColorX && mouseX<=BUTTONredDrawingColorX+colorButtonWidth 
+  && mouseY>=BUTTONredDrawingColorY && mouseY<=BUTTONredDrawingColorY+colorButtonHeight) {
+    if (colorChoicesON==true) {
+      colorChoicesON=false;
+    colorOfDrawingTool=redBUTTONcolor;
+    }
     
-    if (colorChoicesON==true) colorOfDrawingTool=redBUTTONcolor;
   }
+  
   
   //color orange
    
-  if (mouseX>=BUTTONorangeDrawingColorX && mouseX<=BUTTONorangeDrawingColorX+colorButtonWidth && mouseY>=BUTTONorangeDrawingColorY && mouseY<=BUTTONorangeDrawingColorY+colorButtonHeight) {
-    
-    if (colorChoicesON==true) colorOfDrawingTool=orangeBUTTONcolor;
-  }
+  if (mouseX>=BUTTONorangeDrawingColorX && mouseX<=BUTTONorangeDrawingColorX+colorButtonWidth 
+  && mouseY>=BUTTONorangeDrawingColorY && mouseY<=BUTTONorangeDrawingColorY+colorButtonHeight)  colorOfDrawingTool=orangeBUTTONcolor;
+  
   
   
   //color yellow
-  if (mouseX>=BUTTONyellowDrawingColorX && mouseX<=BUTTONyellowDrawingColorX+colorButtonWidth && mouseY>=BUTTONyellowDrawingColorY && mouseY<=BUTTONyellowDrawingColorY+colorButtonHeight) {
-    
-    if (colorChoicesON==true) colorOfDrawingTool=yellowBUTTONcolor;
-  }
+  if (mouseX>=BUTTONyellowDrawingColorX && mouseX<=BUTTONyellowDrawingColorX+colorButtonWidth 
+  && mouseY>=BUTTONyellowDrawingColorY && mouseY<=BUTTONyellowDrawingColorY+colorButtonHeight) colorOfDrawingTool=yellowBUTTONcolor;
+ 
   
   //color green
-  if (mouseX>=BUTTONgreenDrawingColorX && mouseX<=BUTTONgreenDrawingColorX+colorButtonWidth && mouseY>=BUTTONgreenDrawingColorY && mouseY<=BUTTONgreenDrawingColorY+colorButtonHeight) {
-    
-    if (colorChoicesON==true) colorOfDrawingTool=greenBUTTONcolor;
-  }
+  if (mouseX>=BUTTONgreenDrawingColorX && mouseX<=BUTTONgreenDrawingColorX+colorButtonWidth 
+  && mouseY>=BUTTONgreenDrawingColorY && mouseY<=BUTTONgreenDrawingColorY+colorButtonHeight) colorOfDrawingTool=greenBUTTONcolor;
+  
   
   
   //color blue
-  if (mouseX>=BUTTONblueDrawingColorX && mouseX<=BUTTONblueDrawingColorX+colorButtonWidth && mouseY>=BUTTONblueDrawingColorY && mouseY<=BUTTONblueDrawingColorY+colorButtonHeight) {
-    
-    if (colorChoicesON==true) colorOfDrawingTool=blueBUTTONcolor;
-  }
+  if (mouseX>=BUTTONblueDrawingColorX && mouseX<=BUTTONblueDrawingColorX+colorButtonWidth 
+  && mouseY>=BUTTONblueDrawingColorY && mouseY<=BUTTONblueDrawingColorY+colorButtonHeight) colorOfDrawingTool=blueBUTTONcolor;
+  
   
   
   //color purple
-  if (mouseX>=BUTTONpurpleDrawingColorX && mouseX<=BUTTONpurpleDrawingColorX+ && mouseY>=BUTTONpurpleDrawingColorY && mouseY<=BUTTONpurpleDrawingColorY+colorButtonHeight) {
-    
-    if (colorChoicesON==true) colorOfDrawingTool=purpleBUTTONcolor;
-  }
+  if (mouseX>=BUTTONpurpleDrawingColorX && mouseX<=BUTTONpurpleDrawingColorX+colorButtonWidth 
+  && mouseY>=BUTTONpurpleDrawingColorY && mouseY<=BUTTONpurpleDrawingColorY+colorButtonHeight) colorOfDrawingTool=purpleBUTTONcolor;
+  
   
   //color grey
-  if (mouseX>=BUTTONgreyDrawingColorX && mouseX<=BUTTONgreyDrawingColorX+colorButtonWidth && mouseY>=BUTTONgreyDrawingColorY && mouseY<=BUTTONgreyDrawingColorY+colorButtonHeight) {
-    
-    if (colorChoicesON==true) colorOfDrawingTool=greyBUTTONcolor;
-  }
+  if (mouseX>=BUTTONgreyDrawingColorX && mouseX<=BUTTONgreyDrawingColorX+colorButtonWidth 
+  && mouseY>=BUTTONgreyDrawingColorY && mouseY<=BUTTONgreyDrawingColorY+colorButtonHeight) colorOfDrawingTool=greyBUTTONcolor;
+  
   
   //color black
-  if (mouseX>=BUTTONblackDrawingColorX && mouseX<=BUTTONblackDrawingColorX+colorButtonWidth && mouseY>=BUTTONblackDrawingColorY && mouseY<=BUTTONblackDrawingColorY+colorButtonHeight) {
-    
-    if (colorChoicesON==true) colorOfDrawingTool=blackBUTTONcolor;
-  }
+  if (mouseX>=BUTTONblackDrawingColorX && mouseX<=BUTTONblackDrawingColorX+colorButtonWidth 
+  && mouseY>=BUTTONblackDrawingColorY && mouseY<=BUTTONblackDrawingColorY+colorButtonHeight)  colorOfDrawingTool=blackBUTTONcolor;
+  
 
- 
+  }
 }//End mousePressed
 //
 //End MAIN program
