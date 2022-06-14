@@ -20,6 +20,13 @@ Drawing Program Expectations
  INCOMPLETE button that when hovers over, explains what a button is
  INCOMPLETE Eraser button: drawing with white ink
  
+ Planning: 
+ Turn the stroke of the drawing tools in to different colors: 
+ 1) Can only affect the drawing tools, not the strokes/fills of other componets - POSSIBLE SOLUTIONS: 
+ - Can make it so that when a button is touched, it doesn't affect stroke(); or fill();, it affects colorOfDrawingTool
+ 2)The color selection can only be visible when a button is touched - POSSIBLE SOLUTIONS: 
+ - when you touch the color pallet button,  if (colorChoicesON==false ) {colorChoicesON=true} else {colorChoicesON=false;}
+ 
  
  
 PROBLEM SOLVED Problem Encountered: unable to draw a paper over the background because it keeps repeating. 

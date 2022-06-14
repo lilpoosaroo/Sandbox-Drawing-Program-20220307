@@ -2,7 +2,8 @@
 float appWidth, appHeight;
 float originX, originY;
 boolean draw=false;
-color blue=#94CFF5, whiteReset=#FFFFFF, black=#000000, purple=#A0457F, lightPink=#F2B0DA;
+color whiteReset=#FFFFFF, black=#000000, greyReset=#CCCCCC;
+;
 //color quitButtonColor, quitTextColor;
 int reset=1;
 
@@ -40,7 +41,7 @@ float secondTextX, secontTextY, secondTextWidth, secondTextHeight;
 //PFont secondTextButtonFont;
 //
 
-//Color buttons
+//Color Choice buttons
 float BUTTONdisplayColorsX, BUTTONdisplayColorsY, BUTTONdisplayColorsWidth, BUTTONdisplayColorsHeight;
 PImage BUTTONdisplayColorsImage;
 float  BUTTONdisplayColorsImageWidth, BUTTONdisplayColorsImageHeight;
@@ -51,19 +52,24 @@ float BUTTONorangeDrawingColorX, BUTTONorangeDrawingColorY;
 float BUTTONyellowDrawingColorX, BUTTONyellowDrawingColorY;
 float BUTTONgreenDrawingColorX, BUTTONgreenDrawingColorY;
 float BUTTONblueDrawingColorX, BUTTONblueDrawingColorY;
+float BUTTONpurpleDrawingColorX, BUTTONpurpleDrawingColorY;
+float BUTTONgreyDrawingColorX, BUTTONgreyDrawingColorY;
+float BUTTONblackDrawingColorX, BUTTONblackDrawingColorY;
+/*
 float red1X, red1Y;
-float orange1X, orange1Y;
-float yellow1X, yellow1Y;
-float green1X, green1Y;
-float blueX, blue1Y;
-float purple1X, purple1Y;
-float black1X, black1Y;
-float grey1X, grey1Y;
-float brownX, brown1Y;
+ float orange1X, orange1Y;
+ float yellow1X, yellow1Y;
+ float green1X, green1Y;
+ float blueX, blue1Y;
+ float purple1X, purple1Y;
+ float black1X, black1Y;
+ float grey1X, grey1Y;
+ float brownX, brown1Y;
+ */
 
 color redBUTTONcolor=#FF081E, orangeBUTTONcolor=#FF8C1E, yellowBUTTONcolor=#FFF11E, greenBUTTONcolor=#5BBC00;
-color blueBUTTONcolor=#00BDF3;
-
+color blueBUTTONcolor=#00BDF3, purpleBUTTONcolor=#7A1A7D, greyBUTTONcolor=greyReset, blackBUTTONcolor=black;
+Boolean colorChoicesON=false;
 //
 //Background Image Buttons
 float BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight;
@@ -71,10 +77,10 @@ float BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y;
 float BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y;
 float BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y;
 Boolean backgroundImage1ON=false, backgroundImage2ON=false, backgroundImage3ON=false, originalGreyBackgroundON=true;
-color greyReset=#CCCCCC;
+
 //
 //
-//Coloring Tool Box & Drawing Buttons
+// Drawing Tool Buttons
 float eraserButtonX, eraserButtonY, drawingButtonWidth, drawingButtonHeight;
 float pencilButtonX, pencilButtonY;
 //
@@ -187,7 +193,7 @@ void setup () {
   BUTTONdisplayColorsImageWidth=800;
   BUTTONdisplayColorsImageHeight=800;
 
-  // Color Tool Box Population
+  // Color Choices Box Population
   ColorChoicesBoxWidth=toolBarWidth;
   ColorChoicesBoxHeight=toolBarWidth*1/2;
   ColorChoicesBoxX=(toolBarX)+toolBarWidth+float(roundedEdges*2);
@@ -204,6 +210,12 @@ void setup () {
   BUTTONgreenDrawingColorY= ColorChoicesBoxY;
   BUTTONblueDrawingColorX= ColorChoicesBoxX;
   BUTTONblueDrawingColorY= ColorChoicesBoxY+colorButtonHeight;
+  BUTTONpurpleDrawingColorX= ColorChoicesBoxX+colorButtonWidth;
+  BUTTONpurpleDrawingColorY= ColorChoicesBoxY+colorButtonHeight;
+  BUTTONgreyDrawingColorX=ColorChoicesBoxX+(colorButtonWidth*2);
+  BUTTONgreyDrawingColorY=ColorChoicesBoxY+colorButtonHeight;
+  BUTTONblackDrawingColorX=ColorChoicesBoxX+(colorButtonWidth*3);
+  BUTTONblackDrawingColorY=ColorChoicesBoxY+colorButtonHeight;
 
 
 
@@ -302,16 +314,12 @@ void draw () {
   rect(BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
   //Tool Bar
   ToolBarCode ();
-  //Paper and display colors images
-  noStroke();
+  //Paper Button Image
   image(BUTTONpaperImage, BUTTONpaperX, BUTTONpaperY, BUTTONpaperWidth*75/100, BUTTONpaperHeight);
-  image( BUTTONdisplayColorsImage, BUTTONdisplayColorsX, BUTTONdisplayColorsY, BUTTONdisplayColorsWidth, BUTTONdisplayColorsHeight);
-  noFill();
-  rect(BUTTONpaperX, BUTTONpaperY, BUTTONpaperWidth, BUTTONpaperHeight);
-  //rect(BUTTONdisplayColorsX, BUTTONdisplayColorsY, BUTTONdisplayColorsWidth, BUTTONdisplayColorsHeight);
-  fill(whiteReset);
-  stroke(black);
-
+  //Color Pallette Image Code
+  image(BUTTONdisplayColorsImage, BUTTONdisplayColorsX, BUTTONdisplayColorsY, BUTTONdisplayColorsWidth, BUTTONdisplayColorsHeight);
+ //Color Choices if statement
+ if (colorChoicesON==true) {
   //Color Choices Display
   rect(ColorChoicesBoxX, ColorChoicesBoxY, ColorChoicesBoxWidth, ColorChoicesBoxHeight);
   fill( redBUTTONcolor);
@@ -323,8 +331,16 @@ void draw () {
   fill(greenBUTTONcolor);
   rect(BUTTONgreenDrawingColorX, BUTTONgreenDrawingColorY, colorButtonWidth, colorButtonHeight);
   fill(blueBUTTONcolor);
-   rect(BUTTONblueDrawingColorX, BUTTONblueDrawingColorY, colorButtonWidth, colorButtonHeight);
+  rect(BUTTONblueDrawingColorX, BUTTONblueDrawingColorY, colorButtonWidth, colorButtonHeight);
+  fill(purpleBUTTONcolor);
+  rect(BUTTONpurpleDrawingColorX, BUTTONpurpleDrawingColorY, colorButtonWidth, colorButtonHeight);
+  fill(greyBUTTONcolor);
+  rect(BUTTONgreyDrawingColorX, BUTTONgreyDrawingColorY, colorButtonWidth, colorButtonHeight);
+  fill(blackBUTTONcolor);
+  rect(BUTTONblackDrawingColorX, BUTTONblackDrawingColorY, colorButtonWidth, colorButtonHeight);
   fill(whiteReset);
+ } else {}
+
 
 
 
@@ -384,6 +400,14 @@ void mousePressed () {
   //Paper Button
   if (mouseX>=BUTTONpaperX && mouseX<=BUTTONpaperX+BUTTONpaperWidth && mouseY>= BUTTONpaperY && mouseY<=BUTTONpaperY+BUTTONpaperHeight) {
     if (paper==false) paper=true;
+  }
+  //Color Choices Button 
+  if (mouseX>=BUTTONdisplayColorsX && mouseX<=BUTTONdisplayColorsX+BUTTONdisplayColorsWidth && mouseY>=BUTTONdisplayColorsY && mouseY<=BUTTONdisplayColorsY+BUTTONdisplayColorsHeight) {
+    if (colorChoicesON==false ) {
+      colorChoicesON=true;
+    } else {
+      colorChoicesON=false;
+    }
   }
 }//End mousePressed
 //
