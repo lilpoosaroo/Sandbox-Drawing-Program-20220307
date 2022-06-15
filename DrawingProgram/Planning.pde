@@ -27,9 +27,11 @@ Drawing Program Expectations
  2)The color selection can only be visible when a button is touched - POSSIBLE SOLUTIONS: 
  - when you touch the color pallet button,  if (colorChoicesON==false ) {colorChoicesON=true} else {colorChoicesON=false;}
  3) the color of  drawing tool can only be changed if the color selection is on. 
- PROBLEM ENCOUNTERED: the color choices box will not turn off after a color has been chosen, this is because the background will become false when paper is turned on, and it will no
+ PROBLEM #2 ENCOUNTERED: the color choices box will not turn off after a color has been chosen, this is because the background will become false when paper is turned on, and it will no
  // longer draw over the color choices
-  //Color of drawing tools mousePressed
+ POSSIBLE SOLUTIONS TO PROBLEM #2
+ - Environment: when originalGreyBackgroundON=false, when paper=true, change the coordinates of the colorChoiceBox rectangle so that it will appear in the toolbox where it is constantly being drawn 
+ We will be replacing the button for the palette with the actual palette
   
   //color red
   if (mouseX>=BUTTONredDrawingColorX && mouseX<=BUTTONredDrawingColorX+colorButtonWidth && mouseY>=BUTTONredDrawingColorY && mouseY<=BUTTONredDrawingColorY+colorButtonHeight) {
