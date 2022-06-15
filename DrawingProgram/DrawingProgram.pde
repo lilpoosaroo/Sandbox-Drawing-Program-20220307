@@ -274,13 +274,14 @@ void draw () {
     image(backgroundImage2, BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
   } else {
   }
+  
+  //Tool Bar
+  ToolBarCode ();
   //OutLine for background buttons
   noFill();
   rect(BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
   rect(BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
   rect(BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
-  //Tool Bar
-  ToolBarCode ();
   //Paper Button Image
   image(BUTTONpaperImage, BUTTONpaperX, BUTTONpaperY, BUTTONpaperWidth*75/100, BUTTONpaperHeight);
 
@@ -468,7 +469,7 @@ void mousePressed () {
     //color black
     if (mouseX>=BUTTONblackDrawingColorX && mouseX<=BUTTONblackDrawingColorX+colorButtonWidth 
       && mouseY>=BUTTONblackDrawingColorY && mouseY<=BUTTONblackDrawingColorY+colorButtonHeight)  colorOfDrawingTool=blackBUTTONcolor;
-  }
+  
 }//End mousePressed
 //
 //End MAIN program
