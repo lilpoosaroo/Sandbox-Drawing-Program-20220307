@@ -11,7 +11,8 @@ void BackgroundButtonsMousepressed () {
 
     if (toolbarLining==black && toolbarFILLING==whiteReset || toolbarLining==COLORIMAGE2toolbarLining && toolbarFILLING==COLORIMAGE2toolbarFILLING || 
     toolbarLining==COLORIMAGE3toolbarLining && toolbarFILLING==COLORIMAGE3toolbarFILLING) backgroundImage1ON=true;
-
+    
+    drawOnPaper=false;
     backgroundImage2ON=false;
     backgroundImage3ON=false;
   }
@@ -26,7 +27,8 @@ void BackgroundButtonsMousepressed () {
 
     if (toolbarLining==black && toolbarFILLING==whiteReset || toolbarLining==COLORIMAGE1toolbarLining && toolbarFILLING==COLORIMAGE1toolbarFILLING || 
     toolbarLining==COLORIMAGE3toolbarLining && toolbarFILLING==COLORIMAGE3toolbarFILLING) backgroundImage2ON=true;
-
+    
+    drawOnPaper=false;
     backgroundImage1ON=false;
     backgroundImage3ON=false;
   }
@@ -41,7 +43,8 @@ void BackgroundButtonsMousepressed () {
 
     if (toolbarLining==black && toolbarFILLING==whiteReset || toolbarLining==COLORIMAGE1toolbarLining && toolbarFILLING==COLORIMAGE1toolbarFILLING || 
     toolbarLining==COLORIMAGE2toolbarLining && toolbarFILLING==COLORIMAGE2toolbarFILLING) backgroundImage3ON=true;
-
+    
+    drawOnPaper=false;
     backgroundImage1ON=false;
     backgroundImage2ON=false;
   }
