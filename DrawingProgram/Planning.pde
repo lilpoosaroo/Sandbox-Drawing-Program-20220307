@@ -12,7 +12,7 @@ Drawing Program Expectations
  Drawing Program Will Need:
  COMPLETE button that changes the background
  INCOMPLETE button that controls stroke, this would be strokeWeight();
- INCOMPLETE button that controls color
+ COMPLETE button that controls color
  INCOMPLETE button that draws shapes
  INCOMPLETE button that draws images
  INCOMPLETE button that makes noises (croissahnt, whenever you touch the outline)

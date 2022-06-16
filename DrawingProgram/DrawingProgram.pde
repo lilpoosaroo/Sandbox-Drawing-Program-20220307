@@ -75,8 +75,10 @@ Boolean backgroundImage1ON=false, backgroundImage2ON=false, backgroundImage3ON=f
 //
 //
 // Drawing Tool Buttons
-float eraserButtonX, eraserButtonY, drawingButtonWidth, drawingButtonHeight;
+float drawingButtonWidth, drawingButtonHeight;
+float eraserButtonX, eraserButtonY; 
 float pencilButtonX, pencilButtonY;
+PImage BUTTONpencilImage;
 boolean drawOnPaper=false, draw=false;
 //
 //Background image
@@ -213,6 +215,13 @@ void setup () {
   BUTTONgreyDrawingColorY=ColorChoicesBoxY+colorButtonHeight;
   BUTTONblackDrawingColorX=ColorChoicesBoxX+(colorButtonWidth*3);
   BUTTONblackDrawingColorY=ColorChoicesBoxY+colorButtonHeight;
+  
+  //Coloring Tools
+  drawingButtonWidth=(drawingSurfaceWidth*1/4)*1/2*1/2;
+  drawingButtonHeight=(drawingSurfaceWidth*1/4)*1/2*1/2;
+  pencilButtonX=BUTTONpaperX;
+  pencilButtonY=BUTTONpaperY+BUTTONpaperHeight+(roundedEdges);
+  BUTTONpencilImage=loadImage("BUTTONpencilimage.jpg");
 
 
 
@@ -277,6 +286,13 @@ void draw () {
   rect(BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
   //Paper Button Image
   image(BUTTONpaperImage, BUTTONpaperX, BUTTONpaperY, BUTTONpaperWidth*75/100, BUTTONpaperHeight);
+  //Pencil Code
+  noFill();
+  noStroke();
+  rect(pencilButtonX,  pencilButtonY, drawingButtonWidth, drawingButtonHeight);
+  image(BUTTONpencilImage, pencilButtonX,  pencilButtonY, drawingButtonWidth, drawingButtonHeight);
+  fill(whiteReset);
+  stroke(black);
 
   //Paper Button if statement
   if (paper==true) {
