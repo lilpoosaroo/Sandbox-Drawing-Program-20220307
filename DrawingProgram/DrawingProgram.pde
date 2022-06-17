@@ -75,9 +75,14 @@ Boolean backgroundImage1ON=false, backgroundImage2ON=false, backgroundImage3ON=f
 //
 //
 // Drawing Tool Buttons
+Boolean pencilON=true, eraserON=false, markerON=false;
 float drawingButtonWidth, drawingButtonHeight;
 float eraserButtonX, eraserButtonY; 
 float pencilButtonX, pencilButtonY;
+int pencilImageHeight, pencilImageWidth;
+int largerPencilImageDimension, smallerPencilImageDimension;
+float widthRatioPencilImage, heightRatioPencilImage;
+Boolean pencilImageWidthLarger= false, pencilImageHeightLarger = false;
 PImage BUTTONpencilImage;
 boolean drawOnPaper=false, draw=false;
 //
@@ -215,16 +220,24 @@ void setup () {
   BUTTONgreyDrawingColorY=ColorChoicesBoxY+colorButtonHeight;
   BUTTONblackDrawingColorX=ColorChoicesBoxX+(colorButtonWidth*3);
   BUTTONblackDrawingColorY=ColorChoicesBoxY+colorButtonHeight;
-  
+
+
+
+
   //Coloring Tools
+  pencilImageWidth=197;
+
+  pencilImageHeight=192;
+
   drawingButtonWidth=(drawingSurfaceWidth*1/4)*1/2*1/2;
+
   drawingButtonHeight=(drawingSurfaceWidth*1/4)*1/2*1/2;
+
   pencilButtonX=BUTTONpaperX;
+
   pencilButtonY=BUTTONpaperY+BUTTONpaperHeight+(roundedEdges);
-  BUTTONpencilImage=loadImage("BUTTONpencilimage.jpg");
 
-
-
+  BUTTONpencilImage=loadImage("BUTTONpencilimage-197x192.jpg");
   /*
   //Quit button
    quitButtonFont= createFont("Microsoft Himalaya", 15);
@@ -287,12 +300,19 @@ void draw () {
   //Paper Button Image
   image(BUTTONpaperImage, BUTTONpaperX, BUTTONpaperY, BUTTONpaperWidth*75/100, BUTTONpaperHeight);
   //Pencil Code
+  image(BUTTONpencilImage, pencilButtonX, pencilButtonY, drawingButtonWidth*3/2, drawingButtonHeight*3/2);
   noFill();
-  noStroke();
-  rect(pencilButtonX,  pencilButtonY, drawingButtonWidth, drawingButtonHeight);
-  image(BUTTONpencilImage, pencilButtonX,  pencilButtonY, drawingButtonWidth, drawingButtonHeight);
+  if (pencilON==true) {
+    strokeWeight(roundedEdges*1/2);
+  } else {
+    strokeWeight(reset);
+  }
+  stroke(colorOfDrawingTool);
+  rect((pencilButtonX+drawingButtonWidth*3/2*1/2)-(drawingButtonWidth*3/2*110/100*1/2), (pencilButtonY+drawingButtonHeight*3/2*1/2)-(drawingButtonHeight*3/2*110/100*1/2), (drawingButtonWidth*3/2)*110/100, (drawingButtonHeight*3/2)*110/100);
   fill(whiteReset);
+  strokeWeight(reset);
   stroke(black);
+
 
   //Paper Button if statement
   if (paper==true) {
@@ -359,18 +379,16 @@ void draw () {
   fill(whiteReset);
 
 
-
-
-
-  //
   //Drawing tool, combined boolean
   fill (colorOfDrawingTool);
   stroke(colorOfDrawingTool);
-  if (drawOnPaper==true && draw==true && mouseX>=drawingSurfaceX && mouseX<= drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight)  line(mouseX, mouseY, pmouseX, pmouseY) ;//End Line Draw
+  //Pencil Code
+  if (drawOnPaper==true && draw==true && pencilON==true && mouseX>=drawingSurfaceX && mouseX<= drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight)  line(mouseX, mouseY, pmouseX, pmouseY) ;//End Line Draw
+  if (drawOnPaper==false && draw==true &&  pencilON==true &&  mouseX>=appWidth*0 && mouseX<=appWidth && mouseY>=toolBarY+toolBarHeight+(roundedEdges) && mouseY<=appHeight) line(mouseX, mouseY, pmouseX, pmouseY) ;
+  if (drawOnPaper==false && draw==true && pencilON==true && mouseX>=BUTTONbackgroundImage3X+BUTTONbackgroundImageWidth && mouseX<=appWidth && mouseY>=appHeight*0 && mouseY<=appHeight) line(mouseX, mouseY, pmouseX, pmouseY) ;
+  //Drawing Circles Code
   if (drawOnPaper==true && draw==true && mouseX>=drawingSurfaceX && mouseX<= drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight) ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
-  if (drawOnPaper==false && draw==true && mouseX>=BUTTONbackgroundImage3X+BUTTONbackgroundImageWidth && mouseX<=appWidth && mouseY>=appHeight*0 && mouseY<=appHeight) line(mouseX, mouseY, pmouseX, pmouseY) ;
   if (drawOnPaper==false && draw==true && mouseX>=BUTTONbackgroundImage3X+BUTTONbackgroundImageWidth && mouseX<=appWidth && mouseY>=appHeight*0 && mouseY<=appHeight) ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
-  if (drawOnPaper==false && draw==true && mouseX>=appWidth*0 && mouseX<=appWidth && mouseY>=toolBarY+toolBarHeight+(roundedEdges) && mouseY<=appHeight) line(mouseX, mouseY, pmouseX, pmouseY) ;
   if (drawOnPaper==false && draw==true && mouseX>=appWidth*0 && mouseX<=appWidth && mouseY>=toolBarY+toolBarHeight+(roundedEdges) && mouseY<=appHeight) ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
 
   //
@@ -419,77 +437,78 @@ void mousePressed () {
   //To stop drawing while on paper
   if (mouseX>=drawingSurfaceX && mouseX<= drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight) {
     if (drawOnPaper==true) {
-    
-  if (draw==true) {
-  draw=false;
-  } else {
-   draw=true;
-  }
-  
-  }
-  
+
+      if (draw==true) {
+        draw=false;
+      } else {
+        draw=true;
+      }
+    }
   }
   //To stop drawing while on background 
   if (mouseX>=appWidth*0 && mouseX<=appWidth && mouseY>=toolBarY+toolBarHeight+(roundedEdges) && mouseY<=appHeight) {
-  
-  if (drawOnPaper==false) {
-    
-    if(draw==true) {
-    draw=false;
-    } else {
-    draw=true;
+
+    if (drawOnPaper==false) {
+
+      if (draw==true) {
+        draw=false;
+      } else {
+        draw=true;
+      }
     }
-  
   }
-  
-  }
-  
-    if (mouseX>=BUTTONbackgroundImage3X+BUTTONbackgroundImageWidth && mouseX<=appWidth && mouseY>=appHeight*0 && mouseY<=appHeight) {
-  
-  if (drawOnPaper==false) {
-    
-    if(draw==true) {
-    draw=false;
-    } else {
-    draw=true;
+
+  if (mouseX>=BUTTONbackgroundImage3X+BUTTONbackgroundImageWidth && mouseX<=appWidth && mouseY>=appHeight*0 && mouseY<=appHeight) {
+
+    if (drawOnPaper==false) {
+
+      if (draw==true) {
+        draw=false;
+      } else {
+        draw=true;
+      }
     }
-  
   }
-  
-  }
-  
-  
-  
-  
+
+
+
+
   //Button that allows the drawing of ink: paper
   //
   //if (mouseX>=quitButtonX && mouseX<= quitButtonX+quitButtonWidth && mouseY>=quitButtonY && mouseY<=quitButtonY+quitButtonHeight) exit();
   //
   BackgroundButtonsMousepressed ();
-  
+  //Drawing Tools MousePressed
 
-   //To allow color/drawing to show up on the background 
-   if (mouseX>=appWidth*0 && mouseX<=appWidth && mouseY>=toolBarY+toolBarHeight+(roundedEdges) && mouseY<=appHeight) {
-   
-   if (drawOnPaper==false) {
-   originalGreyBackgroundON=false;
-   backgroundImage1ON=false;
-   backgroundImage2ON=false;
-   backgroundImage3ON=false;
-   }
-   }
-   if (mouseX>=BUTTONbackgroundImage3X+BUTTONbackgroundImageWidth && mouseX<=appWidth && mouseY>=appHeight*0 && mouseY<=appHeight) {
-   
-   if (drawOnPaper==false) {
-   originalGreyBackgroundON=false;
-   backgroundImage1ON=false;
-   backgroundImage2ON=false;
-   backgroundImage3ON=false;
-   }
-   }
-   
+  if (mouseX>=pencilButtonX && mouseX<=pencilButtonX+drawingButtonWidth*3/2 && mouseY>=pencilButtonY &&mouseY<=pencilButtonY+drawingButtonHeight*3/2) {
+    pencilON=true;
+    eraserON=false; 
+    markerON=false;
+  }
 
-  //Color of drawing tools mousePressed
+
+  //To allow color/drawing to show up on the background 
+  if (mouseX>=appWidth*0 && mouseX<=appWidth && mouseY>=toolBarY+toolBarHeight+(roundedEdges) && mouseY<=appHeight) {
+
+    if (drawOnPaper==false) {
+      originalGreyBackgroundON=false;
+      backgroundImage1ON=false;
+      backgroundImage2ON=false;
+      backgroundImage3ON=false;
+    }
+  }
+  if (mouseX>=BUTTONbackgroundImage3X+BUTTONbackgroundImageWidth && mouseX<=appWidth && mouseY>=appHeight*0 && mouseY<=appHeight) {
+
+    if (drawOnPaper==false) {
+      originalGreyBackgroundON=false;
+      backgroundImage1ON=false;
+      backgroundImage2ON=false;
+      backgroundImage3ON=false;
+    }
+  }
+
+
+  //COLOR of drawing tools mousePressed
 
   //color red
 
