@@ -48,18 +48,6 @@ float BUTTONblueDrawingColorX, BUTTONblueDrawingColorY;
 float BUTTONpurpleDrawingColorX, BUTTONpurpleDrawingColorY;
 float BUTTONgreyDrawingColorX, BUTTONgreyDrawingColorY;
 float BUTTONblackDrawingColorX, BUTTONblackDrawingColorY;
-/*
-float red1X, red1Y;
- float orange1X, orange1Y;
- float yellow1X, yellow1Y;
- float green1X, green1Y;
- float blueX, blue1Y;
- float purple1X, purple1Y;
- float black1X, black1Y;
- float grey1X, grey1Y;
- float brownX, brown1Y;
- */
-
 color redBUTTONcolor=#FF081E, orangeBUTTONcolor=#FF8C1E, yellowBUTTONcolor=#FFF11E, greenBUTTONcolor=#5BBC00;
 color blueBUTTONcolor=#00BDF3, purpleBUTTONcolor=#7A1A7D, greyBUTTONcolor=greyReset, blackBUTTONcolor=black;
 color colorOfDrawingTool;
@@ -77,7 +65,6 @@ Boolean backgroundImage1ON=false, backgroundImage2ON=false, backgroundImage3ON=f
 // Drawing Tool Buttons
 Boolean pencilON=true, eraserON=false, markerON=false;
 float drawingButtonWidth, drawingButtonHeight;
-float eraserButtonX, eraserButtonY; 
 float pencilButtonX, pencilButtonY;
 int pencilImageHeight, pencilImageWidth;
 int largerPencilImageDimension, smallerPencilImageDimension;
@@ -85,6 +72,9 @@ float widthRatioPencilImage, heightRatioPencilImage;
 Boolean pencilImageWidthLarger= false, pencilImageHeightLarger = false;
 PImage BUTTONpencilImage;
 boolean drawOnPaper=false, draw=false;
+float eraserButtonX, eraserButtonY; 
+color eraserColor;
+PImage BUTTONeraserImage;
 //
 //Background image
 float backgroundImage1WidthEnlargedAdjusted, backgroundImage1HeightEnlargedAdjusted, backgroundImage1WidthMinimizedAdjusted, backgroundImage1HeightMinimizedAdjusted;
@@ -226,18 +216,15 @@ void setup () {
 
   //Coloring Tools
   pencilImageWidth=197;
-
   pencilImageHeight=192;
-
-  drawingButtonWidth=(drawingSurfaceWidth*1/4)*1/2*1/2;
-
-  drawingButtonHeight=(drawingSurfaceWidth*1/4)*1/2*1/2;
-
+  drawingButtonWidth=(drawingSurfaceWidth*1/4)*13/80;
+  drawingButtonHeight=(drawingSurfaceWidth*1/4)*1/6;
   pencilButtonX=BUTTONpaperX;
-
-  pencilButtonY=BUTTONpaperY+BUTTONpaperHeight+(roundedEdges);
-
+  pencilButtonY=BUTTONpaperY+BUTTONpaperHeight+(roundedEdges*2);
   BUTTONpencilImage=loadImage("BUTTONpencilimage-197x192.jpg");
+  eraserButtonX=pencilButtonX+(drawingButtonWidth*3/2)+roundedEdges;
+  eraserButtonY=pencilButtonY; 
+  BUTTONeraserImage=loadImage("EraserImage-564x545.jpg");
   /*
   //Quit button
    quitButtonFont= createFont("Microsoft Himalaya", 15);
@@ -301,17 +288,30 @@ void draw () {
   image(BUTTONpaperImage, BUTTONpaperX, BUTTONpaperY, BUTTONpaperWidth*75/100, BUTTONpaperHeight);
   //Pencil Code
   image(BUTTONpencilImage, pencilButtonX, pencilButtonY, drawingButtonWidth*3/2, drawingButtonHeight*3/2);
-  noFill();
   if (pencilON==true) {
     strokeWeight(roundedEdges*1/2);
   } else {
     strokeWeight(reset);
   }
+  noFill();
   stroke(colorOfDrawingTool);
   rect((pencilButtonX+drawingButtonWidth*3/2*1/2)-(drawingButtonWidth*3/2*110/100*1/2), (pencilButtonY+drawingButtonHeight*3/2*1/2)-(drawingButtonHeight*3/2*110/100*1/2), (drawingButtonWidth*3/2)*110/100, (drawingButtonHeight*3/2)*110/100);
   fill(whiteReset);
   strokeWeight(reset);
   stroke(black);
+  //Eraser Code
+  image(BUTTONeraserImage, eraserButtonX, eraserButtonY, drawingButtonWidth*3/2, drawingButtonHeight*3/2 );
+  if (eraserON==true) {
+    strokeWeight(roundedEdges*1/2);
+  } else {
+    strokeWeight(reset);
+  }
+  noFill();
+  stroke(black);
+  rect((eraserButtonX+drawingButtonWidth*3/2*1/2)-(drawingButtonWidth*3/2*110/100*1/2), (eraserButtonY+drawingButtonHeight*3/2*1/2)-(drawingButtonHeight*3/2*110/100*1/2), (drawingButtonWidth*3/2)*110/100, (drawingButtonHeight*3/2)*110/100);
+  fill(whiteReset);
+  strokeWeight(reset);
+
 
 
   //Paper Button if statement
@@ -346,6 +346,10 @@ void draw () {
       toolbarFILLING=COLORIMAGE3toolbarFILLING;
     }
     //Drawing Tools can now only draw in the paper
+    if (eraserON==true) {
+         if (mouseX>=drawingSurfaceX && mouseX<=drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight) eraserColor=whiteReset;
+         if ()
+    }
     fill(whiteReset);
     rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
     paper=false;
@@ -390,6 +394,16 @@ void draw () {
   if (drawOnPaper==true && draw==true && mouseX>=drawingSurfaceX && mouseX<= drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight) ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
   if (drawOnPaper==false && draw==true && mouseX>=BUTTONbackgroundImage3X+BUTTONbackgroundImageWidth && mouseX<=appWidth && mouseY>=appHeight*0 && mouseY<=appHeight) ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
   if (drawOnPaper==false && draw==true && mouseX>=appWidth*0 && mouseX<=appWidth && mouseY>=toolBarY+toolBarHeight+(roundedEdges) && mouseY<=appHeight) ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
+  //Eraser Code
+  fill(eraserColor);
+  stroke(eraserColor);
+  if (eraserON==true) {
+  
+  
+  }
+  fill(whiteReset);
+  stroke(black);
+  
 
   //
   /*
@@ -480,11 +494,18 @@ void mousePressed () {
   BackgroundButtonsMousepressed ();
   //Drawing Tools MousePressed
 
-  if (mouseX>=pencilButtonX && mouseX<=pencilButtonX+drawingButtonWidth*3/2 && mouseY>=pencilButtonY &&mouseY<=pencilButtonY+drawingButtonHeight*3/2) {
+  if (mouseX>=pencilButtonX && mouseX<=pencilButtonX+drawingButtonWidth*3/2 && mouseY>=pencilButtonY && mouseY<=pencilButtonY+drawingButtonHeight*3/2) {
     pencilON=true;
     eraserON=false; 
     markerON=false;
   }
+  image(BUTTONeraserImage, eraserButtonX, eraserButtonY, drawingButtonWidth*3/2, drawingButtonHeight*3/2 );
+   if (mouseX>=eraserButtonX && mouseX<=eraserButtonX+drawingButtonWidth*3/2 && mouseY>=eraserButtonY && mouseY<=eraserButtonY+drawingButtonHeight*3/2) {
+     pencilON=false;
+    eraserON=true; 
+    markerON=false;
+   
+   }
 
 
   //To allow color/drawing to show up on the background 

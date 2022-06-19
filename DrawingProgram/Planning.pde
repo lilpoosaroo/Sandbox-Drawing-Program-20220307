@@ -21,6 +21,7 @@ Drawing Program Expectations
  INCOMPLETE Eraser button: drawing with white ink
  
  Planning: 
+ 
  Turn the stroke of the drawing tools in to different colors: 
  1) Can only affect the drawing tools, not the strokes/fills of other componets - POSSIBLE SOLUTIONS: 
  - Can make it so that when a button is touched, it doesn't affect stroke(); or fill();, it affects colorOfDrawingTool
@@ -31,61 +32,12 @@ Drawing Program Expectations
  // longer draw over the color choices
  POSSIBLE SOLUTIONS TO PROBLEM #2
  - Environment: when originalGreyBackgroundON=false, when paper=true, change the coordinates of the colorChoiceBox rectangle so that it will appear in the toolbox where it is constantly being drawn 
- We will be replacing the button for the palette with the actual palette
-  
-  //color red
-  if (mouseX>=BUTTONredDrawingColorX && mouseX<=BUTTONredDrawingColorX+colorButtonWidth && mouseY>=BUTTONredDrawingColorY && mouseY<=BUTTONredDrawingColorY+colorButtonHeight) {
-    
-    if (colorChoicesON==true) colorOfDrawingTool=redBUTTONcolor;
-  }
-  
-  //color orange
-   
-  if (mouseX>=BUTTONorangeDrawingColorX && mouseX<=BUTTONorangeDrawingColorX+colorButtonWidth && mouseY>=BUTTONorangeDrawingColorY && mouseY<=BUTTONorangeDrawingColorY+colorButtonHeight) {
-    
-    if (colorChoicesON==true) colorOfDrawingTool=orangeBUTTONcolor;
-  }
-  
-  
-  //color yellow
-  if (mouseX>=BUTTONyellowDrawingColorX && mouseX<=BUTTONyellowDrawingColorX+colorButtonWidth && mouseY>=BUTTONyellowDrawingColorY && mouseY<=BUTTONyellowDrawingColorY+colorButtonHeight) {
-    
-    if (colorChoicesON==true) colorOfDrawingTool=yellowBUTTONcolor;
-  }
-  
-  //color green
-  if (mouseX>=BUTTONgreenDrawingColorX && mouseX<=BUTTONgreenDrawingColorX+colorButtonWidth && mouseY>=BUTTONgreenDrawingColorY && mouseY<=BUTTONgreenDrawingColorY+colorButtonHeight) {
-    
-    if (colorChoicesON==true) colorOfDrawingTool=greenBUTTONcolor;
-  }
-  
-  
-  //color blue
-  if (mouseX>=BUTTONblueDrawingColorX && mouseX<=BUTTONblueDrawingColorX+colorButtonWidth && mouseY>=BUTTONblueDrawingColorY && mouseY<=BUTTONblueDrawingColorY+colorButtonHeight) {
-    
-    if (colorChoicesON==true) colorOfDrawingTool=blueBUTTONcolor;
-  }
-  
-  
-  //color purple
-  if (mouseX>=BUTTONpurpleDrawingColorX && mouseX<=BUTTONpurpleDrawingColorX+colorButtonWidth && mouseY>=BUTTONpurpleDrawingColorY && mouseY<=BUTTONpurpleDrawingColorY+colorButtonHeight) {
-    
-    if (colorChoicesON==true) colorOfDrawingTool=purpleBUTTONcolor;
-  }
-  
-  //color grey
-  if (mouseX>=BUTTONgreyDrawingColorX && mouseX<=BUTTONgreyDrawingColorX+colorButtonWidth && mouseY>=BUTTONgreyDrawingColorY && mouseY<=BUTTONgreyDrawingColorY+colorButtonHeight) {
-    
-    if (colorChoicesON==true) colorOfDrawingTool=greyBUTTONcolor;
-  }
-  
-  //color black
-  if (mouseX>=BUTTONblackDrawingColorX && mouseX<=BUTTONblackDrawingColorX+colorButtonWidth && mouseY>=BUTTONblackDrawingColorY && mouseY<=BUTTONblackDrawingColorY+colorButtonHeight) {
-    
-    if (colorChoicesON==true) colorOfDrawingTool=blackBUTTONcolor;
-  }
+ We will be replacing the button for the palette with the actual palette.
  
- 
+ Making the eraser button: 
+ 1) Has to be a different color of ink depending on background
+ 2) Cannot go over the tool bar/background buttons
+ 3) Eraser has to white when paper is on, in the little rectangle. 
  
 PROBLEM SOLVED Problem Encountered: unable to draw a paper over the background because it keeps repeating. 
  Possible solutions: 
