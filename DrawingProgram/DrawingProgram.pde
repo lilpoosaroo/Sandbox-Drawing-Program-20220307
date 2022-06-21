@@ -77,6 +77,8 @@ color eraserColor;
 PImage BUTTONeraserImage;
 float stampBUTTONX, stampBUTTONY;
 PImage stampBUTTONimage;
+float roundStampBUTTONX, roundStampBUTTONY, roundStampWidth, roundStampHeight;
+float squareStampBUTTONX, squareStampBUTTONY, squareStampWidth, sqaureStampHeight;
 //
 //Background image
 float backgroundImage1WidthEnlargedAdjusted, backgroundImage1HeightEnlargedAdjusted, backgroundImage1WidthMinimizedAdjusted, backgroundImage1HeightMinimizedAdjusted;
@@ -220,17 +222,21 @@ void setup () {
   //Coloring Tools
   pencilImageWidth=197;
   pencilImageHeight=192;
-  drawingButtonWidth=(drawingSurfaceWidth*1/4)*13/80;
-  drawingButtonHeight=(drawingSurfaceWidth*1/4)*1/6;
+  drawingButtonWidth=drawingSurfaceWidth*39/640;
+  drawingButtonHeight=drawingSurfaceWidth*1/16;
   pencilButtonX=BUTTONpaperX;
   pencilButtonY=BUTTONpaperY+BUTTONpaperHeight+(roundedEdges*2);
   BUTTONpencilImage=loadImage("BUTTONpencilimage-197x192.jpg");
-  eraserButtonX=pencilButtonX+(drawingButtonWidth*3/2)+roundedEdges;
+  eraserButtonX=pencilButtonX+drawingButtonWidth+roundedEdges;
   eraserButtonY=pencilButtonY; 
   BUTTONeraserImage=loadImage("EraserImage-564x545.jpg");
-  stampBUTTONX= eraserButtonX+(drawingButtonWidth*3/2)+roundedEdges;
+  stampBUTTONX= eraserButtonX+drawingButtonWidth+roundedEdges;
   stampBUTTONY=eraserButtonY;
   stampBUTTONimage=loadImage("SMALLERstampIcon.jpg");
+  roundStampBUTTONX= stampBUTTONX+drawingButtonWidth+roundedEdges*55/100;
+  roundStampBUTTONY=stampBUTTONY; 
+  roundStampWidth=drawingButtonWidth*1/2;
+  roundStampHeight=drawingButtonHeight*1/3;
 
   /*
   //Quit button
@@ -294,7 +300,7 @@ void draw () {
   //Paper Button Image
   image(BUTTONpaperImage, BUTTONpaperX, BUTTONpaperY, BUTTONpaperWidth*75/100, BUTTONpaperHeight);
   //Pencil Code
-  image(BUTTONpencilImage, pencilButtonX, pencilButtonY, drawingButtonWidth*3/2, drawingButtonHeight*3/2);
+  image(BUTTONpencilImage, pencilButtonX, pencilButtonY, drawingButtonWidth, drawingButtonHeight);
   if (pencilON==true) {
     strokeWeight(roundedEdges*1/2);
   } else {
@@ -302,12 +308,12 @@ void draw () {
   }
   noFill();
   stroke(colorOfDrawingTool);
-  rect((pencilButtonX+drawingButtonWidth*3/2*1/2)-(drawingButtonWidth*3/2*110/100*1/2), (pencilButtonY+drawingButtonHeight*3/2*1/2)-(drawingButtonHeight*3/2*110/100*1/2), (drawingButtonWidth*3/2)*110/100, (drawingButtonHeight*3/2)*110/100);
+  rect((pencilButtonX+drawingButtonWidth*1/2)-(drawingButtonWidth*110/100*1/2), (pencilButtonY+drawingButtonHeight*1/2)-(drawingButtonHeight*110/100*1/2), drawingButtonWidth*110/100, drawingButtonHeight*110/100);
   fill(whiteReset);
   strokeWeight(reset);
   stroke(black);
   //Eraser Code
-  image(BUTTONeraserImage, eraserButtonX, eraserButtonY, drawingButtonWidth*3/2, drawingButtonHeight*3/2 );
+  image(BUTTONeraserImage, eraserButtonX, eraserButtonY, drawingButtonWidth, drawingButtonHeight);
   if (eraserON==true) {
     strokeWeight(roundedEdges*1/2);
   } else {
@@ -315,22 +321,29 @@ void draw () {
   }
   noFill();
   stroke(black);
-  rect((eraserButtonX+drawingButtonWidth*3/2*1/2)-(drawingButtonWidth*3/2*110/100*1/2), (eraserButtonY+drawingButtonHeight*3/2*1/2)-(drawingButtonHeight*3/2*110/100*1/2), (drawingButtonWidth*3/2)*110/100, (drawingButtonHeight*3/2)*110/100);
+  rect((eraserButtonX+drawingButtonWidth*1/2)-(drawingButtonWidth*110/100*1/2), (eraserButtonY+drawingButtonHeight*1/2)-(drawingButtonHeight*110/100*1/2), drawingButtonWidth*110/100, drawingButtonHeight*110/100);
   fill(whiteReset);
   strokeWeight(reset);
   //Stamp Code 
-  image(stampBUTTONimage, stampBUTTONX, stampBUTTONY, drawingButtonWidth*3/2, drawingButtonHeight*3/2 );
+  image(stampBUTTONimage, stampBUTTONX, stampBUTTONY, drawingButtonWidth, drawingButtonHeight);
+  noFill();
+  stroke(colorOfDrawingTool);
   if (stampON==true) {
-  strokeWeight(roundedEdges*1/2);
+    strokeWeight(roundedEdges*1/2);
   } else {
     strokeWeight(reset);
   }
-  noFill();
-  stroke(colorOfDrawingTool);
-  rect((stampBUTTONX+drawingButtonWidth*3/2*1/2)-(drawingButtonWidth*3/2*110/100*1/2), (stampBUTTONY+drawingButtonHeight*3/2*1/2)-(drawingButtonHeight*3/2*110/100*1/2), (drawingButtonWidth*3/2)*110/100, (drawingButtonHeight*3/2)*110/100);
+  rect((stampBUTTONX+drawingButtonWidth*1/2)-(drawingButtonWidth*110/100*1/2), (stampBUTTONY+drawingButtonHeight*1/2)-(drawingButtonHeight*110/100*1/2), drawingButtonWidth*110/100, drawingButtonHeight*110/100);
+    if (stampON==true) {
+    strokeWeight(roundedEdges*1/4);
+  } else {
+    strokeWeight(reset);
+  }
+  rect(roundStampBUTTONX, roundStampBUTTONY, roundStampWidth, roundStampHeight);
   strokeWeight(reset);
   fill(whiteReset);
   stroke(black);
+  
 
 
   //Paper Button if statement
@@ -407,13 +420,6 @@ void draw () {
   if (drawOnPaper==false && draw==true && pencilON==true && mouseX>=BUTTONbackgroundImage3X+BUTTONbackgroundImageWidth && mouseX<=appWidth && mouseY>=appHeight*0 && mouseY<=appHeight) line(mouseX, mouseY, pmouseX, pmouseY) ;
   fill(whiteReset);
   stroke(black);
-  /*
-  //Drawing Circles Code
-   if (drawOnPaper==true && draw==true && mouseX>=drawingSurfaceX && mouseX<= drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight) ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
-   if (drawOnPaper==false && draw==true && mouseX>=BUTTONbackgroundImage3X+BUTTONbackgroundImageWidth && mouseX<=appWidth && mouseY>=appHeight*0 && mouseY<=appHeight) ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
-   if (drawOnPaper==false && draw==true && mouseX>=appWidth*0 && mouseX<=appWidth && mouseY>=toolBarY+toolBarHeight+(roundedEdges) && mouseY<=appHeight) ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
-   */
-
   //Eraser Code For Background
   fill(eraserColor);
   stroke(eraserColor);
@@ -424,7 +430,6 @@ void draw () {
   stroke(black);
   strokeWeight(reset);
   //Eraser Code when on paper
-
   if (drawOnPaper==true && draw==true &&  eraserON==true && mouseX>=drawingSurfaceX && mouseX<=drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight) {
     eraserColor=whiteReset;
     fill(eraserColor);
@@ -434,6 +439,16 @@ void draw () {
     stroke(black);
     strokeWeight(reset);
   }
+
+  //Circle Stamp Code
+  fill(colorOfDrawingTool);
+  stroke(colorOfDrawingTool);
+  if (drawOnPaper==true && draw==true && stampON==true && mouseX>=drawingSurfaceX && mouseX<= drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight) ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
+  if (drawOnPaper==false && draw==true && stampON==true && mouseX>=BUTTONbackgroundImage3X+BUTTONbackgroundImageWidth && mouseX<=appWidth && mouseY>=appHeight*0 && mouseY<=appHeight) ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
+  if (drawOnPaper==false && draw==true && stampON==true && mouseX>=appWidth*0 && mouseX<=appWidth && mouseY>=toolBarY+toolBarHeight+(roundedEdges) && mouseY<=appHeight) ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
+  fill(whiteReset);
+  stroke(black);
+
 
 
 
@@ -526,24 +541,24 @@ void mousePressed () {
   //
   BackgroundButtonsMousepressed ();
   //Drawing Tools MousePressed
-//Pencil Button if statement
+  //Pencil Button if statement
   if (mouseX>=pencilButtonX && mouseX<=pencilButtonX+drawingButtonWidth*3/2 && mouseY>=pencilButtonY && mouseY<=pencilButtonY+drawingButtonHeight*3/2) {
     pencilON=true;
     eraserON=false;
     stampON=false;
   }
-//Eraser Button if statement 
+  //Eraser Button if statement 
   if (mouseX>=eraserButtonX && mouseX<=eraserButtonX+drawingButtonWidth*3/2 && mouseY>=eraserButtonY && mouseY<=eraserButtonY+drawingButtonHeight*3/2) {
     pencilON=false;
     eraserON=true;
     stampON=false;
   }
- //Stamp Button if statement
- if (mouseX>=stampBUTTONX && mouseX<=stampBUTTONX+drawingButtonWidth*3/2 && mouseY>=stampBUTTONY && mouseY<=stampBUTTONY+drawingButtonHeight*3/2) {
-  pencilON=false;
+  //Stamp Button if statement
+  if (mouseX>=stampBUTTONX && mouseX<=stampBUTTONX+drawingButtonWidth*3/2 && mouseY>=stampBUTTONY && mouseY<=stampBUTTONY+drawingButtonHeight*3/2) {
+    pencilON=false;
     eraserON=false;
     stampON=true;
- }
+  }
 
   //To allow color/drawing to show up on the background, when you touch the background you will be able to draw on the background 
   if (mouseX>=appWidth*0 && mouseX<=appWidth && mouseY>=toolBarY+toolBarHeight+(roundedEdges) && mouseY<=appHeight) {
