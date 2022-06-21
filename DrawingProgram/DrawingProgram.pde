@@ -80,9 +80,11 @@ PImage stampBUTTONimage;
 float roundStampBUTTONX, roundStampBUTTONY, roundStampWidth, roundStampHeight;
 float roundStampCircleX, roundStampCircleY, roundStampCircleDiameter; 
 Boolean roundStampON=false;
-float squareStampBUTTONX, squareStampBUTTONY, squareStampWidth, sqaureStampHeight;
+float squareStampBUTTONX, squareStampBUTTONY, squareStampWidth, squareStampHeight;
+float squareStampSquareX, squareStampSquareY, squareStampSquareWidth, squareStampSquareHeight;
 Boolean squareStampON=false;
 float triangleStampBUTTONX, triangleStampBUTTONY, triangleStampWidth, triangleStampHeight;
+float triangleStampTriangleX1, triangleStampTriangleY1, triangleStampTriangleX2, triangleStampTriangleY2, triangleStampTriangleX3, triangleStampTriangleY3;
 Boolean triangleStampON=false;
 //
 //Background image
@@ -235,10 +237,11 @@ void setup () {
   eraserButtonX=pencilButtonX+drawingButtonWidth+roundedEdges;
   eraserButtonY=pencilButtonY; 
   BUTTONeraserImage=loadImage("EraserImage-564x545.jpg");
-  //
+  //Stamp Variables
   stampBUTTONX= eraserButtonX+drawingButtonWidth+roundedEdges;
   stampBUTTONY=eraserButtonY;
   stampBUTTONimage=loadImage("SMALLERstampIcon.jpg");
+  //Round Stamp variables
   roundStampBUTTONX= stampBUTTONX+drawingButtonWidth+roundedEdges*55/100;
   roundStampBUTTONY=stampBUTTONY-roundedEdges*1/3; 
   roundStampWidth=drawingButtonWidth*1/2;
@@ -246,16 +249,27 @@ void setup () {
   roundStampCircleX=roundStampBUTTONX+(roundStampWidth*1/2);
   roundStampCircleY=roundStampBUTTONY+(roundStampHeight*1/2);
   roundStampCircleDiameter=roundStampWidth*1/2;
-  //
+  //Sqaure stamp variables
   squareStampBUTTONX=roundStampBUTTONX;
   squareStampBUTTONY=roundStampBUTTONY+roundStampHeight+roundedEdges*1/3;
   squareStampWidth=roundStampWidth;
-  sqaureStampHeight=roundStampHeight;
-  //
+  squareStampHeight=roundStampHeight;
+  squareStampSquareWidth=squareStampWidth*1/2;
+  squareStampSquareHeight=squareStampHeight-squareStampHeight*45/100;
+  squareStampSquareX=squareStampBUTTONX+(squareStampWidth*1/2)-squareStampSquareWidth*1/2;
+  squareStampSquareY=squareStampBUTTONY+(squareStampHeight*1/2)-squareStampSquareHeight*1/2;
+
+  //Traingle stamp variables
   triangleStampBUTTONX=squareStampBUTTONX;
-  triangleStampBUTTONY=squareStampBUTTONY+sqaureStampHeight+roundedEdges*1/3;
+  triangleStampBUTTONY=squareStampBUTTONY+squareStampHeight+roundedEdges*1/3;
   triangleStampWidth=squareStampWidth;
-  triangleStampHeight=sqaureStampHeight;
+  triangleStampHeight=squareStampHeight;
+  triangleStampTriangleX1=triangleStampBUTTONX+(triangleStampWidth*1/2)-triangleStampWidth*1/4;
+  triangleStampTriangleY1=triangleStampBUTTONY+triangleStampHeight-triangleStampHeight*1/4;
+  triangleStampTriangleX2=triangleStampBUTTONX+triangleStampWidth*1/2;
+  triangleStampTriangleY2=triangleStampBUTTONY+triangleStampHeight*20/100;
+  triangleStampTriangleX3=triangleStampBUTTONX+(triangleStampWidth*1/2)+triangleStampWidth*1/4;
+  triangleStampTriangleY3=triangleStampTriangleY1;
 
   /*
   //Quit button
@@ -355,18 +369,30 @@ void draw () {
     strokeWeight(reset);
   }
   rect((stampBUTTONX+drawingButtonWidth*1/2)-(drawingButtonWidth*110/100*1/2), (stampBUTTONY+drawingButtonHeight*1/2)-(drawingButtonHeight*110/100*1/2), drawingButtonWidth*110/100, drawingButtonHeight*110/100);
-  if (stampON==true) {
-    strokeWeight(roundedEdges*1/4);
+  if (colorOfDrawingTool==yellowBUTTONcolor) fill(black);
+   if (stampON==true && roundStampON==true) {
+    strokeWeight(roundedEdges*1/6);
   } else {
     strokeWeight(reset);
   }
   rect(roundStampBUTTONX, roundStampBUTTONY, roundStampWidth, roundStampHeight);
-  rect(squareStampBUTTONX, squareStampBUTTONY, squareStampWidth, sqaureStampHeight);
+  if (stampON==true && squareStampON==true) {
+    strokeWeight(roundedEdges*1/6);
+  } else {
+    strokeWeight(reset);
+  }
+  rect(squareStampBUTTONX, squareStampBUTTONY, squareStampWidth, squareStampHeight);
+  if (stampON==true && triangleStampON==true ) {
+    strokeWeight(roundedEdges*1/6);
+  } else {
+    strokeWeight(reset);
+  }
   rect(triangleStampBUTTONX, triangleStampBUTTONY, triangleStampWidth, triangleStampHeight);
   fill(colorOfDrawingTool);
-  if() 
+  strokeWeight(reset); 
   ellipse(roundStampCircleX, roundStampCircleY, roundStampCircleDiameter, roundStampCircleDiameter);
-  strokeWeight(reset);
+  rect(squareStampSquareX, squareStampSquareY, squareStampSquareWidth, squareStampSquareHeight);
+  triangle(triangleStampTriangleX1, triangleStampTriangleY1, triangleStampTriangleX2, triangleStampTriangleY2, triangleStampTriangleX3, triangleStampTriangleY3);
   fill(whiteReset);
   stroke(black);
 
@@ -472,6 +498,24 @@ void draw () {
   if (drawOnPaper==true && draw==true && stampON==true && roundStampON==true && mouseX>=drawingSurfaceX && mouseX<= drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight) ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
   if (drawOnPaper==false && draw==true && stampON==true && roundStampON==true && mouseX>=BUTTONbackgroundImage3X+BUTTONbackgroundImageWidth && mouseX<=appWidth && mouseY>=appHeight*0 && mouseY<=appHeight) ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
   if (drawOnPaper==false && draw==true && stampON==true && roundStampON==true && mouseX>=appWidth*0 && mouseX<=appWidth && mouseY>=toolBarY+toolBarHeight+(roundedEdges) && mouseY<=appHeight) ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
+  fill(whiteReset);
+  stroke(black);
+  //
+  //Square Stamp Code
+   fill(colorOfDrawingTool);
+  stroke(colorOfDrawingTool);
+  if (drawOnPaper==true && draw==true && stampON==true && squareStampON==true && mouseX>=drawingSurfaceX && mouseX<= drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight) rect(mouseX, mouseY, drawingDiameter, drawingDiameter);
+  if (drawOnPaper==false && draw==true && stampON==true && squareStampON==true && mouseX>=BUTTONbackgroundImage3X+BUTTONbackgroundImageWidth && mouseX<=appWidth && mouseY>=appHeight*0 && mouseY<=appHeight) rect(mouseX, mouseY, drawingDiameter, drawingDiameter);
+  if (drawOnPaper==false && draw==true && stampON==true && squareStampON==true && mouseX>=appWidth*0 && mouseX<=appWidth && mouseY>=toolBarY+toolBarHeight+(roundedEdges) && mouseY<=appHeight) rect(mouseX, mouseY, drawingDiameter, drawingDiameter);
+  fill(whiteReset);
+  stroke(black);
+   //
+  //Triangle Stamp Code
+   fill(colorOfDrawingTool);
+  stroke(colorOfDrawingTool);
+  if (drawOnPaper==true && draw==true && stampON==true && triangleStampON==true && mouseX>=drawingSurfaceX && mouseX<= drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight)  triangle(mouseX, mouseY, mouseX+drawingDiameter*1/2, mouseY, mouseX+drawingDiameter*1/4, mouseY+drawingDiameter);
+  if (drawOnPaper==false && draw==true && stampON==true && triangleStampON==true && mouseX>=BUTTONbackgroundImage3X+BUTTONbackgroundImageWidth && mouseX<=appWidth && mouseY>=appHeight*0 && mouseY<=appHeight)  triangle(mouseX, mouseY, mouseX+drawingDiameter*1/2, mouseY, mouseX+drawingDiameter*1/4, mouseY+drawingDiameter);
+  if (drawOnPaper==false && draw==true && stampON==true && triangleStampON==true && mouseX>=appWidth*0 && mouseX<=appWidth && mouseY>=toolBarY+toolBarHeight+(roundedEdges) && mouseY<=appHeight) triangle(mouseX, mouseY, mouseX+drawingDiameter*1/2, mouseY, mouseX+drawingDiameter*1/4, mouseY+drawingDiameter);
   fill(whiteReset);
   stroke(black);
 
@@ -583,13 +627,25 @@ void mousePressed () {
     pencilON=false;
     eraserON=false;
     stampON=true;
+    roundStampON=true;
   }
   //Circle Stamp Button If statement
   if (mouseX>=roundStampBUTTONX && mouseX<=roundStampBUTTONX+roundStampWidth && mouseY>=roundStampBUTTONY && mouseY<=roundStampBUTTONY+roundStampHeight) {
     roundStampON=true;
     squareStampON=false;
     triangleStampON=false;
-
+  }
+//Square Stamp Button if Statement
+if (mouseX>=squareStampBUTTONX && mouseX<=squareStampBUTTONX+squareStampWidth && mouseY>=squareStampBUTTONY && mouseY<=squareStampBUTTONY+squareStampHeight) {
+    roundStampON=false;
+    squareStampON=true;
+    triangleStampON=false;
+  }
+//Triangle Stamp Button If statement
+if (mouseX>=triangleStampBUTTONX && mouseX<=triangleStampBUTTONX+triangleStampWidth && mouseY>=triangleStampBUTTONY && mouseY<=triangleStampBUTTONY+triangleStampHeight) {
+    roundStampON=false;
+    squareStampON=false;
+    triangleStampON=true;
   }
 
   //To allow color/drawing to show up on the background, when you touch the background you will be able to draw on the background 
