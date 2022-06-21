@@ -78,6 +78,7 @@ PImage BUTTONeraserImage;
 float stampBUTTONX, stampBUTTONY;
 PImage stampBUTTONimage;
 float roundStampBUTTONX, roundStampBUTTONY, roundStampWidth, roundStampHeight;
+float roundStampCircleX, roundStampCircleY, roundStampCircleDiameter; 
 Boolean roundStampON=false;
 float squareStampBUTTONX, squareStampBUTTONY, squareStampWidth, sqaureStampHeight;
 Boolean squareStampON=false;
@@ -234,17 +235,23 @@ void setup () {
   eraserButtonX=pencilButtonX+drawingButtonWidth+roundedEdges;
   eraserButtonY=pencilButtonY; 
   BUTTONeraserImage=loadImage("EraserImage-564x545.jpg");
+  //
   stampBUTTONX= eraserButtonX+drawingButtonWidth+roundedEdges;
   stampBUTTONY=eraserButtonY;
   stampBUTTONimage=loadImage("SMALLERstampIcon.jpg");
   roundStampBUTTONX= stampBUTTONX+drawingButtonWidth+roundedEdges*55/100;
   roundStampBUTTONY=stampBUTTONY-roundedEdges*1/3; 
   roundStampWidth=drawingButtonWidth*1/2;
-  roundStampHeight=drawingButtonHeight*1/3;
+  roundStampHeight=drawingButtonHeight*1/3; 
+  roundStampCircleX=roundStampBUTTONX+(roundStampWidth*1/2);
+  roundStampCircleY=roundStampBUTTONY+(roundStampHeight*1/2);
+  roundStampCircleDiameter=roundStampWidth*1/2;
+  //
   squareStampBUTTONX=roundStampBUTTONX;
   squareStampBUTTONY=roundStampBUTTONY+roundStampHeight+roundedEdges*1/3;
   squareStampWidth=roundStampWidth;
   sqaureStampHeight=roundStampHeight;
+  //
   triangleStampBUTTONX=squareStampBUTTONX;
   triangleStampBUTTONY=squareStampBUTTONY+sqaureStampHeight+roundedEdges*1/3;
   triangleStampWidth=squareStampWidth;
@@ -324,6 +331,7 @@ void draw () {
   fill(whiteReset);
   strokeWeight(reset);
   stroke(black);
+  //
   //Eraser Code
   image(BUTTONeraserImage, eraserButtonX, eraserButtonY, drawingButtonWidth, drawingButtonHeight);
   if (eraserON==true) {
@@ -336,6 +344,7 @@ void draw () {
   rect((eraserButtonX+drawingButtonWidth*1/2)-(drawingButtonWidth*110/100*1/2), (eraserButtonY+drawingButtonHeight*1/2)-(drawingButtonHeight*110/100*1/2), drawingButtonWidth*110/100, drawingButtonHeight*110/100);
   fill(whiteReset);
   strokeWeight(reset);
+  //
   //Stamp Code 
   image(stampBUTTONimage, stampBUTTONX, stampBUTTONY, drawingButtonWidth, drawingButtonHeight);
   noFill();
@@ -354,6 +363,9 @@ void draw () {
   rect(roundStampBUTTONX, roundStampBUTTONY, roundStampWidth, roundStampHeight);
   rect(squareStampBUTTONX, squareStampBUTTONY, squareStampWidth, sqaureStampHeight);
   rect(triangleStampBUTTONX, triangleStampBUTTONY, triangleStampWidth, triangleStampHeight);
+  fill(colorOfDrawingTool);
+  if() 
+  ellipse(roundStampCircleX, roundStampCircleY, roundStampCircleDiameter, roundStampCircleDiameter);
   strokeWeight(reset);
   fill(whiteReset);
   stroke(black);
