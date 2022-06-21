@@ -79,6 +79,7 @@ float stampBUTTONX, stampBUTTONY;
 PImage stampBUTTONimage;
 float roundStampBUTTONX, roundStampBUTTONY, roundStampWidth, roundStampHeight;
 float squareStampBUTTONX, squareStampBUTTONY, squareStampWidth, sqaureStampHeight;
+float triangleStampBUTTONX, triangleStampBUTTONY, triangleStampWidth, triangleStampHeight;
 //
 //Background image
 float backgroundImage1WidthEnlargedAdjusted, backgroundImage1HeightEnlargedAdjusted, backgroundImage1WidthMinimizedAdjusted, backgroundImage1HeightMinimizedAdjusted;
@@ -234,9 +235,17 @@ void setup () {
   stampBUTTONY=eraserButtonY;
   stampBUTTONimage=loadImage("SMALLERstampIcon.jpg");
   roundStampBUTTONX= stampBUTTONX+drawingButtonWidth+roundedEdges*55/100;
-  roundStampBUTTONY=stampBUTTONY; 
+  roundStampBUTTONY=stampBUTTONY-roundedEdges*1/3; 
   roundStampWidth=drawingButtonWidth*1/2;
   roundStampHeight=drawingButtonHeight*1/3;
+  squareStampBUTTONX=roundStampBUTTONX;
+  squareStampBUTTONY=roundStampBUTTONY+roundStampHeight+roundedEdges*1/3;
+  squareStampWidth=roundStampWidth;
+  sqaureStampHeight=roundStampHeight;
+  triangleStampBUTTONX=squareStampBUTTONX;
+  triangleStampBUTTONY=squareStampBUTTONY+sqaureStampHeight+roundedEdges*1/3;
+  triangleStampWidth=squareStampWidth;
+  triangleStampHeight=sqaureStampHeight;
 
   /*
   //Quit button
@@ -334,16 +343,18 @@ void draw () {
     strokeWeight(reset);
   }
   rect((stampBUTTONX+drawingButtonWidth*1/2)-(drawingButtonWidth*110/100*1/2), (stampBUTTONY+drawingButtonHeight*1/2)-(drawingButtonHeight*110/100*1/2), drawingButtonWidth*110/100, drawingButtonHeight*110/100);
-    if (stampON==true) {
+  if (stampON==true) {
     strokeWeight(roundedEdges*1/4);
   } else {
     strokeWeight(reset);
   }
   rect(roundStampBUTTONX, roundStampBUTTONY, roundStampWidth, roundStampHeight);
+  rect(squareStampBUTTONX, squareStampBUTTONY, squareStampWidth, sqaureStampHeight);
+  rect(triangleStampBUTTONX, triangleStampBUTTONY, triangleStampWidth, triangleStampHeight);
   strokeWeight(reset);
   fill(whiteReset);
   stroke(black);
-  
+
 
 
   //Paper Button if statement
