@@ -78,8 +78,11 @@ PImage BUTTONeraserImage;
 float stampBUTTONX, stampBUTTONY;
 PImage stampBUTTONimage;
 float roundStampBUTTONX, roundStampBUTTONY, roundStampWidth, roundStampHeight;
+Boolean roundStampON=false;
 float squareStampBUTTONX, squareStampBUTTONY, squareStampWidth, sqaureStampHeight;
+Boolean squareStampON=false;
 float triangleStampBUTTONX, triangleStampBUTTONY, triangleStampWidth, triangleStampHeight;
+Boolean triangleStampON=false;
 //
 //Background image
 float backgroundImage1WidthEnlargedAdjusted, backgroundImage1HeightEnlargedAdjusted, backgroundImage1WidthMinimizedAdjusted, backgroundImage1HeightMinimizedAdjusted;
@@ -450,13 +453,13 @@ void draw () {
     stroke(black);
     strokeWeight(reset);
   }
-
+  //
   //Circle Stamp Code
   fill(colorOfDrawingTool);
   stroke(colorOfDrawingTool);
-  if (drawOnPaper==true && draw==true && stampON==true && mouseX>=drawingSurfaceX && mouseX<= drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight) ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
-  if (drawOnPaper==false && draw==true && stampON==true && mouseX>=BUTTONbackgroundImage3X+BUTTONbackgroundImageWidth && mouseX<=appWidth && mouseY>=appHeight*0 && mouseY<=appHeight) ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
-  if (drawOnPaper==false && draw==true && stampON==true && mouseX>=appWidth*0 && mouseX<=appWidth && mouseY>=toolBarY+toolBarHeight+(roundedEdges) && mouseY<=appHeight) ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
+  if (drawOnPaper==true && draw==true && stampON==true && roundStampON==true && mouseX>=drawingSurfaceX && mouseX<= drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight) ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
+  if (drawOnPaper==false && draw==true && stampON==true && roundStampON==true && mouseX>=BUTTONbackgroundImage3X+BUTTONbackgroundImageWidth && mouseX<=appWidth && mouseY>=appHeight*0 && mouseY<=appHeight) ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
+  if (drawOnPaper==false && draw==true && stampON==true && roundStampON==true && mouseX>=appWidth*0 && mouseX<=appWidth && mouseY>=toolBarY+toolBarHeight+(roundedEdges) && mouseY<=appHeight) ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
   fill(whiteReset);
   stroke(black);
 
@@ -544,31 +547,37 @@ void mousePressed () {
   }
 
 
-
-
-  //Button that allows the drawing of ink: paper
   //
   //if (mouseX>=quitButtonX && mouseX<= quitButtonX+quitButtonWidth && mouseY>=quitButtonY && mouseY<=quitButtonY+quitButtonHeight) exit();
-  //
+  //Turns on and off backgrounds
   BackgroundButtonsMousepressed ();
+  //
   //Drawing Tools MousePressed
+  //
   //Pencil Button if statement
-  if (mouseX>=pencilButtonX && mouseX<=pencilButtonX+drawingButtonWidth*3/2 && mouseY>=pencilButtonY && mouseY<=pencilButtonY+drawingButtonHeight*3/2) {
+  if (mouseX>=pencilButtonX && mouseX<=pencilButtonX+drawingButtonWidth && mouseY>=pencilButtonY && mouseY<=pencilButtonY+drawingButtonHeight) {
     pencilON=true;
     eraserON=false;
     stampON=false;
   }
   //Eraser Button if statement 
-  if (mouseX>=eraserButtonX && mouseX<=eraserButtonX+drawingButtonWidth*3/2 && mouseY>=eraserButtonY && mouseY<=eraserButtonY+drawingButtonHeight*3/2) {
+  if (mouseX>=eraserButtonX && mouseX<=eraserButtonX+drawingButtonWidth && mouseY>=eraserButtonY && mouseY<=eraserButtonY+drawingButtonHeight) {
     pencilON=false;
     eraserON=true;
     stampON=false;
   }
   //Stamp Button if statement
-  if (mouseX>=stampBUTTONX && mouseX<=stampBUTTONX+drawingButtonWidth*3/2 && mouseY>=stampBUTTONY && mouseY<=stampBUTTONY+drawingButtonHeight*3/2) {
+  if (mouseX>=stampBUTTONX && mouseX<=stampBUTTONX+drawingButtonWidth && mouseY>=stampBUTTONY && mouseY<=stampBUTTONY+drawingButtonHeight) {
     pencilON=false;
     eraserON=false;
     stampON=true;
+  }
+  //Circle Stamp Button If statement
+  if (mouseX>=roundStampBUTTONX && mouseX<=roundStampBUTTONX+roundStampWidth && mouseY>=roundStampBUTTONY && mouseY<=roundStampBUTTONY+roundStampHeight) {
+    roundStampON=true;
+    squareStampON=false;
+    triangleStampON=false;
+
   }
 
   //To allow color/drawing to show up on the background, when you touch the background you will be able to draw on the background 
