@@ -796,15 +796,15 @@ void keyPressed () {
     { //Serious problems, playing multiple songs at the same time
       song[currentSong].pause();
       song[currentSong].rewind();
-      if ( currentSong <= song.length-1) { 
-        currentSong += currentSong; //Makes the playlist start from the beginning
+      if ( currentSong <= song.length-4) { 
+        currentSong += song.length-1; //Makes the playlist start from the beginning
       } else {
         currentSong--;
       }
       song[currentSong].play();
     } else {
-      if ( currentSong <= song.length-1) { 
-        currentSong += currentSong; //Makes the playlist start from the beginning
+       if ( currentSong <= song.length-4) { 
+        currentSong += song.length-1; //Makes the playlist start from the beginning
       } else {
         currentSong--;
       }
