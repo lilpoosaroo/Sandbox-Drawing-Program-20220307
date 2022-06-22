@@ -603,9 +603,9 @@ void draw () {
   strokeWeight(roundedEdges*1/5);
   ellipse (playBUTTONcircleX, playBUTTONcircleY, playBUTTONdiameter, playBUTTONdiameter);
   //PLay and Pause button code
-  if (SongPlayON==true) triangle(playBUTTONtriangleX1, playBUTTONtriangleY1, playBUTTONtriangleX2, playBUTTONtriangleY2, playBUTTONtriangleX3, playBUTTONtriangleY3);
+  if (SongPauseON==true) triangle(playBUTTONtriangleX1, playBUTTONtriangleY1, playBUTTONtriangleX2, playBUTTONtriangleY2, playBUTTONtriangleX3, playBUTTONtriangleY3);
   strokeWeight(roundedEdges*1/4);
-  if (SongPauseON==true) {
+  if (SongPlayON==true) {
     line(pauseBUTTONline1X1, pauseBUTTONline1Y1, pauseBUTTONline1X2, pauseBUTTONline1Y2);
     line(pauseBUTTONline2X1, pauseBUTTONline2Y1, pauseBUTTONline2X2, pauseBUTTONline2Y2);
   }
