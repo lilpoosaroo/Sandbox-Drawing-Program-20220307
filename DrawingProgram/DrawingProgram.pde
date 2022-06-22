@@ -362,6 +362,8 @@ void draw () {
     image(backgroundImage1, BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     image(backgroundImage2, BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     image(backgroundImage3, BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+      musicBoxLiningColor=black;
+      musicBoxFillingColor=whiteReset;
   } else {
   }
   //Background Image 1 code
@@ -598,6 +600,7 @@ void draw () {
   fill(musicBoxFillingColor);
   stroke(musicBoxLiningColor);
   rect( musicBoxX, musicBoxY, musicBoxWidth, musicBoxHeight);
+  strokeWeight(roundedEdges*1/5);
   ellipse (playBUTTONcircleX, playBUTTONcircleY, playBUTTONdiameter, playBUTTONdiameter);
   //PLay and Pause button code
   if (SongPlayON==true) triangle(playBUTTONtriangleX1, playBUTTONtriangleY1, playBUTTONtriangleX2, playBUTTONtriangleY2, playBUTTONtriangleX3, playBUTTONtriangleY3);
