@@ -112,10 +112,10 @@ float playBUTTONtriangleX1, playBUTTONtriangleY1, playBUTTONtriangleX2, playBUTT
 float playBUTTONcircleX, playBUTTONcircleY, playBUTTONdiameter, playBUTTONradius;
 float pauseBUTTONline1X1, pauseBUTTONline1Y1, pauseBUTTONline1X2, pauseBUTTONline1Y2;
 float pauseBUTTONline2X1, pauseBUTTONline2Y1, pauseBUTTONline2X2, pauseBUTTONline2Y2;
-float forwardSkipBUTTONtriangleX1, forwardSkipBUTTONtriangleY1, forwardSkipBUTTONtriangleX2, forwardSkipBUTTONtriangleY2, forwardSkipBUTTONtriangleX3, forwardSkipBUTTONtriangleY3;
-float fowardSkipbUTTONlineX, forwardSkipBUTTONlineY;
+  float forwardSkipBUTTONtriangleX1, forwardSkipBUTTONtriangleY1, forwardSkipBUTTONtriangleX2, forwardSkipBUTTONtriangleY2, forwardSkipBUTTONtriangleX3, forwardSkipBUTTONtriangleY3;
+float fowardSkipBUTTONlineX1, forwardSkipBUTTONlineY1, fowardSkipBUTTONlineX2, forwardSkipBUTTONlineY2;
 float backwardSkipBUTTONtriangleX1, backwardSkipBUTTONtriangleY1, backwardSkipBUTTONtriangleX2, backwardSkipBUTTONtriangleY2, backwardSkipBUTTONtriangleX3, backwardSkipBUTTONtriangleY3;
-float backwardSkipbUTTONlineX, backwardSkipBUTTONlineY;
+float backwardSkipBUTTONlineX1, backwardSkipBUTTONlineY1, backwardSkipBUTTONlineX2, backwardSkipBUTTONlineY2
 Boolean SongPlayON=false, SongPauseON=true;
 
 //
@@ -308,6 +308,12 @@ void setup () {
   pauseBUTTONline2Y1=pauseBUTTONline1Y1;
   pauseBUTTONline2X2=pauseBUTTONline2X1;
   pauseBUTTONline2Y2=pauseBUTTONline1Y2;
+  //Skip forward icon
+  float forwardSkipBUTTONtriangleX1, forwardSkipBUTTONtriangleY1, forwardSkipBUTTONtriangleX2, forwardSkipBUTTONtriangleY2, forwardSkipBUTTONtriangleX3, forwardSkipBUTTONtriangleY3;
+float fowardSkipBUTTONlineX1, forwardSkipBUTTONlineY1, fowardSkipBUTTONlineX2, forwardSkipBUTTONlineY2;
+//Skip Backward Icon
+float backwardSkipBUTTONtriangleX1, backwardSkipBUTTONtriangleY1, backwardSkipBUTTONtriangleX2, backwardSkipBUTTONtriangleY2, backwardSkipBUTTONtriangleX3, backwardSkipBUTTONtriangleY3;
+float backwardSkipBUTTONlineX1, backwardSkipBUTTONlineY1, backwardSkipBUTTONlineX2, backwardSkipBUTTONlineY2;
 
 
   /*
@@ -563,12 +569,21 @@ void draw () {
   ellipse (playBUTTONcircleX, playBUTTONcircleY, playBUTTONdiameter, playBUTTONdiameter);
   fill(whiteReset);
   stroke(whiteReset);
+  //PLay and Pause button code
   if (SongPlayON==true) triangle(playBUTTONtriangleX1, playBUTTONtriangleY1, playBUTTONtriangleX2, playBUTTONtriangleY2, playBUTTONtriangleX3, playBUTTONtriangleY3);
   strokeWeight(roundedEdges*1/4);
   if (SongPauseON==true) {
     line(pauseBUTTONline1X1, pauseBUTTONline1Y1, pauseBUTTONline1X2, pauseBUTTONline1Y2);
     line(pauseBUTTONline2X1, pauseBUTTONline2Y1, pauseBUTTONline2X2, pauseBUTTONline2Y2);
   }
+  //Skip forward Button Code
+  triangle(forwardSkipBUTTONtriangleX1, forwardSkipBUTTONtriangleY1, forwardSkipBUTTONtriangleX2, forwardSkipBUTTONtriangleY2, forwardSkipBUTTONtriangleX3, forwardSkipBUTTONtriangleY3);
+  stroke(black);
+  line(fowardSkipBUTTONlineX1, forwardSkipBUTTONlineY1, fowardSkipBUTTONlineX2, forwardSkipBUTTONlineY2);
+  //Skip backward button code
+  triangle(backwardSkipBUTTONtriangleX1, backwardSkipBUTTONtriangleY1, backwardSkipBUTTONtriangleX2, backwardSkipBUTTONtriangleY2, backwardSkipBUTTONtriangleX3, backwardSkipBUTTONtriangleY3);
+  stroke(black);
+  line(backwardSkipBUTTONlineX1, backwardSkipBUTTONlineY1, backwardSkipBUTTONlineX2, backwardSkipBUTTONlineY2);
   strokeWeight(reset);
 
 
