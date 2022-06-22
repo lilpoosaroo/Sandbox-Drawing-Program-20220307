@@ -109,13 +109,14 @@ color COLORIMAGE3toolbarFILLING=orange5;
 //Music Box
 float musicBoxX, musicBoxY, musicBoxWidth, musicBoxHeight;
 float playBUTTONtriangleX1, playBUTTONtriangleY1, playBUTTONtriangleX2, playBUTTONtriangleY2, playBUTTONtriangleX3, playBUTTONtriangleY3;
-float playBUTTONcircleX, playBUTTONcircleY, playBUTTONdiameter;
- float pauseBUTTONline1X1, pauseBUTTONline1Y1, pauseBUTTONline1X2, pauseBUTTONline1Y2;
- float pauseBUTTONline2X1, pauseBUTTONline2Y1, pauseBUTTONline2X2, pauseBUTTONline2Y2;
+float playBUTTONcircleX, playBUTTONcircleY, playBUTTONdiameter, playBUTTONradius;
+float pauseBUTTONline1X1, pauseBUTTONline1Y1, pauseBUTTONline1X2, pauseBUTTONline1Y2;
+float pauseBUTTONline2X1, pauseBUTTONline2Y1, pauseBUTTONline2X2, pauseBUTTONline2Y2;
 float forwardSkipBUTTONtriangleX1, forwardSkipBUTTONtriangleY1, forwardSkipBUTTONtriangleX2, forwardSkipBUTTONtriangleY2, forwardSkipBUTTONtriangleX3, forwardSkipBUTTONtriangleY3;
 float fowardSkipbUTTONlineX, forwardSkipBUTTONlineY;
 float backwardSkipBUTTONtriangleX1, backwardSkipBUTTONtriangleY1, backwardSkipBUTTONtriangleX2, backwardSkipBUTTONtriangleY2, backwardSkipBUTTONtriangleX3, backwardSkipBUTTONtriangleY3;
 float backwardSkipbUTTONlineX, backwardSkipBUTTONlineY;
+Boolean SongPlayON=false, SongPauseON=true;
 
 //
 void setup () {
@@ -279,24 +280,34 @@ void setup () {
   triangleStampTriangleY2=triangleStampBUTTONY+triangleStampHeight*20/100;
   triangleStampTriangleX3=triangleStampBUTTONX+(triangleStampWidth*1/2)+triangleStampWidth*1/4;
   triangleStampTriangleY3=triangleStampTriangleY1;
-  
+
   //
-  //Music Box
+  //Music Box Rectangle
   musicBoxX=toolBarX;
   musicBoxY=toolBarY+toolBarHeight+(roundedEdges);
   musicBoxWidth=toolBarWidth;
   musicBoxHeight=appHeight-toolBarY-toolBarHeight-(roundedEdges*2);
+  //Music Box play/pause button background
   playBUTTONcircleX=musicBoxX+(musicBoxWidth*1/2);
   playBUTTONcircleY=musicBoxY+(musicBoxHeight*73/100);
   playBUTTONdiameter=musicBoxWidth*1/8;
+  playBUTTONradius=playBUTTONdiameter*1/2;
+  //Music box play icon
   playBUTTONtriangleX1=playBUTTONcircleX-(playBUTTONdiameter*1/8);
   playBUTTONtriangleY1=playBUTTONcircleY-(playBUTTONdiameter*2/8);
   playBUTTONtriangleX2=playBUTTONtriangleX1;
   playBUTTONtriangleY2=playBUTTONcircleY+(playBUTTONdiameter*2/8);
   playBUTTONtriangleX3=playBUTTONcircleX+(playBUTTONdiameter*2/8);
   playBUTTONtriangleY3=playBUTTONcircleY;
-   line(pauseBUTTONline1X1, pauseBUTTONline1Y1, pauseBUTTONline1X2, pauseBUTTONline1Y2);
-  line(pauseBUTTONline2X1, pauseBUTTONline2Y1, pauseBUTTONline2X2, pauseBUTTONline2Y2);
+  //Music box pause icon
+  pauseBUTTONline1X1=playBUTTONcircleX-(playBUTTONdiameter*1/10);
+  pauseBUTTONline1Y1=playBUTTONcircleY-(playBUTTONdiameter*1/6);
+  pauseBUTTONline1X2=pauseBUTTONline1X1;
+  pauseBUTTONline1Y2=playBUTTONcircleY+(playBUTTONdiameter*1/6);
+  pauseBUTTONline2X1=playBUTTONcircleX+(playBUTTONdiameter*1/10);
+  pauseBUTTONline2Y1=pauseBUTTONline1Y1;
+  pauseBUTTONline2X2=pauseBUTTONline2X1;
+  pauseBUTTONline2Y2=pauseBUTTONline1Y2;
 
 
   /*
@@ -397,7 +408,7 @@ void draw () {
     strokeWeight(reset);
   }
   rect((stampBUTTONX+drawingButtonWidth*1/2)-(drawingButtonWidth*110/100*1/2), (stampBUTTONY+drawingButtonHeight*1/2)-(drawingButtonHeight*110/100*1/2), drawingButtonWidth*110/100, drawingButtonHeight*110/100);
-   if (stampON==true && roundStampON==true) {
+  if (stampON==true && roundStampON==true) {
     strokeWeight(roundedEdges*1/6);
   } else {
     strokeWeight(reset);
@@ -529,32 +540,36 @@ void draw () {
   stroke(black);
   //
   //Square Stamp Code
-   fill(colorOfDrawingTool);
+  fill(colorOfDrawingTool);
   stroke(colorOfDrawingTool);
   if (drawOnPaper==true && draw==true && stampON==true && squareStampON==true && mouseX>=drawingSurfaceX && mouseX<= drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight) rect(mouseX, mouseY, drawingDiameter, drawingDiameter);
   if (drawOnPaper==false && draw==true && stampON==true && squareStampON==true && mouseX>=BUTTONbackgroundImage3X+BUTTONbackgroundImageWidth && mouseX<=appWidth && mouseY>=appHeight*0 && mouseY<=appHeight) rect(mouseX, mouseY, drawingDiameter, drawingDiameter);
   if (drawOnPaper==false && draw==true && stampON==true && squareStampON==true && mouseX>=appWidth*0 && mouseX<=appWidth && mouseY>=toolBarY+toolBarHeight+(roundedEdges) && mouseY<=appHeight) rect(mouseX, mouseY, drawingDiameter, drawingDiameter);
   fill(whiteReset);
   stroke(black);
-   //
+  //
   //Triangle Stamp Code
-   fill(colorOfDrawingTool);
+  fill(colorOfDrawingTool);
   stroke(colorOfDrawingTool);
   if (drawOnPaper==true && draw==true && stampON==true && triangleStampON==true && mouseX>=drawingSurfaceX && mouseX<= drawingSurfaceX+drawingSurfaceWidth && mouseY>=drawingSurfaceY && mouseY<=drawingSurfaceY+drawingSurfaceHeight)  triangle(mouseX, mouseY, mouseX+drawingDiameter*1/2, mouseY, mouseX+drawingDiameter*1/4, mouseY+drawingDiameter);
   if (drawOnPaper==false && draw==true && stampON==true && triangleStampON==true && mouseX>=BUTTONbackgroundImage3X+BUTTONbackgroundImageWidth && mouseX<=appWidth && mouseY>=appHeight*0 && mouseY<=appHeight)  triangle(mouseX, mouseY, mouseX+drawingDiameter*1/2, mouseY, mouseX+drawingDiameter*1/4, mouseY+drawingDiameter);
   if (drawOnPaper==false && draw==true && stampON==true && triangleStampON==true && mouseX>=appWidth*0 && mouseX<=appWidth && mouseY>=toolBarY+toolBarHeight+(roundedEdges) && mouseY<=appHeight) triangle(mouseX, mouseY, mouseX+drawingDiameter*1/2, mouseY, mouseX+drawingDiameter*1/4, mouseY+drawingDiameter);
   fill(whiteReset);
   stroke(black);
-  
+
   //Music Box
   rect( musicBoxX, musicBoxY, musicBoxWidth, musicBoxHeight);
   fill(black);
   ellipse (playBUTTONcircleX, playBUTTONcircleY, playBUTTONdiameter, playBUTTONdiameter);
   fill(whiteReset);
-  triangle(playBUTTONtriangleX1, playBUTTONtriangleY1, playBUTTONtriangleX2, playBUTTONtriangleY2, playBUTTONtriangleX3, playBUTTONtriangleY3);
-  line(pauseBUTTONline1X1, pauseBUTTONline1Y1, pauseBUTTONline1X2, pauseBUTTONline1Y2);
-  line(pauseBUTTONline2X1, pauseBUTTONline2Y1, pauseBUTTONline2X2, pauseBUTTONline2Y2);
-
+  stroke(whiteReset);
+  if (SongPlayON==true) triangle(playBUTTONtriangleX1, playBUTTONtriangleY1, playBUTTONtriangleX2, playBUTTONtriangleY2, playBUTTONtriangleX3, playBUTTONtriangleY3);
+  strokeWeight(roundedEdges*1/4);
+  if (SongPauseON==true) {
+    line(pauseBUTTONline1X1, pauseBUTTONline1Y1, pauseBUTTONline1X2, pauseBUTTONline1Y2);
+    line(pauseBUTTONline2X1, pauseBUTTONline2Y1, pauseBUTTONline2X2, pauseBUTTONline2Y2);
+  }
+  strokeWeight(reset);
 
 
 
@@ -671,14 +686,14 @@ void mousePressed () {
     squareStampON=false;
     triangleStampON=false;
   }
-//Square Stamp Button if Statement
-if (mouseX>=squareStampBUTTONX && mouseX<=squareStampBUTTONX+squareStampWidth && mouseY>=squareStampBUTTONY && mouseY<=squareStampBUTTONY+squareStampHeight) {
+  //Square Stamp Button if Statement
+  if (mouseX>=squareStampBUTTONX && mouseX<=squareStampBUTTONX+squareStampWidth && mouseY>=squareStampBUTTONY && mouseY<=squareStampBUTTONY+squareStampHeight) {
     roundStampON=false;
     squareStampON=true;
     triangleStampON=false;
   }
-//Triangle Stamp Button If statement
-if (mouseX>=triangleStampBUTTONX && mouseX<=triangleStampBUTTONX+triangleStampWidth && mouseY>=triangleStampBUTTONY && mouseY<=triangleStampBUTTONY+triangleStampHeight) {
+  //Triangle Stamp Button If statement
+  if (mouseX>=triangleStampBUTTONX && mouseX<=triangleStampBUTTONX+triangleStampWidth && mouseY>=triangleStampBUTTONY && mouseY<=triangleStampBUTTONY+triangleStampHeight) {
     roundStampON=false;
     squareStampON=false;
     triangleStampON=true;
@@ -824,6 +839,18 @@ if (mouseX>=triangleStampBUTTONX && mouseX<=triangleStampBUTTONX+triangleStampWi
       pencilON=true;
       eraserON=false;
       stampON=false;
+    }
+  }
+
+  //Music Box If statements
+  if (mouseX>=playBUTTONcircleX-playBUTTONradius && mouseX<=playBUTTONcircleX+playBUTTONradius && mouseY>=playBUTTONcircleY-playBUTTONradius && mouseY<=playBUTTONcircleY+playBUTTONradius) {
+
+    if (SongPlayON==true) {
+      SongPlayON=false;
+      SongPauseON=true;
+    } else {
+      SongPlayON=true;
+      SongPauseON=false;
     }
   }
 }//End mousePressed
