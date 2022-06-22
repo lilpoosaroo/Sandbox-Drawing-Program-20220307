@@ -30,10 +30,8 @@ void backgroundImage1Draw () {
     fill(whiteReset);
     image(backgroundImage2, BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     image(backgroundImage3, BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
-  } else {}
-  
- 
-    
-  
-
+    musicBoxLiningColor=COLORIMAGE1toolbarLining; 
+    musicBoxFillingColor=COLORIMAGE1toolbarFILLING;
+  } else {
+  }
 }//End of backgroun Image 1 

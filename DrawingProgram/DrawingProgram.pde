@@ -107,6 +107,8 @@ color COLORIMAGE1toolbarFILLING=peachy;
 color COLORIMAGE2toolbarFILLING=yell0w3;
 color COLORIMAGE3toolbarFILLING=orange5;
 //Music Box
+color musicBoxLiningColor, musicBoxFillingColor;
+color songControlsLiningColor, songControlsFillingColor;
 float musicBoxX, musicBoxY, musicBoxWidth, musicBoxHeight;
 float playBUTTONtriangleX1, playBUTTONtriangleY1, playBUTTONtriangleX2, playBUTTONtriangleY2, playBUTTONtriangleX3, playBUTTONtriangleY3;
 float playBUTTONcircleX, playBUTTONcircleY, playBUTTONdiameter, playBUTTONradius;
@@ -372,6 +374,8 @@ void draw () {
     fill(whiteReset);
     image(backgroundImage1, BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     image(backgroundImage3, BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    musicBoxLiningColor=COLORIMAGE2toolbarLining; 
+      musicBoxFillingColor=COLORIMAGE2toolbarFILLING;
   } else {
   }
   //Background Image 3 Code
@@ -382,6 +386,8 @@ void draw () {
     fill(whiteReset);
     image(backgroundImage1, BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     image(backgroundImage2, BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
+    musicBoxLiningColor=COLORIMAGE3toolbarLining; 
+      musicBoxFillingColor=COLORIMAGE3toolbarFILLING;
   } else {
   }
 
@@ -465,6 +471,8 @@ void draw () {
       originalGreyBackgroundON=false;
       toolbarLining=black;
       toolbarFILLING=whiteReset;
+      musicBoxLiningColor=black; 
+      musicBoxFillingColor=whiteReset;
     }
     if (backgroundImage1ON==true) {
       backgroundImage1ON=false;
@@ -473,6 +481,8 @@ void draw () {
       fill(whiteReset);
       toolbarLining=COLORIMAGE1toolbarLining;
       toolbarFILLING=COLORIMAGE1toolbarFILLING;
+      musicBoxLiningColor=COLORIMAGE1toolbarLining; 
+      musicBoxFillingColor=COLORIMAGE1toolbarFILLING;
     }
     if ( backgroundImage2ON==true) {
       backgroundImage2ON=false;
@@ -481,6 +491,8 @@ void draw () {
       fill(whiteReset);
       toolbarLining=COLORIMAGE2toolbarLining;
       toolbarFILLING=COLORIMAGE2toolbarFILLING;
+      musicBoxLiningColor=COLORIMAGE2toolbarLining; 
+      musicBoxFillingColor=COLORIMAGE2toolbarFILLING;
     }
     if (backgroundImage3ON==true) {
       backgroundImage3ON=false;
@@ -489,6 +501,8 @@ void draw () {
       fill(whiteReset);
       toolbarLining=COLORIMAGE3toolbarLining;
       toolbarFILLING=COLORIMAGE3toolbarFILLING;
+      musicBoxLiningColor=COLORIMAGE3toolbarLining; 
+      musicBoxFillingColor=COLORIMAGE3toolbarFILLING;
     }
     //Drawing Tools can now only draw in the paper
     fill(whiteReset);
@@ -581,11 +595,10 @@ void draw () {
   stroke(black);
 
   //Music Box
+  fill(musicBoxFillingColor);
+  stroke(musicBoxLiningColor);
   rect( musicBoxX, musicBoxY, musicBoxWidth, musicBoxHeight);
-  fill(black);
   ellipse (playBUTTONcircleX, playBUTTONcircleY, playBUTTONdiameter, playBUTTONdiameter);
-  fill(whiteReset);
-  stroke(whiteReset);
   //PLay and Pause button code
   if (SongPlayON==true) triangle(playBUTTONtriangleX1, playBUTTONtriangleY1, playBUTTONtriangleX2, playBUTTONtriangleY2, playBUTTONtriangleX3, playBUTTONtriangleY3);
   strokeWeight(roundedEdges*1/4);
@@ -594,12 +607,13 @@ void draw () {
     line(pauseBUTTONline2X1, pauseBUTTONline2Y1, pauseBUTTONline2X2, pauseBUTTONline2Y2);
   }
   //Skip forward Button Code
-  stroke(black);
   triangle(forwardSkipBUTTONtriangleX1, forwardSkipBUTTONtriangleY1, forwardSkipBUTTONtriangleX2, forwardSkipBUTTONtriangleY2, forwardSkipBUTTONtriangleX3, forwardSkipBUTTONtriangleY3);
   line(fowardSkipBUTTONlineX1, forwardSkipBUTTONlineY1, fowardSkipBUTTONlineX2, forwardSkipBUTTONlineY2);
   //Skip backward button code
   triangle(backwardSkipBUTTONtriangleX1, backwardSkipBUTTONtriangleY1, backwardSkipBUTTONtriangleX2, backwardSkipBUTTONtriangleY2, backwardSkipBUTTONtriangleX3, backwardSkipBUTTONtriangleY3);
   line(backwardSkipBUTTONlineX1, backwardSkipBUTTONlineY1, backwardSkipBUTTONlineX2, backwardSkipBUTTONlineY2);
+  fill(whiteReset);
+  stroke(black);
   strokeWeight(reset);
 
 
