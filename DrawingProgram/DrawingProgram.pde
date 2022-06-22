@@ -10,7 +10,6 @@ import ddf.minim.ugens.*;
 float appWidth, appHeight;
 float originX, originY;
 color whiteReset=#FFFFFF, black=#000000, greyReset=#CCCCCC;
-//color quitButtonColor, quitTextColor;
 int reset=1;
 
 //PaperButton
@@ -32,19 +31,6 @@ Boolean paper=false;
 float toolBarX, toolBarY, toolBarWidth, toolBarHeight;
 int roundedEdges;
 color toolbarLining, toolbarFILLING;
-//
-/*
-//Quit Button
- String quitButtonText="Exit Program";
- PFont quitButtonFont; //CAN'T POPULATE A FONT IN THE GLOBAL VARIABLES
- float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
- */
-//
-//Second Button
-float secondTextX, secontTextY, secondTextWidth, secondTextHeight;
-//color secondTextButtonColor=#B2F5A6;
-//String secondTextButtonText="Start Drawing";
-//PFont secondTextButtonFont;
 //
 //Color Pallete Variables
 float ColorChoicesBoxX, ColorChoicesBoxY, ColorChoicesBoxWidth, ColorChoicesBoxHeight;
@@ -365,64 +351,13 @@ void setup () {
   //Songs
   songTitleFont=createFont("Calibri Bold Italic", 13);
 
-
-  /*
-  //Quit button
-   quitButtonFont= createFont("Microsoft Himalaya", 15);
-   quitButtonWidth=width*1/8;
-   quitButtonHeight=height*1/10;
-   quitButtonX=width*0;
-   quitButtonY=drawingSurfaceHeight-(quitButtonHeight);
-   //Second Text Button
-   secondTextX=width*0;
-   secontTextY=drawingSurfaceHeight-(quitButtonHeight*2);
-   secondTextWidth=quitButtonWidth;
-   secondTextHeight=quitButtonHeight;
-   secondTextButtonFont=createFont("Segoe UI Semibold Italic", 25);
-   */
-
   //Types of Font
   //String [] fontList=PFont.list();
   // printArray(fontList);
 }//End setup
 // 
 void draw () {
-  //Grey Background code
-  if (originalGreyBackgroundON==true) {
-    background(greyReset);  
-    image(backgroundImage1, BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
-    image(backgroundImage2, BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
-    image(backgroundImage3, BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
-    musicBoxLiningColor=black;
-    musicBoxFillingColor=whiteReset;
-  } else {
-  }
-  //Background Image 1 code
-  backgroundImage1Draw();
-  //Background Image 2 Code
-  if (backgroundImage2ON==true) {
-    background(backgroundImage2); 
-    fill(greyReset);
-    rect(BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
-    fill(whiteReset);
-    image(backgroundImage1, BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
-    image(backgroundImage3, BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
-    musicBoxLiningColor=COLORIMAGE2toolbarLining; 
-    musicBoxFillingColor=COLORIMAGE2toolbarFILLING;
-  } else {
-  }
-  //Background Image 3 Code
-  if (backgroundImage3ON==true) {
-    background(backgroundImage3); 
-    fill(greyReset);
-    rect(BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
-    fill(whiteReset);
-    image(backgroundImage1, BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
-    image(backgroundImage2, BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
-    musicBoxLiningColor=COLORIMAGE3toolbarLining; 
-    musicBoxFillingColor=COLORIMAGE3toolbarFILLING;
-  } else {
-  }
+backgroundImagesDraw ();
 
   //Tool Bar
   ToolBarCode ();
@@ -682,35 +617,6 @@ void draw () {
   }
   fill(whiteReset);
 
-
-
-  //
-  /*
-  if (mouseX>=quitButtonX && mouseX<= quitButtonX+quitButtonWidth && mouseY>=quitButtonY && mouseY<=quitButtonY+quitButtonHeight) {
-   quitButtonColor=purple;
-   quitTextColor=whiteReset;
-   } else {
-   quitButtonColor=lightPink;
-   quitTextColor=black;
-   }
-   
-   fill(quitButtonColor);
-   rect(quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight);
-   fill(quitTextColor);
-   textAlign(CENTER, CENTER);
-   textFont(quitButtonFont, 25);
-   text(quitButtonText, quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight);
-   fill(whiteReset);
-   //
-   //Second rectangle with more text
-   fill(secondTextButtonColor);
-   rect(secondTextX, secontTextY, secondTextWidth, secondTextHeight);
-   fill(black); 
-   textAlign(CENTER, CENTER);
-   textFont(secondTextButtonFont, 14);
-   text(secondTextButtonText, secondTextX, secontTextY, secondTextWidth, secondTextHeight);
-   fill(whiteReset);
-   */
 }//End draw
 //
 void keyPressed () {
@@ -791,7 +697,7 @@ void keyPressed () {
       song[currentSong].play();
     }
   }
-  
+ //Previous song Button code 
     if (key=='b' || key=='B') {
     if ( song[currentSong].isPlaying() ) 
     { //Serious problems, playing multiple songs at the same time
@@ -815,8 +721,6 @@ void keyPressed () {
       song[currentSong].play();
     }
   }
-  //Previous Button
-  //if (song) {}
 }//End keyPressed
 //
 void mousePressed () {
