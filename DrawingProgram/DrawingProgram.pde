@@ -126,10 +126,10 @@ float forwardSkipBUTTONtriangleX1, forwardSkipBUTTONtriangleY1, forwardSkipBUTTO
 float fowardSkipBUTTONlineX1, forwardSkipBUTTONlineY1, fowardSkipBUTTONlineX2, forwardSkipBUTTONlineY2;
 float backwardSkipBUTTONtriangleX1, backwardSkipBUTTONtriangleY1, backwardSkipBUTTONtriangleX2, backwardSkipBUTTONtriangleY2, backwardSkipBUTTONtriangleX3, backwardSkipBUTTONtriangleY3;
 float backwardSkipBUTTONlineX1, backwardSkipBUTTONlineY1, backwardSkipBUTTONlineX2, backwardSkipBUTTONlineY2;
-String song0Title="Shooting Stars in Summer By Naoko Ikeda";
-String song1Title="Consolation, Op. 30, No. 3 by Felix Mendelsson";
-String song2Title="Fluttering Leaves, Op. 46, No. 11, by Stephen Heller";
-String song3Title="In The Evening, Op. 88, No. 2, Heinrich Hoffman";
+String song0Title="Shooting Stars in Summer";
+String song1Title="Consolation";
+String song2Title="Fluttering Leaves";
+String song3Title="In The Evening";
 PFont songTitleFont;
 //Music of the Music Box
 Boolean SongPlayON=true, SongPauseON=false;
@@ -657,17 +657,30 @@ void draw () {
   //
   stroke(black);
   textAlign(CENTER, CENTER);
-  rect(musicBoxX, musicBoxY, musicBoxWidth, musicBoxHeight*1/2);
+  //rect(musicBoxX, musicBoxY, musicBoxWidth, musicBoxHeight*1/2);
+  
   if (song[currentSong]==song[0]) {
-    textFont(songTitleFont, 5);
+     fill(black);
+    textFont(songTitleFont, 15);
     text(song0Title, musicBoxX, musicBoxY, musicBoxWidth, musicBoxHeight*1/2);
   }
-  /*  
-   String song0Title="Shooting Stars in Summer By Naoko Ikeda";
-   String song1Title="Consolation, Op. 30, No. 3 by Felix Mendelsson";
-   String song2Title="Fluttering Leaves, Op. 46, No. 11, by Stephen Heller";
-   String song3Title="In The Evening, Op. 88, No. 2, Heinrich Hoffman";
-   */
+    if (song[currentSong]==song[1]) {
+     fill(black);
+    textFont(songTitleFont, 15);
+    text(song1Title, musicBoxX, musicBoxY, musicBoxWidth, musicBoxHeight*1/2);
+  }
+    if (song[currentSong]==song[2]) {
+     fill(black);
+    textFont(songTitleFont, 15);
+    text(song2Title, musicBoxX, musicBoxY, musicBoxWidth, musicBoxHeight*1/2);
+  }
+    if (song[currentSong]==song[3]) {
+     fill(black);
+    textFont(songTitleFont, 15);
+    text(song3Title, musicBoxX, musicBoxY, musicBoxWidth, musicBoxHeight*1/2);
+  }
+  fill(whiteReset);
+
 
 
   //
@@ -1017,6 +1030,7 @@ void mousePressed () {
   }
 
   //Music Box If statements
+  //Play/Pause Button If statements
   if (mouseX>=playBUTTONcircleX-playBUTTONradius && mouseX<=playBUTTONcircleX+playBUTTONradius && mouseY>=playBUTTONcircleY-playBUTTONradius && mouseY<=playBUTTONcircleY+playBUTTONradius) {
 
     if (SongPlayON==true) {
@@ -1038,8 +1052,30 @@ void mousePressed () {
       SongPauseON=false;
       song[currentSong].play();
     }
+  }
+  
+    //Skip forward/Backward Button If statements
+    if (mouseX>=forwardSkipBUTTONtriangleX1 && mouseX<=forwardSkipBUTTONtriangleX1+playBUTTONradius 
+  && mouseY>=forwardSkipBUTTONtriangleY1 && mouseY<=playBUTTONcircleY+playBUTTONdiameter*1/5) {
     
- 
+      if ( song[currentSong].isPlaying() ) 
+    { //Serious problems, playing multiple songs at the same time
+      song[currentSong].pause();
+      song[currentSong].rewind();
+      Next_Catch ();
+      song[currentSong].play();
+    } else {
+      Next_Catch ();
+      //if you just put currentSong++ without the if statement, will cause an error because it will keep pn adding 
+      //numbers above 3
+      song[currentSong].play();
+    }
+  
+  
+  
+  
+  
+  
   }
 }//End mousePressed
 //
