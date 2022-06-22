@@ -110,7 +110,8 @@ color COLORIMAGE3toolbarFILLING=orange5;
 float musicBoxX, musicBoxY, musicBoxWidth, musicBoxHeight;
 float playBUTTONtriangleX1, playBUTTONtriangleY1, playBUTTONtriangleX2, playBUTTONtriangleY2, playBUTTONtriangleX3, playBUTTONtriangleY3;
 float playBUTTONcircleX, playBUTTONcircleY, playBUTTONdiameter;
-float pauseBUTTONline1X, pauseBUTTONline1Y, pauseBUTTONline2X, pauseBUTTONline2Y;
+ float pauseBUTTONline1X1, pauseBUTTONline1Y1, pauseBUTTONline1X2, pauseBUTTONline1Y2;
+ float pauseBUTTONline2X1, pauseBUTTONline2Y1, pauseBUTTONline2X2, pauseBUTTONline2Y2;
 float forwardSkipBUTTONtriangleX1, forwardSkipBUTTONtriangleY1, forwardSkipBUTTONtriangleX2, forwardSkipBUTTONtriangleY2, forwardSkipBUTTONtriangleX3, forwardSkipBUTTONtriangleY3;
 float fowardSkipbUTTONlineX, forwardSkipBUTTONlineY;
 float backwardSkipBUTTONtriangleX1, backwardSkipBUTTONtriangleY1, backwardSkipBUTTONtriangleX2, backwardSkipBUTTONtriangleY2, backwardSkipBUTTONtriangleX3, backwardSkipBUTTONtriangleY3;
@@ -294,6 +295,8 @@ void setup () {
   playBUTTONtriangleY2=playBUTTONcircleY+(playBUTTONdiameter*2/8);
   playBUTTONtriangleX3=playBUTTONcircleX+(playBUTTONdiameter*2/8);
   playBUTTONtriangleY3=playBUTTONcircleY;
+   line(pauseBUTTONline1X1, pauseBUTTONline1Y1, pauseBUTTONline1X2, pauseBUTTONline1Y2);
+  line(pauseBUTTONline2X1, pauseBUTTONline2Y1, pauseBUTTONline2X2, pauseBUTTONline2Y2);
 
 
   /*
@@ -549,6 +552,8 @@ void draw () {
   ellipse (playBUTTONcircleX, playBUTTONcircleY, playBUTTONdiameter, playBUTTONdiameter);
   fill(whiteReset);
   triangle(playBUTTONtriangleX1, playBUTTONtriangleY1, playBUTTONtriangleX2, playBUTTONtriangleY2, playBUTTONtriangleX3, playBUTTONtriangleY3);
+  line(pauseBUTTONline1X1, pauseBUTTONline1Y1, pauseBUTTONline1X2, pauseBUTTONline1Y2);
+  line(pauseBUTTONline2X1, pauseBUTTONline2Y1, pauseBUTTONline2X2, pauseBUTTONline2Y2);
 
 
 
