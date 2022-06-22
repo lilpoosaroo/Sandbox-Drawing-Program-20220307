@@ -53,8 +53,6 @@ float BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y;
 float BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y;
 float BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y;
 Boolean backgroundImage1ON=false, backgroundImage2ON=false, backgroundImage3ON=false, originalGreyBackgroundON=true;
-
-//
 //
 // Drawing Tool Buttons
 boolean drawOnPaper=false, draw=false;
@@ -250,24 +248,20 @@ void setup () {
   BUTTONgreyDrawingColorY=ColorChoicesBoxY+colorButtonHeight;
   BUTTONblackDrawingColorX=ColorChoicesBoxX+(colorButtonWidth*3);
   BUTTONblackDrawingColorY=ColorChoicesBoxY+colorButtonHeight;
-
-
-
-
   //Coloring Tools
   pencilImageWidth=197;
   pencilImageHeight=192;
-  drawingButtonWidth=drawingSurfaceWidth*39/640;
-  drawingButtonHeight=drawingSurfaceWidth*1/16;
+  drawingButtonWidth=drawingSurfaceWidth*80/640;
+  drawingButtonHeight=drawingSurfaceWidth*1/6;
   pencilButtonX=BUTTONpaperX;
   pencilButtonY=BUTTONpaperY+BUTTONpaperHeight+(roundedEdges*2);
   BUTTONpencilImage=loadImage("BUTTONpencilimage-197x192.jpg");
-  eraserButtonX=pencilButtonX+drawingButtonWidth+roundedEdges;
-  eraserButtonY=pencilButtonY; 
+  eraserButtonX=pencilButtonX;
+  eraserButtonY=pencilButtonY+drawingButtonHeight+roundedEdges; 
   BUTTONeraserImage=loadImage("EraserImage-564x545.jpg");
   //Stamp Variables
-  stampBUTTONX= eraserButtonX+drawingButtonWidth+roundedEdges;
-  stampBUTTONY=eraserButtonY;
+  stampBUTTONX= pencilButtonX;
+  stampBUTTONY=eraserButtonY+drawingButtonHeight+roundedEdges;
   stampBUTTONimage=loadImage("SMALLERstampIcon.jpg");
   //Round Stamp variables
   roundStampBUTTONX= stampBUTTONX+drawingButtonWidth+roundedEdges*55/100;
@@ -298,7 +292,6 @@ void setup () {
   triangleStampTriangleY2=triangleStampBUTTONY+triangleStampHeight*20/100;
   triangleStampTriangleX3=triangleStampBUTTONX+(triangleStampWidth*1/2)+triangleStampWidth*1/4;
   triangleStampTriangleY3=triangleStampTriangleY1;
-
   //
   //Music Box Rectangle
   musicBoxX=toolBarX;
