@@ -112,10 +112,10 @@ float playBUTTONtriangleX1, playBUTTONtriangleY1, playBUTTONtriangleX2, playBUTT
 float playBUTTONcircleX, playBUTTONcircleY, playBUTTONdiameter, playBUTTONradius;
 float pauseBUTTONline1X1, pauseBUTTONline1Y1, pauseBUTTONline1X2, pauseBUTTONline1Y2;
 float pauseBUTTONline2X1, pauseBUTTONline2Y1, pauseBUTTONline2X2, pauseBUTTONline2Y2;
-  float forwardSkipBUTTONtriangleX1, forwardSkipBUTTONtriangleY1, forwardSkipBUTTONtriangleX2, forwardSkipBUTTONtriangleY2, forwardSkipBUTTONtriangleX3, forwardSkipBUTTONtriangleY3;
+float forwardSkipBUTTONtriangleX1, forwardSkipBUTTONtriangleY1, forwardSkipBUTTONtriangleX2, forwardSkipBUTTONtriangleY2, forwardSkipBUTTONtriangleX3, forwardSkipBUTTONtriangleY3;
 float fowardSkipBUTTONlineX1, forwardSkipBUTTONlineY1, fowardSkipBUTTONlineX2, forwardSkipBUTTONlineY2;
 float backwardSkipBUTTONtriangleX1, backwardSkipBUTTONtriangleY1, backwardSkipBUTTONtriangleX2, backwardSkipBUTTONtriangleY2, backwardSkipBUTTONtriangleX3, backwardSkipBUTTONtriangleY3;
-float backwardSkipBUTTONlineX1, backwardSkipBUTTONlineY1, backwardSkipBUTTONlineX2, backwardSkipBUTTONlineY2
+float backwardSkipBUTTONlineX1, backwardSkipBUTTONlineY1, backwardSkipBUTTONlineX2, backwardSkipBUTTONlineY2;
 Boolean SongPlayON=false, SongPauseON=true;
 
 //
@@ -309,11 +309,28 @@ void setup () {
   pauseBUTTONline2X2=pauseBUTTONline2X1;
   pauseBUTTONline2Y2=pauseBUTTONline1Y2;
   //Skip forward icon
-  float forwardSkipBUTTONtriangleX1, forwardSkipBUTTONtriangleY1, forwardSkipBUTTONtriangleX2, forwardSkipBUTTONtriangleY2, forwardSkipBUTTONtriangleX3, forwardSkipBUTTONtriangleY3;
-float fowardSkipBUTTONlineX1, forwardSkipBUTTONlineY1, fowardSkipBUTTONlineX2, forwardSkipBUTTONlineY2;
-//Skip Backward Icon
-float backwardSkipBUTTONtriangleX1, backwardSkipBUTTONtriangleY1, backwardSkipBUTTONtriangleX2, backwardSkipBUTTONtriangleY2, backwardSkipBUTTONtriangleX3, backwardSkipBUTTONtriangleY3;
-float backwardSkipBUTTONlineX1, backwardSkipBUTTONlineY1, backwardSkipBUTTONlineX2, backwardSkipBUTTONlineY2;
+  forwardSkipBUTTONtriangleX1=playBUTTONcircleX+playBUTTONdiameter;
+  forwardSkipBUTTONtriangleY1=playBUTTONcircleY-playBUTTONdiameter*1/5;
+  forwardSkipBUTTONtriangleX2=forwardSkipBUTTONtriangleX1;
+  forwardSkipBUTTONtriangleY2=playBUTTONcircleY+playBUTTONdiameter*1/5;
+  forwardSkipBUTTONtriangleX3=forwardSkipBUTTONtriangleX1+playBUTTONradius;
+  forwardSkipBUTTONtriangleY3=playBUTTONcircleY;
+  fowardSkipBUTTONlineX1=forwardSkipBUTTONtriangleX3+roundedEdges*1/4;
+  forwardSkipBUTTONlineY1=forwardSkipBUTTONtriangleY1;
+  fowardSkipBUTTONlineX2=forwardSkipBUTTONtriangleX3+roundedEdges*1/4;
+  forwardSkipBUTTONlineY2=forwardSkipBUTTONtriangleY2;
+  //Skip Backward Icon
+  backwardSkipBUTTONtriangleX1=playBUTTONcircleX-playBUTTONdiameter;
+  backwardSkipBUTTONtriangleY1=forwardSkipBUTTONtriangleY1;
+  backwardSkipBUTTONtriangleX2=backwardSkipBUTTONtriangleX1;
+  backwardSkipBUTTONtriangleY2=forwardSkipBUTTONtriangleY2;
+  backwardSkipBUTTONtriangleX3=backwardSkipBUTTONtriangleX1-playBUTTONradius;
+  backwardSkipBUTTONtriangleY3=forwardSkipBUTTONtriangleY3;
+  backwardSkipBUTTONlineX1=backwardSkipBUTTONtriangleX3-roundedEdges*1/4;
+  backwardSkipBUTTONlineY1=forwardSkipBUTTONlineY1;
+  backwardSkipBUTTONlineX2=backwardSkipBUTTONtriangleX3-roundedEdges*1/4;
+  backwardSkipBUTTONlineY2=forwardSkipBUTTONlineY2;
+
 
 
   /*
@@ -577,12 +594,11 @@ void draw () {
     line(pauseBUTTONline2X1, pauseBUTTONline2Y1, pauseBUTTONline2X2, pauseBUTTONline2Y2);
   }
   //Skip forward Button Code
-  triangle(forwardSkipBUTTONtriangleX1, forwardSkipBUTTONtriangleY1, forwardSkipBUTTONtriangleX2, forwardSkipBUTTONtriangleY2, forwardSkipBUTTONtriangleX3, forwardSkipBUTTONtriangleY3);
   stroke(black);
+  triangle(forwardSkipBUTTONtriangleX1, forwardSkipBUTTONtriangleY1, forwardSkipBUTTONtriangleX2, forwardSkipBUTTONtriangleY2, forwardSkipBUTTONtriangleX3, forwardSkipBUTTONtriangleY3);
   line(fowardSkipBUTTONlineX1, forwardSkipBUTTONlineY1, fowardSkipBUTTONlineX2, forwardSkipBUTTONlineY2);
   //Skip backward button code
   triangle(backwardSkipBUTTONtriangleX1, backwardSkipBUTTONtriangleY1, backwardSkipBUTTONtriangleX2, backwardSkipBUTTONtriangleY2, backwardSkipBUTTONtriangleX3, backwardSkipBUTTONtriangleY3);
-  stroke(black);
   line(backwardSkipBUTTONlineX1, backwardSkipBUTTONlineY1, backwardSkipBUTTONlineX2, backwardSkipBUTTONlineY2);
   strokeWeight(reset);
 
