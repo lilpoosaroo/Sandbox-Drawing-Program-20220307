@@ -1,3 +1,11 @@
+//Libraries: uses Sketch / Import Library / Add Library / Minim
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+
 //Global Variables
 float appWidth, appHeight;
 float originX, originY;
@@ -118,7 +126,22 @@ float forwardSkipBUTTONtriangleX1, forwardSkipBUTTONtriangleY1, forwardSkipBUTTO
 float fowardSkipBUTTONlineX1, forwardSkipBUTTONlineY1, fowardSkipBUTTONlineX2, forwardSkipBUTTONlineY2;
 float backwardSkipBUTTONtriangleX1, backwardSkipBUTTONtriangleY1, backwardSkipBUTTONtriangleX2, backwardSkipBUTTONtriangleY2, backwardSkipBUTTONtriangleX3, backwardSkipBUTTONtriangleY3;
 float backwardSkipBUTTONlineX1, backwardSkipBUTTONlineY1, backwardSkipBUTTONlineX2, backwardSkipBUTTONlineY2;
-Boolean SongPlayON=false, SongPauseON=true;
+String song0Title="Shooting Stars in Summer By Naoko Ikeda";
+String song1Title="Consolation, Op. 30, No. 3 by Felix Mendelsson";
+String song2Title="Fluttering Leaves, Op. 46, No. 11, by Stephen Heller";
+String song3Title="In The Evening, Op. 88, No. 2, Heinrich Hoffman";
+PFont songTitleFont;
+//Music of the Music Box
+Boolean SongPlayON=true, SongPauseON=false;
+int numberOfSongs = 4;
+int currentSong=numberOfSongs-numberOfSongs;
+
+
+
+Minim minim; //creates an object that will be able to access all functions
+AudioPlayer[] song = new AudioPlayer[numberOfSongs]; 
+//Creates a "PlayList" vairables holding extensions WAV, AIFF, AU, SNG, MP3
+AudioMetaData[] songMetaData = new AudioMetaData[numberOfSongs]; //song1's meta data
 
 //
 void setup () {
@@ -142,6 +165,24 @@ void setup () {
     appHeight *=0;
   }
   println("App Geometry is:", "\t AppWidth:", appWidth, "\t AppHeight:", appHeight);
+  //Loading Songs
+  minim = new Minim(this); //leads from data directory loadFile should also load from project folder, similiar to loadImage
+  song[currentSong] = song[0]= minim.loadFile("MusicDownload/27 Shooting Stars In Summer ΓÇô Naoko Ikeda.mp3");//able to pass absolute pathway, file name, and URL
+  song[currentSong+=1] = minim.loadFile("MusicDownload/15 Consolation, Op. 30, No. 3 ΓÇô Felix Mendelssohn.mp3");
+  song[currentSong+=1] = minim.loadFile("MusicDownload/07 Fluttering Leaves, Op. 46, No. 11 ΓÇô Stephen Heller.mp3");
+  song[currentSong+=1] = minim.loadFile("MusicDownload/05 In The Evening, Op. 88, No. 2 ΓÇô Heinrich Hofmann.mp3");
+  currentSong-=currentSong;
+  for (int i=currentSong; i<song.length; i+=1 ) {//could have also put i=i+1, i++
+    songMetaData[i] = song[i].getMetaData();
+    /* Which means
+     songMetaData[0] = song[0].getMetaData();
+     songMetaData[1] = song[1].getMetaData(); 
+     songMetaData[2] = song[2].getMetaData(); 
+     songMetaData[3] = song[3].getMetaData(); 
+     */
+  }
+  song[0].loop(0);//Parameter is number of repeats 
+  //reads song meta 1, like song1, mimicking array notation
   //Calucating larer Dimension and aspect ratio
   ChoosingLargerDimensionCalculatingAspectRatios();
   //Paper 
@@ -197,18 +238,6 @@ void setup () {
   BUTTONpaperHeight=BUTTONbackgroundImageHeight;
   BUTTONpaperX=toolBarX+float(roundedEdges*25/20);
   BUTTONpaperY=toolBarY+float(roundedEdges);
-  /*
-  //Color Tool Box Activator population
-   
-   
-   BUTTONdisplayColorsX= BUTTONpaperX+BUTTONpaperWidth+(float(roundedEdges)*10/50);
-   BUTTONdisplayColorsY=BUTTONpaperY;
-   BUTTONdisplayColorsWidth=BUTTONpaperWidth;
-   BUTTONdisplayColorsHeight=BUTTONpaperHeight;
-   BUTTONdisplayColorsImage=loadImage("ColorPalette.png");
-   BUTTONdisplayColorsImageWidth=800;
-   BUTTONdisplayColorsImageHeight=800;
-   */
 
   // Color Choices Box Population
   ColorChoicesBoxHeight=BUTTONbackgroundImageHeight;
@@ -332,7 +361,8 @@ void setup () {
   backwardSkipBUTTONlineY1=forwardSkipBUTTONlineY1;
   backwardSkipBUTTONlineX2=backwardSkipBUTTONtriangleX3-roundedEdges*1/4;
   backwardSkipBUTTONlineY2=forwardSkipBUTTONlineY2;
-
+  //Songs
+  songTitleFont=createFont("Calibri Bold Italic", 13);
 
 
   /*
@@ -362,8 +392,8 @@ void draw () {
     image(backgroundImage1, BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     image(backgroundImage2, BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     image(backgroundImage3, BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
-      musicBoxLiningColor=black;
-      musicBoxFillingColor=whiteReset;
+    musicBoxLiningColor=black;
+    musicBoxFillingColor=whiteReset;
   } else {
   }
   //Background Image 1 code
@@ -377,7 +407,7 @@ void draw () {
     image(backgroundImage1, BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     image(backgroundImage3, BUTTONbackgroundImage3X, BUTTONbackgroundImage3Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     musicBoxLiningColor=COLORIMAGE2toolbarLining; 
-      musicBoxFillingColor=COLORIMAGE2toolbarFILLING;
+    musicBoxFillingColor=COLORIMAGE2toolbarFILLING;
   } else {
   }
   //Background Image 3 Code
@@ -389,7 +419,7 @@ void draw () {
     image(backgroundImage1, BUTTONbackgroundImage1X, BUTTONbackgroundImage1Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     image(backgroundImage2, BUTTONbackgroundImage2X, BUTTONbackgroundImage2Y, BUTTONbackgroundImageWidth, BUTTONbackgroundImageHeight);
     musicBoxLiningColor=COLORIMAGE3toolbarLining; 
-      musicBoxFillingColor=COLORIMAGE3toolbarFILLING;
+    musicBoxFillingColor=COLORIMAGE3toolbarFILLING;
   } else {
   }
 
@@ -619,7 +649,25 @@ void draw () {
   stroke(black);
   strokeWeight(reset);
 
-
+  //Song Code
+  if (song[currentSong].isLooping() ) println("There are:", song[currentSong].loopCount(), "loops left.");
+  if (song[currentSong].isPlaying() && !song[currentSong].isLooping()) println("Playing once"); //! means not
+  //
+  println("Song position:", song[currentSong].position(), "Song Length:", song[currentSong].length() );
+  //
+  stroke(black);
+  textAlign(CENTER, CENTER);
+  rect(musicBoxX, musicBoxY, musicBoxWidth, musicBoxHeight*1/2);
+  if (song[currentSong]==song[0]) {
+    textFont(songTitleFont, 5);
+    text(song0Title, musicBoxX, musicBoxY, musicBoxWidth, musicBoxHeight*1/2);
+  }
+  /*  
+   String song0Title="Shooting Stars in Summer By Naoko Ikeda";
+   String song1Title="Consolation, Op. 30, No. 3 by Felix Mendelsson";
+   String song2Title="Fluttering Leaves, Op. 46, No. 11, by Stephen Heller";
+   String song3Title="In The Evening, Op. 88, No. 2, Heinrich Hoffman";
+   */
 
 
   //
@@ -653,6 +701,84 @@ void draw () {
 //
 void keyPressed () {
   if (keyCode=='/') exit();
+
+  //Only press a number for this code,
+  //by pressing a number it will determine how many times the song loops
+  println(key);
+  if (key=='1' || key=='2' || key=='9') { 
+    if (key=='1') println("Looping 1 time");
+    if (key=='2') println("Looping 2 times");
+    if (key=='9') println("Looping 9 times"); //Looping nine times can be defined as infinity
+    String keyString= String.valueOf(key);
+    println("Number of repeats is:", keyString);
+    int number= int(keyString);
+    song[currentSong].loop(number);
+  } //End Loop
+  if (key>=3 && key!='9') println("I do not loop that much! Try again.");
+  //Previous Play button and loop button
+
+  int loopNumber=0;
+  if (key=='L' || key=='l') song[currentSong].loop(loopNumber);
+  /*
+   //Mute button
+   
+   if ( (key=='m' || key=='M') && song1.isMuted() ) {
+   song1.unmute();
+   } else {
+   song1.mute();
+   }
+   */
+
+  //Pause/Play button, Parameters is milli-seconds from start of audio file to strat of playing 
+  if ( (key=='p' || key=='P') ) {
+    if (song[currentSong].isPlaying() ) { 
+      song[currentSong].pause();
+    } else if (/*song[currentSong].position() >=*/ song[currentSong].length() - song[currentSong].position() <= 1000 ) {
+      //To calculate the end of the song
+      //Alternate forumala: song1.position() >= song1.length()-song1.length()*1/5, 
+      //this means if the song position is larger than 80% of the song length, 
+      //or what we classified as "the end", the song will rewind and play
+      song[currentSong].rewind();
+      song[currentSong].play();
+    } else {
+      song[currentSong].play();
+    }
+  }
+
+  //Forward/Reverse Button
+  //Built-in question: x.isPlaying()
+  if (key=='f' || key=='F'  ) song[currentSong].skip(1000) ; //skip forward 1 second, or 1000 milliseconds
+  if ( key=='r' || key=='R'  ) song[currentSong].skip(-1000); //skip backward
+  //
+  if (keyCode=='/') exit();
+  //
+
+  // Stop button
+  if (key=='s' || key=='S') {
+    if ( song[currentSong].isPlaying() ) {
+      song[currentSong].pause();
+      song[currentSong].rewind();
+    } else {
+      song[currentSong].rewind();
+    }
+  }
+  //Next Song button
+  if (key=='n' || key=='N') {
+    if ( song[currentSong].isPlaying() ) 
+    { //Serious problems, playing multiple songs at the same time
+      song[currentSong].pause();
+      song[currentSong].rewind();
+      Next_Catch ();
+      song[currentSong].play();
+    } else {
+      Next_Catch ();
+      //if you just put currentSong++ without the if statement, will cause an error because it will keep pn adding 
+      //numbers above 3
+      song[currentSong].play();
+    }
+  }
+  //Previous Button
+  //if (song) {}
 }//End keyPressed
 //
 void mousePressed () {
@@ -896,11 +1022,26 @@ void mousePressed () {
     if (SongPlayON==true) {
       SongPlayON=false;
       SongPauseON=true;
+      
+      if (song[currentSong].isPlaying() ) { 
+      song[currentSong].pause(); } else if (/*song[currentSong].position() >=*/ song[currentSong].length() - song[currentSong].position() <= 1000 ) {
+      //To calculate the end of the song
+      //Alternate forumala: song1.position() >= song1.length()-song1.length()*1/5, 
+      //this means if the song position is larger than 80% of the song length, 
+      //or what we classified as "the end", the song will rewind and play
+      song[currentSong].rewind();
+      song[currentSong].play(); 
+      }
+   
     } else {
       SongPlayON=true;
       SongPauseON=false;
+      song[currentSong].play();
     }
+    
+ 
   }
 }//End mousePressed
 //
+
 //End MAIN program
