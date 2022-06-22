@@ -106,7 +106,15 @@ color COLORIMAGE3toolbarLining=green1;
 color COLORIMAGE1toolbarFILLING=peachy;
 color COLORIMAGE2toolbarFILLING=yell0w3;
 color COLORIMAGE3toolbarFILLING=orange5;
-
+//Music Box
+float musicBoxX, musicBoxY, musicBoxWidth, musicBoxHeight;
+float playBUTTONtriangleX1, playBUTTONtriangleY1, playBUTTONtriangleX2, playBUTTONtriangleY2, playBUTTONtriangleX3, playBUTTONtriangleY3;
+float playBUTTONcircleX, playBUTTONcircleY, playBUTTONdiameter;
+float pauseBUTTONline1X, pauseBUTTONline1Y, pauseBUTTONline2X, pauseBUTTONline2Y;
+float forwardSkipBUTTONtriangleX1, forwardSkipBUTTONtriangleY1, forwardSkipBUTTONtriangleX2, forwardSkipBUTTONtriangleY2, forwardSkipBUTTONtriangleX3, forwardSkipBUTTONtriangleY3;
+float fowardSkipbUTTONlineX, forwardSkipBUTTONlineY;
+float backwardSkipBUTTONtriangleX1, backwardSkipBUTTONtriangleY1, backwardSkipBUTTONtriangleX2, backwardSkipBUTTONtriangleY2, backwardSkipBUTTONtriangleX3, backwardSkipBUTTONtriangleY3;
+float backwardSkipbUTTONlineX, backwardSkipBUTTONlineY;
 
 //
 void setup () {
@@ -270,6 +278,23 @@ void setup () {
   triangleStampTriangleY2=triangleStampBUTTONY+triangleStampHeight*20/100;
   triangleStampTriangleX3=triangleStampBUTTONX+(triangleStampWidth*1/2)+triangleStampWidth*1/4;
   triangleStampTriangleY3=triangleStampTriangleY1;
+  
+  //
+  //Music Box
+  musicBoxX=toolBarX;
+  musicBoxY=toolBarY+toolBarHeight+(roundedEdges);
+  musicBoxWidth=toolBarWidth;
+  musicBoxHeight=appHeight-toolBarY-toolBarHeight-(roundedEdges*2);
+  playBUTTONcircleX=musicBoxX+(musicBoxWidth*1/2);
+  playBUTTONcircleY=musicBoxY+(musicBoxHeight*73/100);
+  playBUTTONdiameter=musicBoxWidth*1/8;
+  playBUTTONtriangleX1=playBUTTONcircleX-(playBUTTONdiameter*1/8);
+  playBUTTONtriangleY1=playBUTTONcircleY-(playBUTTONdiameter*2/8);
+  playBUTTONtriangleX2=playBUTTONtriangleX1;
+  playBUTTONtriangleY2=playBUTTONcircleY+(playBUTTONdiameter*2/8);
+  playBUTTONtriangleX3=playBUTTONcircleX+(playBUTTONdiameter*2/8);
+  playBUTTONtriangleY3=playBUTTONcircleY;
+
 
   /*
   //Quit button
@@ -369,7 +394,6 @@ void draw () {
     strokeWeight(reset);
   }
   rect((stampBUTTONX+drawingButtonWidth*1/2)-(drawingButtonWidth*110/100*1/2), (stampBUTTONY+drawingButtonHeight*1/2)-(drawingButtonHeight*110/100*1/2), drawingButtonWidth*110/100, drawingButtonHeight*110/100);
-  if (colorOfDrawingTool==yellowBUTTONcolor) fill(black);
    if (stampON==true && roundStampON==true) {
     strokeWeight(roundedEdges*1/6);
   } else {
@@ -518,6 +542,13 @@ void draw () {
   if (drawOnPaper==false && draw==true && stampON==true && triangleStampON==true && mouseX>=appWidth*0 && mouseX<=appWidth && mouseY>=toolBarY+toolBarHeight+(roundedEdges) && mouseY<=appHeight) triangle(mouseX, mouseY, mouseX+drawingDiameter*1/2, mouseY, mouseX+drawingDiameter*1/4, mouseY+drawingDiameter);
   fill(whiteReset);
   stroke(black);
+  
+  //Music Box
+  rect( musicBoxX, musicBoxY, musicBoxWidth, musicBoxHeight);
+  fill(black);
+  ellipse (playBUTTONcircleX, playBUTTONcircleY, playBUTTONdiameter, playBUTTONdiameter);
+  fill(whiteReset);
+  triangle(playBUTTONtriangleX1, playBUTTONtriangleY1, playBUTTONtriangleX2, playBUTTONtriangleY2, playBUTTONtriangleX3, playBUTTONtriangleY3);
 
 
 
