@@ -131,6 +131,7 @@ String song1Title="Consolation";
 String song2Title="Fluttering Leaves";
 String song3Title="In The Evening";
 PFont songTitleFont;
+color songTitleColor;
 //Music of the Music Box
 Boolean SongPlayON=true, SongPauseON=false;
 int numberOfSongs = 4;

@@ -13,12 +13,12 @@ Drawing Program Expectations
  COMPLETE button that changes the background
  INCOMPLETE button that controls stroke, this would be strokeWeight();
  COMPLETE button that controls color
- INCOMPLETE button that draws shapes
+ COMPLETE button that draws shapes
  INCOMPLETE button that draws images
  INCOMPLETE button that makes noises (croissahnt, whenever you touch the outline)
  INCOMPLETE button that controls transparency, this would be alpha this would allow us to have a highlighter
  INCOMPLETE button that when hovers over, explains what a button is
- INCOMPLETE Eraser button: drawing with white ink
+ COMPLETE Eraser button: drawing with white ink
  
  Planning: 
  
