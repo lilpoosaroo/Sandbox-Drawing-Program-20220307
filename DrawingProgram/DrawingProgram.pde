@@ -790,6 +790,30 @@ void keyPressed () {
       song[currentSong].play();
     }
   }
+  
+    if (key=='b' || key=='B') {
+    if ( song[currentSong].isPlaying() ) 
+    { //Serious problems, playing multiple songs at the same time
+      song[currentSong].pause();
+      song[currentSong].rewind();
+      if ( currentSong <= song.length-1) { 
+        currentSong += currentSong; //Makes the playlist start from the beginning
+      } else {
+        currentSong--;
+      }
+      song[currentSong].play();
+    } else {
+      if ( currentSong <= song.length-1) { 
+        currentSong += currentSong; //Makes the playlist start from the beginning
+      } else {
+        currentSong--;
+      }
+      
+      //if you just put currentSong++ without the if statement, will cause an error because it will keep pn adding 
+      //numbers above 3
+      song[currentSong].play();
+    }
+  }
   //Previous Button
   //if (song) {}
 }//End keyPressed
@@ -1071,11 +1095,36 @@ void mousePressed () {
       song[currentSong].play();
     }
   
+  }
   
-  
-  
-  
-  
+  //Backward If statement Button
+  if (mouseX>=backwardSkipBUTTONtriangleX1-playBUTTONradius  && mouseX<=backwardSkipBUTTONtriangleX1 
+  && mouseY>=backwardSkipBUTTONtriangleY1 && mouseY<=backwardSkipBUTTONtriangleY1+playBUTTONdiameter*1/5) {
+    if ( song[currentSong].isPlaying() ) 
+    { //Serious problems, playing multiple songs at the same time
+      song[currentSong].pause();
+      song[currentSong].rewind();
+      
+   if ( currentSong <= song.length-4) { 
+        currentSong += song.length-1; //Makes the playlist start from the beginning
+      } else {
+        currentSong--;
+      }
+
+   
+      song[currentSong].play();
+    } else {
+      
+   if ( currentSong <= song.length-4) { 
+        currentSong += song.length-1; //Makes the playlist start from the beginning
+      } else {
+        currentSong--;
+      }
+
+      //if you just put currentSong++ without the if statement, will cause an error because it will keep pn adding 
+      //numbers above 3
+      song[currentSong].play();
+    }
   }
 }//End mousePressed
 //
